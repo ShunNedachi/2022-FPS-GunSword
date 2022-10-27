@@ -8,6 +8,7 @@ public class GameScene : MonoBehaviour
     int currentStage;
     int remainEnemy;
     int playerHealth;
+   public static float clearTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class GameScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        clearTime++;
         if(remainEnemy<=0)
         {
             GameClear();
