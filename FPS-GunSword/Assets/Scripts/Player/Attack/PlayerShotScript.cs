@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerShotScript : MonoBehaviour
 {
+    public static PlayerShotScript instance;
+
     public float rayDistance;
     [SerializeField] private int magazineMax;
     [SerializeField] private float shootInterval = 3.0f;
@@ -13,16 +15,25 @@ public class PlayerShotScript : MonoBehaviour
     private float reloadTimer = 0;
     private int magazine;
 
+    public void Awake()
+    {
+        if(instance ==null)
+        {
+            instance = this;
+        }
+    }
+
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         magazine = magazineMax;
     }
 
-    private void Update()
+    public void Update()
     {
         Transform trans = transform;
-        timer += Time.deltaTime;
+        shootIntervalTimer += Time.deltaTime;
+        reloadTimer += Time.deltaTime;
 
         if (Input.GetMouseButton(0) && magazine>0 &&shootIntervalTimer >= shootInterval)
         {
@@ -49,7 +60,7 @@ public class PlayerShotScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R) && reloadTimer >= reloadInterval)
         {
             // タイマーの初期化
-            timer = 0;
+            reloadTimer = 0;
             Reload();
         }
     }

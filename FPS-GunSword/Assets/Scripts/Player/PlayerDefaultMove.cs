@@ -4,7 +4,18 @@ using UnityEngine;
 
 public class PlayerDefaultMove : MonoBehaviour
 {
+    public static PlayerDefaultMove instance;
+
     [SerializeField] public float moveSpeed = 0.5f;
+
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -13,7 +24,7 @@ public class PlayerDefaultMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         Transform trans = transform;
         transform.position = trans.position;
