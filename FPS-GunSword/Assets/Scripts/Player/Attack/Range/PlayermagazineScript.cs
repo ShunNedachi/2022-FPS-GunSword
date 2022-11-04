@@ -4,16 +4,37 @@ using UnityEngine;
 
 public class PlayerMagazineScript : MonoBehaviour
 {
-    public int magazine;
-    // Start is called before the first frame update
-    void Start()
+    public static PlayerMagazineScript instance;
+
+    [SerializeField] private int magazineMax;
+
+    private int remainingBullets;
+    
+    public void Awake()
     {
-        
+        if(instance ==null)
+        {
+            instance = this;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        
+        remainingBullets = magazineMax;
+    }
+    //残弾数を取得
+    public int GetRemainingBullets()
+    {
+        return remainingBullets;
+    }
+    //撃った時に残弾を減らす
+    public void Shot()
+    {
+        remainingBullets--;
+    }
+    //リロード
+    public void Reload()
+    {
+        remainingBullets = magazineMax;
     }
 }

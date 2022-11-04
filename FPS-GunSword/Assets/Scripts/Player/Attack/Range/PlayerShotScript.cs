@@ -7,13 +7,11 @@ public class PlayerShotScript : MonoBehaviour
     public static PlayerShotScript instance;
 
     public float rayDistance;
-    [SerializeField] private int magazineMax;
-    [SerializeField] private float shootInterval = 3.0f;
-    [SerializeField] private float reloadInterval = 3.0f;
+    [SerializeField] private int shootInterval = 30;
+    [SerializeField] private int reloadInterval = 120;
 
-    private float shootIntervalTimer = 0;
-    private float reloadTimer = 0;
-    private int magazine;
+    private int shootIntervalTimer = 0;
+    private int reloadTimer = 0;
 
     public void Awake()
     {
@@ -26,47 +24,49 @@ public class PlayerShotScript : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        magazine = magazineMax;
+        PlayerMagazineScript.instance.Start();
     }
 
     public void Update()
     {
         Transform trans = transform;
-        shootIntervalTimer += Time.deltaTime;
-        reloadTimer += Time.deltaTime;
+        shootIntervalTimer ++;
+        reloadTimer ++;
 
-        if (Input.GetMouseButton(0) && magazine>0 &&shootIntervalTimer >= shootInterval)
+        if (Input.GetMouseButton(0) && shootIntervalTimer >= shootInterval)
         {
-            var direction = trans.forward;
-
-            Vector3 rayPosition = trans.position + new Vector3(0.0f, 0.0f, 0.0f);
-            Ray ray = Camera.main .ScreenPointToRay(Input.mousePosition);
-            Debug.DrawRay(rayPosition, direction * -rayDistance, UnityEngine.Color.red);
-
-            magazine--;
-
-            RaycastHit hit;
-            if(Physics.Raycast(ray,out hit))
+            if(PlayerMagazineScript.instance.GetRemainingBullets()>0)
             {
-                Debug.Log("HIT‚µ‚Ü‚µ‚½‚æ");
+                var direction = trans.forward;
 
-                if(hit.collider.tag == "OBJECT")
+               Vector3 rayPosition = trans.position + new Vector3(0.0f, 0.0f, 0.0f);
+                Ray ray = Camera.main .ScreenPointToRay(Input.mousePosition);
+                Debug.DrawRay(rayPosition, direction * -rayDistance, UnityEngine.Color.red);
+
+                PlayerMagazineScript.instance.Shot();
+
+                RaycastHit hit;
+                if(Physics.Raycast(ray,out hit))
                 {
-                    Destroy(hit.collider.gameObject);
+                    Debug.Log("HITï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½ï¿½");
+
+                    if(hit.collider.tag == "OBJECT")
+                    {
+                       Destroy(hit.collider.gameObject);
+                    }
                 }
+            }
+            else
+            {
+                PlayerMagazineScript.instance.Reload();
             }
         }
 
         if(Input.GetKeyDown(KeyCode.R) && reloadTimer >= reloadInterval)
         {
-            // ƒ^ƒCƒ}[‚Ì‰Šú‰»
+            // ï¿½^ï¿½Cï¿½}ï¿½[ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½
             reloadTimer = 0;
-            Reload();
+            PlayerMagazineScript.instance.Reload();
         }
-    }
-
-    private void Reload()
-    {
-        magazine = magazineMax;
     }
 }

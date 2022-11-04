@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    [SerializeField] public int deformationInterval = 30;
 
-    [SerializeField] private bool changeMode;
+    private bool ULT = false;
+    private int deformationTimer = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,29 +18,27 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        PlayerDefaultMove.instance.Update();
-
-        //モード切替
-        if(Input.GetKeyDown(KeyCode.C))
+        if(Input.GetKeyDown(KeyCode.F))
         {
-            if(changeMode)
-            {
-                changeMode = false;
-            }
-            else
-            {
-                changeMode = true;
-            }
+            ULT = true;
+
         }
 
-        if(changeMode)  //モード変更
+        PlayerDefaultMove.instance.Update();
+
+        if(ULT)
         {
-            PlayerShotScript.instance.Update();
+            deformationTimer++;
+            if(deformationTimer>deformationInterval)
+            {
+                //ULT荳ｭ蜃ｦ逅�
+
+            }
         }
         else
         {
+            PlayerShotScript.instance.Update();
             PlayerSlashScript.instance.Update();
-        }
-        
+        } 
     }
 }

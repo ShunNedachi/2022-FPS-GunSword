@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class PlayerEnergyScript : MonoBehaviour
 {
+    public static PlayerEnergyScript instance;
+
     [SerializeField] private int energyMax;
     private float energy = 0;
     private int energyItem = 60;
     private int baceEnergyAbsorption = 25;
+
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
