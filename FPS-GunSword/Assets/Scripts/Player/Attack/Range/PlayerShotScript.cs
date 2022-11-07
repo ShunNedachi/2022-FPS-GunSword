@@ -48,7 +48,7 @@ public class PlayerShotScript : MonoBehaviour
                 RaycastHit hit;
                 if(Physics.Raycast(ray,out hit))
                 {
-                    Debug.Log("HIT���܂�����");
+                    Debug.Log("HIT");
 
                     if(hit.collider.tag == "OBJECT")
                     {

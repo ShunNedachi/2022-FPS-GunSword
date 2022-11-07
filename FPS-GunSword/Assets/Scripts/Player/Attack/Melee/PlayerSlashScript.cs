@@ -10,6 +10,8 @@ public class PlayerSlashScript : MonoBehaviour
     [SerializeField] private GameObject enemy;
     [SerializeField] private int attackInterval = 50;
 
+    [SerializeField] private float attackDictance = 5.0f;
+
     private float attackTimer = 0;
     private int comboCount = 0;
 
@@ -30,14 +32,16 @@ public class PlayerSlashScript : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if(Input.GetMouseButton(1) && attackTimer >attackInterval)
+        if(Input.GetMouseButton(1) )
         {
             Vector3 enemyPos = enemy.transform.position;
             enemyPos.y = transform.position.y;
             attackTimer = 0;
 
-            if(Vector3.Distance(enemyPos,transform.position) <= 2.0f && Vector3.Dot(Vector3.Normalize(enemyPos-transform.position),transform.forward)>= 0.8f)
+            if(Vector3.Distance(enemyPos,transform.position) <= attackDictance && Vector3.Dot(Vector3.Normalize(enemyPos-transform.position),transform.forward)>= 0.8f)
             {
+                Debug.Log("HIT");
+
                 //damage処理
                 PlayerEnergyScript.instance.SlashChargeEnergy();
                 //コンボ加算
