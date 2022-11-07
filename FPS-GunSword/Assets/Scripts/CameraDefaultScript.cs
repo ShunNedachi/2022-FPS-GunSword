@@ -11,9 +11,9 @@ public class CameraDefaultScript : MonoBehaviour
 
     private bool cursorLock = true;
 
-    // Šp“x‚Ì§ŒÀ—p
+    // ï¿½pï¿½xï¿½Ìï¿½ï¿½ï¿½ï¿½p
     private float minX = -90.0f, maxX = 90.0f;
-
+    private float minY = -90.0f, maxY = 90.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +39,7 @@ public class CameraDefaultScript : MonoBehaviour
     }
 
 
-    // ƒJ[ƒ\ƒ‹•\¦—p(ƒNƒŠƒbƒN‚Å”ñ•\¦@ESC‚Å•\¦)
+    // ï¿½Jï¿½[ï¿½\ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½p(ï¿½Nï¿½ï¿½ï¿½bï¿½Nï¿½Å”ï¿½\ï¿½ï¿½ï¿½@ESCï¿½Å•\ï¿½ï¿½)
     public void UpdateCursorLock()
     {
 
@@ -63,21 +63,24 @@ public class CameraDefaultScript : MonoBehaviour
         }
     }
 
-    //Šp“x§ŒÀŠÖ”‚Ìì¬
+    //ï¿½pï¿½xï¿½ï¿½ï¿½ï¿½ï¿½Öï¿½ï¿½Ìì¬
     public Quaternion ClampRotation(Quaternion q)
     {
-        //q = x,y,z,w (x,y,z‚ÍƒxƒNƒgƒ‹i—Ê‚ÆŒü‚«jFw‚ÍƒXƒJƒ‰[iÀ•W‚Æ‚Í–³ŠÖŒW‚Ì—Êj)
+        //q = x,y,z,w (x,y,zï¿½Íƒxï¿½Nï¿½gï¿½ï¿½ï¿½iï¿½Ê‚ÆŒï¿½ï¿½ï¿½ï¿½jï¿½Fwï¿½ÍƒXï¿½Jï¿½ï¿½ï¿½[ï¿½iï¿½ï¿½ï¿½Wï¿½Æ‚Í–ï¿½ï¿½ÖŒWï¿½Ì—Êj)
 
         q.x /= q.w;
         q.y /= q.w;
         q.z /= q.w;
-        q.w = 1f;
+        q.w = 1.0f;
 
         float angleX = Mathf.Atan(q.x) * Mathf.Rad2Deg * 2f;
+        //float angleY = Mathf.Atan(q.y) * Mathf.Rad2Deg * 2f;
 
         angleX = Mathf.Clamp(angleX, minX, maxX);
+        //angleY = Mathf.Clamp(angleY, minY, minY);
 
         q.x = Mathf.Tan(angleX * Mathf.Deg2Rad * 0.5f);
+        //q.y = Mathf.Tan(angleY * Mathf.Deg2Rad * 0.5f);
 
         return q;
     }
