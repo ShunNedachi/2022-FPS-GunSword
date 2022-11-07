@@ -221,6 +221,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.05
+  dashSpeed: 1
+  recastInterval: 180
+  dashInterval: 20
 --- !u!1 &455750435
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,8 +235,12 @@ GameObject:
   - component: {fileID: 455750438}
   - component: {fileID: 455750437}
   - component: {fileID: 455750436}
+  - component: {fileID: 455750444}
   - component: {fileID: 455750439}
   - component: {fileID: 455750440}
+  - component: {fileID: 455750443}
+  - component: {fileID: 455750442}
+  - component: {fileID: 455750441}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -254,7 +261,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayDistance: 0
-  magazineMax: 0
   shootInterval: 3
   reloadInterval: 3
 --- !u!114 &455750437
@@ -269,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e738052f8ab0642829d466b16f1687, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeMode: 1
+  deformationInterval: 30
 --- !u!4 &455750438
 Transform:
   m_ObjectHideFlags: 0
@@ -297,9 +303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659fef7550943c549928aa999111910f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackRange: {fileID: 3259127025878488114, guid: 7d0641bc491289a4892e2a58454db14b, type: 3}
-  camera: {fileID: 80415363}
-  forwardPlusValue: 3
+  enemy: {fileID: 3647217949585557207, guid: 5bbafe698c85e914ab71ae51fed3ff0b, type: 3}
+  attackInterval: 50
 --- !u!114 &455750440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,6 +318,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.05
+  dashSpeed: 1
+  recastInterval: 180
+  dashInterval: 20
+--- !u!114 &455750441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455750435}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca52e7235fa25e24b9b31124732400a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0.5
+  dashSpeed: 1
+  recastInterval: 180
+  dashInterval: 20
+--- !u!114 &455750442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455750435}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ece3f18c00d386047bea51cc05e8dd35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staminaMax: 100
+--- !u!114 &455750443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455750435}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da84e298a6695f049b06961ad6df55eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energyMax: 0
+--- !u!114 &455750444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455750435}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e54c72091fbdbf4eae7b13d1031ad92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magazineMax: 0
 --- !u!1 &1609226406
 GameObject:
   m_ObjectHideFlags: 0
