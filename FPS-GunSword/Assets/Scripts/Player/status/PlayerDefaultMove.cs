@@ -6,7 +6,7 @@ public class PlayerDefaultMove : MonoBehaviour
 {
     public static PlayerDefaultMove instance;
 
-    [SerializeField] public float moveSpeed = 0.5f;
+    [SerializeField] public float moveSpeed = 0.05f;
     [SerializeField] public float dashSpeed = 1.0f;
     [SerializeField] public int recastInterval = 180;
     [SerializeField] public int dashInterval = 20;
@@ -29,7 +29,7 @@ public class PlayerDefaultMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PlayerStaminaScript.instance.Start();
     }
 
     // Update is called once per frame
