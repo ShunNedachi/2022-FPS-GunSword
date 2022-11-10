@@ -30,6 +30,8 @@ public class DefaultEnemy : MonoBehaviour
     // 敵の視角
     [SerializeField] protected float visualAngle = 70.0f;
 
+    [SerializeField] protected float heightOfVision = 1.0f;
+
 
 
     // 基本行動用
@@ -82,18 +84,25 @@ public class DefaultEnemy : MonoBehaviour
     public bool MoveWithinSight()
     {
 
-        // 視界にオブジェクトがあるか判定
-        var diff = playerObject.transform.position - transform.position;
+        // 視界にオブジェクトがあるか判定 オブジェクトの目の位置を考慮するために1だけy軸にプラスしている
+        var fixedPosition = transform.position;
+        fixedPosition.y += heightOfVision;
+
+        var diff = playerObject.transform.position - fixedPosition;
         var axis = Vector3.Cross(transform.forward, diff);
         var angle = Vector3.Angle(transform.forward, diff) * (axis.y < 0 ? -1 : 1); 
         if (angle <= visualAngle && angle >= -visualAngle)
         {
             // 視界にオブジェクトがあればレイを飛ばす
             RaycastHit hit;
-            Vector3 temp = playerObject.transform.position - transform.position;
+            Vector3 temp = playerObject.transform.position - fixedPosition;
             Vector3 normal = temp.normalized;
 
-            if (Physics.Raycast(transform.position, normal, out hit, sightDistance))
+            var ray = new Ray(fixedPosition, normal);
+
+
+            Debug.DrawRay(ray.origin, ray.direction * sightDistance, Color.red);
+            if (Physics.Raycast(fixedPosition, normal, out hit, sightDistance))
             {
                 // playerが視界内にいたとき
                 if(hit.transform.gameObject == playerObject)

@@ -85,7 +85,7 @@ public class MeleeEnemy : DefaultEnemy
             agent.speed = runSpeed;
         }
 
-        // 
+        // UŒ‚‘O‚Ì—\”õ“®ì
         if(isAttack)
         {
             // Šî‘bs“®‚ðŽ~‚ß‚é
@@ -94,6 +94,7 @@ public class MeleeEnemy : DefaultEnemy
 
 
             countAttack++;
+            // UŒ‚”­¶
             if (countAttack > attackFrame)
             {
                 isAttack = false;
