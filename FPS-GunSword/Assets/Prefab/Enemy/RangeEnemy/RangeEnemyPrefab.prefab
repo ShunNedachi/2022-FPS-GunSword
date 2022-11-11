@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8077577014132963554}
   - component: {fileID: 568751172197218334}
   - component: {fileID: 4201528342972611079}
+  - component: {fileID: 5408098931961921395}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -99,6 +100,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5408098931961921395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392894720029700812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f3692dfb0bbdf4a8fe20c95948979d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHead: 0
+  damageMaltiply: 2
 --- !u!1 &1634902427023372528
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,6 +126,7 @@ GameObject:
   - component: {fileID: 1964780389767024562}
   - component: {fileID: 8286992880091343987}
   - component: {fileID: 260814010597858603}
+  - component: {fileID: 4221371946012733219}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -196,6 +212,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4221371946012733219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1634902427023372528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f3692dfb0bbdf4a8fe20c95948979d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHead: 1
+  damageMaltiply: 2
 --- !u!1 &3239320954714338362
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,7 +240,7 @@ GameObject:
   - component: {fileID: 4531198577095070824}
   m_Layer: 0
   m_Name: RangeEnemyPrefab
-  m_TagString: Untagged
+  m_TagString: RangeEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
