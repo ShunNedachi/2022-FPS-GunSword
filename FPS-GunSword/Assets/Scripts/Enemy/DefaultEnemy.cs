@@ -32,11 +32,11 @@ public class DefaultEnemy : MonoBehaviour
 
     [SerializeField] protected float heightOfVision = 1.0f;
 
-
+    // 使用するマーカー
+    [SerializeField] protected GameObject[] makerObj;
 
     // 基本行動用
     protected int destinationIndex = 0;
-    protected GameObject[] navPointsObj;
     protected Rigidbody rigidBody;
     protected NavMeshAgent agent;
 
@@ -69,15 +69,15 @@ public class DefaultEnemy : MonoBehaviour
 
     public void GetNextPoint()
     {
-        if (navPointsObj.Length == 0)
+        if (makerObj.Length == 0)
         {
             return;
         }
 
-        agent.SetDestination(navPointsObj[destinationIndex].transform.position);
+        agent.SetDestination(makerObj[destinationIndex].transform.position);
 
         //配列のインデックスを+1して、最後の地点だった場合は0に戻す
-        destinationIndex = (destinationIndex + 1) % navPointsObj.Length;
+        destinationIndex = (destinationIndex + 1) % makerObj.Length;
     }
 
 
@@ -134,7 +134,6 @@ public class DefaultEnemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = 0.1f;
 
-        navPointsObj = GameObject.FindGameObjectsWithTag("EnemyMoveMaker");
 
         agent.speed = runSpeed;
 

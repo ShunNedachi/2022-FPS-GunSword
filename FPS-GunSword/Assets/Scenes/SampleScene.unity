@@ -306,7 +306,7 @@ PrefabInstance:
       objectReference: {fileID: 2082613630}
     - target: {fileID: 6189275432658110869, guid: 90dea7b18a93db048b60b088931f10e3, type: 3}
       propertyPath: attackIntervalFrame
-      value: 1000
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7494529944102926757, guid: 90dea7b18a93db048b60b088931f10e3, type: 3}
       propertyPath: m_RootOrder
@@ -1246,6 +1246,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0.1
+  dashSpeed: 1
+  recastInterval: 180
+  dashInterval: 20
 --- !u!54 &2082613638
 Rigidbody:
   m_ObjectHideFlags: 0
