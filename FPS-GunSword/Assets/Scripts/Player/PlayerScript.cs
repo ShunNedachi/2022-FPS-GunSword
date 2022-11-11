@@ -21,6 +21,7 @@ public class PlayerScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F))
         {
             ULT = true;
+            CameraController.instance.ChangeThirdViewCamera();
 
         }
 

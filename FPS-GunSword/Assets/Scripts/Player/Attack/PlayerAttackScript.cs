@@ -27,8 +27,7 @@ public class PlayerAttackScript : MonoBehaviour
         {
             // プレイヤーの少し前に生成する
             Vector3 createPos = transform.position + camera.transform.forward * forwardPlusValue;
-
-
+            
             // 弾の生成
             Instantiate(bullet, createPos, camera.transform.rotation);
 
