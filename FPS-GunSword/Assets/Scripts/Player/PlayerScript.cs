@@ -21,6 +21,7 @@ public class PlayerScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.F))
         {
             ULT = true;
+            CameraController.instance.ChangeThirdViewCamera();
 
         }
 
@@ -28,7 +29,6 @@ public class PlayerScript : MonoBehaviour
 
         if(ULT)
         {
-            CameraController.instance.ChangeThirdViewCamera();
             deformationTimer++;
             if(deformationTimer>deformationInterval)
             {
