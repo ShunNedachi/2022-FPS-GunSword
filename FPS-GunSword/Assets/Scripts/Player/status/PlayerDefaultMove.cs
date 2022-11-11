@@ -17,6 +17,7 @@ public class PlayerDefaultMove : MonoBehaviour
     private bool dashMode = false;
     float vertical;
     float horizontal;
+    float defaultY;
     public void Awake()
     {
         if (instance == null)
@@ -30,6 +31,7 @@ public class PlayerDefaultMove : MonoBehaviour
     void Start()
     {
         PlayerStaminaScript.instance.Start();
+        defaultY = this.gameObject.transform.position.y;
     }
 
     // Update is called once per frame
@@ -66,7 +68,7 @@ public class PlayerDefaultMove : MonoBehaviour
         {
             trans.position += trans.TransformDirection(Vector3.forward) * Input.GetAxis("Vertical") * moveSpeed;
             trans.position += trans.TransformDirection(Vector3.right) * Input.GetAxis("Horizontal") * moveSpeed;
-
+            trans.position = new Vector3(trans.position.x,defaultY,trans.position.z);
             recastTimer++;
             if(recastTimer>recastInterval)
             {

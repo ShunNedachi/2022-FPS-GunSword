@@ -9,11 +9,11 @@ public class CameraDefaultScript : MonoBehaviour
 
     private Quaternion cameraRot, characterRot;
 
-    private bool cursorLock = true;
+    private bool cursorLock = false;
 
     // �p�x�̐����p
     private float minX = -90.0f, maxX = 90.0f;
-    private float minY = -90.0f, maxY = 90.0f;
+    float x,z;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +38,16 @@ public class CameraDefaultScript : MonoBehaviour
         UpdateCursorLock();
     }
 
+    private void FixedUpdate()
+    {
+        x = 0;
+        z = 0;
+
+        x = Input.GetAxisRaw("Horizontal") * sensitivity;
+        z = Input.GetAxisRaw("Vertical") * sensitivity;
+
+        transform.position += camera.transform.forward * z + camera.transform.right * x;
+    }
 
     // �J�[�\���\���p(�N���b�N�Ŕ�\���@ESC�ŕ\��)
     public void UpdateCursorLock()
