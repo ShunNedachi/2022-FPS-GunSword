@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - EnemyMoveMaker
+  - MeleeEnemy
+  - RangeEnemy
   layers:
   - Default
   - TransparentFX
