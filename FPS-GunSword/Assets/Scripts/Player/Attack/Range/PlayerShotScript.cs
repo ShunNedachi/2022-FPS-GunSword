@@ -46,7 +46,7 @@ public class PlayerShotScript : MonoBehaviour
                 PlayerMagazineScript.instance.Shot();
 
                 RaycastHit hit;
-                if(Physics.Raycast(ray,out hit))
+                if(Physics.Raycast(ray,out hit) )//&& gameObject.tag = "Enemy"
                 {
                     Debug.Log("HIT");
 

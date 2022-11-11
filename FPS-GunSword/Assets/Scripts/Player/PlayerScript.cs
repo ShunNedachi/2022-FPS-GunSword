@@ -28,6 +28,7 @@ public class PlayerScript : MonoBehaviour
 
         if(ULT)
         {
+            CameraController.instance.ChangeThirdViewCamera();
             deformationTimer++;
             if(deformationTimer>deformationInterval)
             {
