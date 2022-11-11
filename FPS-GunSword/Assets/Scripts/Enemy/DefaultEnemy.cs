@@ -17,7 +17,7 @@ public class DefaultEnemy : MonoBehaviour
     // 走りのスピード
     [SerializeField] protected float runSpeed = 30.0f;
     // 怯みの時間
-    [SerializeField] protected float stunTime = 3.0f;
+    [SerializeField] protected int stunFrame = 30;
     // とりあえず持っておく 消滅にかかる時間
     [SerializeField] protected float deadTime = 3.0f;
     // どの範囲にプレイヤーが入ったら攻撃を開始するか
@@ -46,7 +46,8 @@ public class DefaultEnemy : MonoBehaviour
     protected bool isAttack = false;
     protected bool isDead = false;
 
-
+    public bool IsStun {get;set;} = false;
+    protected int stunCount = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -121,7 +122,6 @@ public class DefaultEnemy : MonoBehaviour
     public void InitializeEnemy()
     {
         // エラーをなくすためのもの
-        stunTime = 3.0f;
         deadTime = 3.0f;
 
         // もし何も入っていなかったときにplayerタグから代入

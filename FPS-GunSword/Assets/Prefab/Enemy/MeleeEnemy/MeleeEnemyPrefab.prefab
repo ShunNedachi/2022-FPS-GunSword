@@ -70,6 +70,7 @@ GameObject:
   - component: {fileID: 4905912114991920068}
   - component: {fileID: 4930939532022747942}
   - component: {fileID: 7040878858832055077}
+  - component: {fileID: 54931588318395334}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -158,6 +159,20 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &54931588318395334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2194843494751006371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f3692dfb0bbdf4a8fe20c95948979d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHead: 0
+  damageMaltiply: 2
 --- !u!1 &3647217949585557207
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +187,7 @@ GameObject:
   - component: {fileID: 4714829940610730219}
   m_Layer: 0
   m_Name: MeleeEnemyPrefab
-  m_TagString: Untagged
+  m_TagString: MeleeEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -227,6 +242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba0d16ef065e3840ae8f6c980f86ebb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 100
+  damageValue: 30
   sightDistance: 100
   walkSpeed: 10
   runSpeed: 30
@@ -236,9 +253,11 @@ MonoBehaviour:
   playerObject: {fileID: 0}
   groupDistance: 30
   visualAngle: 70
+  heightOfVision: 1
   walkDistance: 100
   attackFrame: 120
   attackIntervalFrame: 300
+  attackActiveFrame: 1
 --- !u!54 &4714829940610730219
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -267,6 +286,7 @@ GameObject:
   - component: {fileID: 2281898294519515999}
   - component: {fileID: 105866539712315754}
   - component: {fileID: 6716665883174855106}
+  - component: {fileID: 6442763302001528263}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -280,17 +300,10 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-
   m_GameObject: {fileID: 4329608343728991756}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.54999995, z: 0.213}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-
-  m_GameObject: {fileID: 3647217949585557207}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
-  
+  m_LocalPosition: {x: 0, y: 0.636, z: 0.171}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1167753886264954102}
@@ -359,3 +372,17 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6442763302001528263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4329608343728991756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f3692dfb0bbdf4a8fe20c95948979d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHead: 1
+  damageMaltiply: 2
