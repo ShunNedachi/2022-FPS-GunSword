@@ -68,7 +68,7 @@ public class PlayerDefaultMove : MonoBehaviour
         {
             trans.position += trans.TransformDirection(Vector3.forward) * Input.GetAxis("Vertical") * moveSpeed;
             trans.position += trans.TransformDirection(Vector3.right) * Input.GetAxis("Horizontal") * moveSpeed;
-            trans.position = new Vector3(trans.position.x,defaultY,trans.position.z);
+            trans.position = new Vector3(trans.position.x,3,trans.position.z);
             recastTimer++;
             if(recastTimer>recastInterval)
             {
