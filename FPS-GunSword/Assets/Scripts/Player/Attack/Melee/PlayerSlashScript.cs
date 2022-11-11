@@ -7,8 +7,11 @@ public class PlayerSlashScript : MonoBehaviour
 {
     public static PlayerSlashScript instance;
     
-    [SerializeField] private GameObject enemy;
     [SerializeField] private int attackInterval = 50;
+    [SerializeField] private float attackDictance = 5.0f;
+    [SerializeField] private float damage = 25;
+    [SerializeField] private GameObject camera;
+    [SerializeField] private GameObject AttackRange;
 
     private float attackTimer = 0;
     private int comboCount = 0;
@@ -24,32 +27,20 @@ public class PlayerSlashScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        attackTimer = attackInterval;
     }
 
     // Update is called once per frame
     public void Update()
     {
-        if(Input.GetMouseButton(1) && attackTimer >attackInterval)
-        {
-            Vector3 enemyPos = enemy.transform.position;
-            enemyPos.y = transform.position.y;
-            attackTimer = 0;
-
-            if(Vector3.Distance(enemyPos,transform.position) <= 2.0f && Vector3.Dot(Vector3.Normalize(enemyPos-transform.position),transform.forward)>= 0.8f)
-            {
-                //damage処理
-                PlayerEnergyScript.instance.SlashChargeEnergy();
-                //コンボ加算
-                comboCount++;
-            }
-            else
-            {
-                ComboReset();
-            }
-        }
-
         attackTimer++;
+        if(Input.GetMouseButton(1) && attackTimer > attackInterval )
+        {
+            attackTimer = 0;
+            // プレイヤーの少し前に生成する
+            Vector3 createPos = transform.position + camera.transform.forward * attackDictance;
+            Instantiate(AttackRange, createPos, camera.transform.rotation);
+        }
     }
 
     public void ModeChange()
@@ -63,5 +54,9 @@ public class PlayerSlashScript : MonoBehaviour
     public void ComboReset()
     {
         comboCount = 0;
+    }
+    public void AddCombo()
+    {
+        comboCount++;
     }
 }

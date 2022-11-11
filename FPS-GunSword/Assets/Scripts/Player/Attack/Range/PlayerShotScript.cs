@@ -9,6 +9,7 @@ public class PlayerShotScript : MonoBehaviour
     public float rayDistance;
     [SerializeField] private int shootInterval = 30;
     [SerializeField] private int reloadInterval = 120;
+    [SerializeField] private float damage = 25;
 
     private int shootIntervalTimer = 0;
     private int reloadTimer = 0;
@@ -46,13 +47,12 @@ public class PlayerShotScript : MonoBehaviour
                 PlayerMagazineScript.instance.Shot();
 
                 RaycastHit hit;
-                if(Physics.Raycast(ray,out hit))
+                if(Physics.Raycast(ray,out hit) )//&& gameObject.tag = "Enemy"
                 {
-                    Debug.Log("HIT���܂�����");
-
-                    if(hit.collider.tag == "OBJECT")
+                    if(hit.collider.tag == "MeleeEnemy"
+                        || hit.collider.tag == "RangeEnemy")
                     {
-                       Destroy(hit.collider.gameObject);
+                        hit.collider.gameObject.GetComponent<EnemyDamageScript>().HitPlayerAttack(damage);
                     }
                 }
             }
