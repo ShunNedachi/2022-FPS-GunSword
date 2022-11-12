@@ -292,6 +292,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RangeEnemyPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 3239320954714338362, guid: 90dea7b18a93db048b60b088931f10e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6189275432658110869, guid: 90dea7b18a93db048b60b088931f10e3, type: 3}
       propertyPath: patern1
       value: 1
@@ -862,7 +866,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3647217949585557207, guid: 5bbafe698c85e914ab71ae51fed3ff0b, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3779421259341992116, guid: 5bbafe698c85e914ab71ae51fed3ff0b, type: 3}
       propertyPath: m_RootOrder
@@ -912,6 +916,10 @@ PrefabInstance:
       propertyPath: playerObject
       value: 
       objectReference: {fileID: 2082613630}
+    - target: {fileID: 4540501799373416964, guid: 5bbafe698c85e914ab71ae51fed3ff0b, type: 3}
+      propertyPath: heal
+      value: 
+      objectReference: {fileID: 5119100897755989617, guid: 17ef2d9a9b1194a4fb28a4c6f925cf66, type: 3}
     - target: {fileID: 4540501799373416964, guid: 5bbafe698c85e914ab71ae51fed3ff0b, type: 3}
       propertyPath: walkSpeed
       value: 10
@@ -1233,6 +1241,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sensitivity: 2
   camera: {fileID: 963194225}
+  cameraRot: {x: 0, y: 0, z: 0, w: 0}
+  characterRot: {x: 0, y: 0, z: 0, w: 0}
+  cursorLock: 1
+  minX: -90
+  maxX: 90
+  minY: -90
+  maxY: 90
 --- !u!114 &2082613637
 MonoBehaviour:
   m_ObjectHideFlags: 0

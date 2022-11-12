@@ -35,6 +35,8 @@ public class DefaultEnemy : MonoBehaviour
     // 使用するマーカー
     [SerializeField] protected GameObject[] makerObj;
 
+    [SerializeField] private HealItem heal;
+
     // 基本行動用
     protected int destinationIndex = 0;
     protected Rigidbody rigidBody;
@@ -152,7 +154,13 @@ public class DefaultEnemy : MonoBehaviour
 
     protected void Dead()
     {
-        if (isDead) Destroy(this);
+        if (isDead)
+        {
+            var tempObj = Instantiate(heal, transform.position, transform.rotation);
+            tempObj.Awake();
+            //heal.SetPosition(transform.position);
+            Destroy(transform.gameObject); 
+        }
     }
 
     public bool IsInSight

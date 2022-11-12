@@ -11,6 +11,8 @@ public class MeleeEnemy : DefaultEnemy
     [SerializeField] private int attackIntervalFrame = 300;
     [SerializeField] private int attackActiveFrame = 1;
 
+
+
     private bool isWalk = false;
 
     private int countAttack = 0;
@@ -40,6 +42,8 @@ public class MeleeEnemy : DefaultEnemy
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Tab)) isDead = true;
+
         if (!IsStun)
         {
             // 視界内にplayerがいなければマーカーに沿って移動
