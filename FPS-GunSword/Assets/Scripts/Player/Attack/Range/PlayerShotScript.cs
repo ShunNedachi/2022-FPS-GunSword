@@ -34,8 +34,9 @@ public class PlayerShotScript : MonoBehaviour
         shootIntervalTimer ++;
         reloadTimer ++;
 
-        if (Input.GetMouseButton(0) && shootIntervalTimer >= shootInterval)
+        if (Input.GetMouseButton(0) && shootIntervalTimer > shootInterval)
         {
+            PlayerSlashScript.instance.ModeChange();
             if(PlayerMagazineScript.instance.GetRemainingBullets()>0)
             {
                 var direction = trans.forward;
@@ -69,5 +70,9 @@ public class PlayerShotScript : MonoBehaviour
             reloadTimer = 0;
             PlayerMagazineScript.instance.Reload();
         }
+    }
+        public void ModeChange()
+    {
+        shootIntervalTimer = 0;
     }
 }
