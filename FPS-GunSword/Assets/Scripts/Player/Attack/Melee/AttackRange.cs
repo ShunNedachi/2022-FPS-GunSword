@@ -32,6 +32,7 @@ public class AttackRange : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Hit");
         hit = true;
         //damage処理
         collision.gameObject.GetComponent<DefaultEnemy>().GetDamage(damage);

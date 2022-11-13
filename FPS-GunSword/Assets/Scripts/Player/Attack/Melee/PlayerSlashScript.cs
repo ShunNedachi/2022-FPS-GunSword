@@ -9,8 +9,7 @@ public class PlayerSlashScript : MonoBehaviour
     
     [SerializeField] private int attackInterval = 50;
     [SerializeField] private float attackDictance = 5.0f;
-    [SerializeField] private float damage = 25;
-    [SerializeField] private GameObject camera;
+    [SerializeField] private new GameObject camera;
     [SerializeField] private GameObject AttackRange;
 
     private float attackTimer = 0;
