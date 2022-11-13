@@ -7,10 +7,11 @@ public class PlayerULTScript : MonoBehaviour
     public static PlayerULTScript instance;
     
     [SerializeField] private int attackInterval = 50;
-    [SerializeField] private float damage = 25.0f;
+    [SerializeField] private int comboResetInterval = 300;
     [SerializeField] private GameObject ULTAttackRange;
 
     private float attackTimer = 0;
+    private float comboResetTimer = 0;
 
     public void Awake()
     {
@@ -21,7 +22,7 @@ public class PlayerULTScript : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         attackTimer = attackInterval;
     }
@@ -33,17 +34,28 @@ public class PlayerULTScript : MonoBehaviour
 
         if(Input.GetMouseButton(1) && attackTimer > attackInterval )
         {
+            PlayerEnergyScript.instance.EnemyConsumptionSlash();
             attackTimer = 0;
             // プレイヤーの少し前に生成する
             Instantiate(ULTAttackRange, transform.position, transform.rotation);
         }
-        if(comboCount>0)
+        if(PlayerSlashScript.instance.GetComboCount()>0)
         {
             comboResetTimer++;
             if(comboResetTimer>comboResetInterval)
             {
-                ComboReset();
+               PlayerSlashScript.instance.ComboReset();
             }
+        }
+
+        PlayerEnergyScript.instance.EnemyConsumption();
+
+        if(PlayerEnergyScript.instance.GetEnergy()<0)
+        {
+            //ULT終了処理
+            PlayerEnergyScript.instance.SetULTchack(false);
+            PlayerScript.instance.SetULTchack(false);
+
         }
     }
 

@@ -26,7 +26,7 @@ public class PlayerSlashScript : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         attackTimer = attackInterval;
     }
@@ -38,6 +38,7 @@ public class PlayerSlashScript : MonoBehaviour
 
         if(Input.GetMouseButton(1) && attackTimer > attackInterval )
         {
+            PlayerShotScript.instance.ModeChange();
             attackTimer = 0;
             // プレイヤーの少し前に生成する
             Vector3 createPos = transform.position + camera.transform.forward * attackDictance;

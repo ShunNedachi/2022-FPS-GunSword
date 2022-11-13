@@ -250,7 +250,7 @@ MonoBehaviour:
   stunFrame: 30
   deadTime: 3
   attackStartDistance: 30
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 2402955252646821453, guid: 17ef2d9a9b1194a4fb28a4c6f925cf66, type: 3}
   groupDistance: 30
   visualAngle: 70
   heightOfVision: 1
