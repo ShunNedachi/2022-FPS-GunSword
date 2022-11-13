@@ -41,21 +41,19 @@ public class PlayerShotScript : MonoBehaviour
                 var direction = trans.forward;
 
                Vector3 rayPosition = trans.position + new Vector3(0.0f, 0.0f, 0.0f);
-                Ray ray = Camera.main .ScreenPointToRay(Input.mousePosition);
-                Debug.DrawRay(rayPosition, direction * -rayDistance, UnityEngine.Color.red);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 PlayerMagazineScript.instance.Shot();
 
                 RaycastHit hit;
                 if(Physics.Raycast(ray,out hit) )//&& gameObject.tag = "Enemy"
                 {
-                    string name = hit.collider.gameObject.name;
+                    //string name = hit.collider.CompareTag();
                     //Debug.Log(name);
                     if(hit.collider.CompareTag("MeleeEnemy")
-                        || hit.collider.CompareTag("RangeEnemy"))
+                        )
                     {
                         hit.collider.gameObject.GetComponent<EnemyDamageScript>().HitPlayerAttack(damage);
-                        Debug.Log("Hit");
                     }
                 }
             }
