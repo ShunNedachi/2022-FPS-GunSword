@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class AttackRange : MonoBehaviour
 {
+    [SerializeField] private float damage = 25.0f;
+    [SerializeField] private float destroyTimer = 0;
+    [SerializeField] private float DestroyInterval = 10.0f;
+
+    private bool hit = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -13,12 +19,31 @@ public class AttackRange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //“–‚½‚è”»’è{‚»‚Ì‘¼ˆ—
+        if(destroyTimer>DestroyInterval)
         {
-
+            if(hit == false)
+            {
+                PlayerSlashScript.instance.ComboReset();
+            }
+            Destroy(this.gameObject);
         }
+        destroyTimer++;
+    }
 
-        //I‚í‚Á‚½Œã‚ÉƒIƒuƒWƒFƒNƒg‚ğÁ‚·
-        Destroy(this.gameObject);
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "MeleeEnemy"
+            ||collision.gameObject.tag == "RangeEnemy")
+            {
+                hit = true;
+                Debug.Log("Hit");
+                //damageå‡¦ç†
+                collision.gameObject.GetComponent<DefaultEnemy>().GetDamage(damage);
+                //ã‚¨ãƒãƒ«ã‚®ãƒ¼åŠ ç®—
+                PlayerEnergyScript.instance.SlashChargeEnergy();
+                //ã‚³ãƒ³ãƒœåŠ ç®—
+                PlayerSlashScript.instance.AddCombo();
+
+            }
     }
 }

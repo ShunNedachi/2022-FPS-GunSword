@@ -7,12 +7,14 @@ public class PlayerSlashScript : MonoBehaviour
 {
     public static PlayerSlashScript instance;
     
-    [SerializeField] private GameObject enemy;
     [SerializeField] private int attackInterval = 50;
-
+    [SerializeField] private int comboResetInterval = 300;
     [SerializeField] private float attackDictance = 5.0f;
+    [SerializeField] private new GameObject camera;
+    [SerializeField] private GameObject AttackRange;
 
     private float attackTimer = 0;
+    private float comboResetTimer = 0;
     private int comboCount = 0;
 
     public void Awake()
@@ -24,36 +26,32 @@ public class PlayerSlashScript : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
-        
+        attackTimer = attackInterval;
     }
 
     // Update is called once per frame
     public void Update()
     {
-        if(Input.GetMouseButton(1) )
+        attackTimer++;
+
+        if(Input.GetMouseButton(1) && attackTimer > attackInterval )
         {
-            Vector3 enemyPos = enemy.transform.position;
-            enemyPos.y = transform.position.y;
+            PlayerShotScript.instance.ModeChange();
             attackTimer = 0;
-
-            if(Vector3.Distance(enemyPos,transform.position) <= attackDictance && Vector3.Dot(Vector3.Normalize(enemyPos-transform.position),transform.forward)>= 0.8f)
-            {
-                Debug.Log("HIT");
-
-                //damage処理
-                PlayerEnergyScript.instance.SlashChargeEnergy();
-                //コンボ加算
-                comboCount++;
-            }
-            else
+            // プレイヤーの少し前に生成する
+            Vector3 createPos = transform.position + camera.transform.forward * attackDictance;
+            Instantiate(AttackRange, createPos, camera.transform.rotation);
+        }
+        if(comboCount>0)
+        {
+            comboResetTimer++;
+            if(comboResetTimer>comboResetInterval)
             {
                 ComboReset();
             }
         }
-
-        attackTimer++;
     }
 
     public void ModeChange()
@@ -66,6 +64,12 @@ public class PlayerSlashScript : MonoBehaviour
     }
     public void ComboReset()
     {
+        comboResetTimer = 0;
         comboCount = 0;
+    }
+    public void AddCombo()
+    {
+        comboResetTimer = 0;
+        comboCount++;
     }
 }
