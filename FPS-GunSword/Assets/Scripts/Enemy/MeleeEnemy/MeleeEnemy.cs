@@ -145,6 +145,7 @@ public class MeleeEnemy : DefaultEnemy
         else
         {
             agent.isStopped = true;
+            //agent.SetDestination(transform.position);
 
             stunCount++;
             
