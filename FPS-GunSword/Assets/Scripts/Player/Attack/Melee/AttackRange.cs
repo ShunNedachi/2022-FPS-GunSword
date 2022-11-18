@@ -32,12 +32,18 @@ public class AttackRange : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        hit = true;
-        //damage処理
-        collision.gameObject.GetComponent<DefaultEnemy>().GetDamage(damage);
-        //エネルギー加算
-        PlayerEnergyScript.instance.SlashChargeEnergy();
-        //コンボ加算
-        PlayerSlashScript.instance.AddCombo();
+        if(collision.gameObject.tag == "MeleeEnemy"
+            ||collision.gameObject.tag == "RangeEnemy")
+            {
+                hit = true;
+                Debug.Log("Hit");
+                //damage処理
+                collision.gameObject.GetComponent<DefaultEnemy>().GetDamage(damage);
+                //エネルギー加算
+                PlayerEnergyScript.instance.SlashChargeEnergy();
+                //コンボ加算
+                PlayerSlashScript.instance.AddCombo();
+
+            }
     }
 }

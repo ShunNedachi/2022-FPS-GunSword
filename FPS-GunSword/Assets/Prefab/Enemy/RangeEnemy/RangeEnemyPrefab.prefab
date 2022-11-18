@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5408098931961921395}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: RangeEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -278,13 +278,15 @@ MonoBehaviour:
   sightDistance: 100
   walkSpeed: 10
   runSpeed: 30
-  stunTime: 3
+  stunFrame: 30
   deadTime: 3
   attackStartDistance: 10
   playerObject: {fileID: 0}
   groupDistance: 30
   visualAngle: 70
   heightOfVision: 1
+  makerObj: []
+  heal: {fileID: 0}
   patern1: 1
   walkDistance: 100
   attackFrame: 120

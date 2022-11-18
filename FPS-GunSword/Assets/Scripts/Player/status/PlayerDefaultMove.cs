@@ -28,7 +28,7 @@ public class PlayerDefaultMove : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         PlayerStaminaScript.instance.Start();
         defaultY = this.gameObject.transform.position.y;
