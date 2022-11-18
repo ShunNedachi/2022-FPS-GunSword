@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HealItem : MonoBehaviour
 {
-    public static HealItem instance;
+    public HealItem instance;
     [SerializeField] private float moveDistance = 10;
     [SerializeField] private float hitDistance = 1;
     [SerializeField] private float speed = 1;
@@ -14,14 +14,17 @@ public class HealItem : MonoBehaviour
     private bool distFlg= false;
     // Start is called before the first frame update
 
-    
+    public void SetPosition(Vector3 pos)
+    {
+        transform.position = pos;
+    }
 
     void Start()
     {
        
     }
 
-    void Awake()
+    public void Awake()
     {
 
         if (instance == null)
@@ -29,6 +32,7 @@ public class HealItem : MonoBehaviour
             instance = this;
         }
        player = GameObject.Find("Player");
+
     }
     // Update is called once per frame
     void Update()
@@ -48,7 +52,7 @@ public class HealItem : MonoBehaviour
         if(dist<hitDistance)
         {
             PlayerEnergyScript.instance.SetEnergyItem();
-            Destroy(this);
+            Destroy(transform.gameObject);
         }
     }
 }

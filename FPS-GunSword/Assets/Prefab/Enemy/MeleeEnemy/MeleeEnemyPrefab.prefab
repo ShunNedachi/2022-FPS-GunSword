@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5213395740446781084}
   - component: {fileID: 3070326432730072672}
   - component: {fileID: 9143153665394883822}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MeleeAttack
-  m_TagString: Untagged
+  m_TagString: MeleeEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,9 +71,9 @@ GameObject:
   - component: {fileID: 4930939532022747942}
   - component: {fileID: 7040878858832055077}
   - component: {fileID: 54931588318395334}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: MeleeEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -250,10 +250,12 @@ MonoBehaviour:
   stunFrame: 30
   deadTime: 3
   attackStartDistance: 30
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 2402955252646821453, guid: 17ef2d9a9b1194a4fb28a4c6f925cf66, type: 3}
   groupDistance: 30
   visualAngle: 70
   heightOfVision: 1
+  makerObj: []
+  heal: {fileID: 5119100897755989617, guid: 17ef2d9a9b1194a4fb28a4c6f925cf66, type: 3}
   walkDistance: 100
   attackFrame: 120
   attackIntervalFrame: 300
@@ -287,9 +289,9 @@ GameObject:
   - component: {fileID: 105866539712315754}
   - component: {fileID: 6716665883174855106}
   - component: {fileID: 6442763302001528263}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: MeleeEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

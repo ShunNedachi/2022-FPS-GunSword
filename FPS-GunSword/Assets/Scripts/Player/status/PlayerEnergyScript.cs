@@ -6,11 +6,14 @@ public class PlayerEnergyScript : MonoBehaviour
 {
     public static PlayerEnergyScript instance;
 
-    [SerializeField] private int energyMax;
+    [SerializeField] private int energyMax = 1000;
+    [SerializeField] private int energySlash = 60;
+    [SerializeField] private int energyDecrease = 1;
+
     private float energy = 0;
     private int energyItem = 60;
     private int baceEnergyAbsorption = 25;
-
+    private bool ULTchack = false;
     public void Awake()
     {
         if (instance == null)
@@ -19,18 +22,28 @@ public class PlayerEnergyScript : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
+        if(energy>energyMax)
+        {
+            ULTchack = true;
+        }
         
     }
 
+    public float GetEnergy()
+    {
+        return energy;
+    }
+    public bool GetULTchack()
+    {
+        return ULTchack;
+    }
+    public void SetULTchack(bool chack)
+    {
+        ULTchack = chack;
+    }
     public void SetEnergyItem()
     {
         if(energy<energyMax)
@@ -49,5 +62,17 @@ public class PlayerEnergyScript : MonoBehaviour
         {
             energy = energy + PlayerSlashScript.instance.GetComboCount() * baceEnergyAbsorption * 1.1f;
         }
+        if(energy>=energyMax)
+        {
+            energy = energyMax;
+        }
+    }
+    public void EnemyConsumptionSlash()
+    {
+        energy -= energySlash;
+    }
+    public void EnemyConsumption()
+    {
+        energy -= energyDecrease;
     }
 }

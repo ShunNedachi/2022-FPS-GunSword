@@ -4,21 +4,32 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    public static PlayerScript instance;
+
     [SerializeField] public int deformationInterval = 30;
 
     private bool ULT = false;
     private int deformationTimer = 0;
-
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
         PlayerShotScript.instance.Start();
+        PlayerSlashScript.instance.Start();
+        PlayerULTScript.instance.Start();
+        PlayerDefaultMove.instance.Start();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.F) && PlayerEnergyScript.instance.GetULTchack())
         {
             ULT = true;
             CameraController.instance.ChangeThirdViewCamera();
@@ -33,7 +44,7 @@ public class PlayerScript : MonoBehaviour
             if(deformationTimer>deformationInterval)
             {
                 //ULT中処理
-
+                PlayerULTScript.instance.Update();
             }
         }
         else
@@ -41,5 +52,9 @@ public class PlayerScript : MonoBehaviour
             PlayerShotScript.instance.Update();
             PlayerSlashScript.instance.Update();
         } 
+    }
+    public void SetULTchack(bool chack)
+    {
+        ULT = chack;
     }
 }
