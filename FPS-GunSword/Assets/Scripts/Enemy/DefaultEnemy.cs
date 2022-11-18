@@ -3,48 +3,48 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-// “G‚Ìƒx[ƒX‚É‚È‚éeƒNƒ‰ƒX
+// ï¿½Gï¿½Ìƒxï¿½[ï¿½Xï¿½É‚È‚ï¿½eï¿½Nï¿½ï¿½ï¿½X
 public class DefaultEnemy : MonoBehaviour
 {
     // HP
     [SerializeField] protected float hp = 100.0f;
-    // ƒ_ƒ[ƒW—Ê
+    // ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½
     [SerializeField] protected float damageValue = 30.0f;
-    // ‹”F‹——£
+    // ï¿½ï¿½ï¿½Fï¿½ï¿½ï¿½ï¿½
     [SerializeField] protected float sightDistance = 100.0f;
-    // •à‚«‚ÌƒXƒs[ƒh
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ÌƒXï¿½sï¿½[ï¿½h
     [SerializeField] protected float walkSpeed = 10.0f;
-    // ‘–‚è‚ÌƒXƒs[ƒh
+    // ï¿½ï¿½ï¿½ï¿½ÌƒXï¿½sï¿½[ï¿½h
     [SerializeField] protected float runSpeed = 30.0f;
-    // ‹¯‚İ‚ÌŠÔ
+    // ï¿½ï¿½ï¿½İ‚Ìï¿½ï¿½ï¿½
     [SerializeField] protected int stunFrame = 30;
-    // ‚Æ‚è‚ ‚¦‚¸‚Á‚Ä‚¨‚­ Á–Å‚É‚©‚©‚éŠÔ
+    // ï¿½Æ‚è‚ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Å‚É‚ï¿½ï¿½ï¿½ï¿½éï¿½ï¿½
     [SerializeField] protected float deadTime = 3.0f;
-    // ‚Ç‚Ì”ÍˆÍ‚ÉƒvƒŒƒCƒ„[‚ª“ü‚Á‚½‚çUŒ‚‚ğŠJn‚·‚é‚©
+    // ï¿½Ç‚Ì”ÍˆÍ‚Éƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½nï¿½ï¿½ï¿½é‚©
     [SerializeField] protected float attackStartDistance = 5.0f;
 
-    // ‹ŠE‚É“ü‚Á‚½‚Æ‚«‚É’Ç‚¢‚©‚¯‚é‘ÎÛ
+    // ï¿½ï¿½ï¿½Eï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½É’Ç‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îï¿½
     [SerializeField] protected GameObject playerObject;
-    // “G‚ªW’c‚Æ‚µ‚Ä”½‰‚·‚é‹——£
+    // ï¿½Gï¿½ï¿½ï¿½Wï¿½cï¿½Æ‚ï¿½ï¿½Ä”ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‹—ï¿½ï¿½
     [SerializeField] protected float groupDistance = 30.0f;
-    // “G‚Ì‹Šp
+    // ï¿½Gï¿½Ìï¿½ï¿½p
     [SerializeField] protected float visualAngle = 70.0f;
 
     [SerializeField] protected float heightOfVision = 1.0f;
 
-    // g—p‚·‚éƒ}[ƒJ[
+    // ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½}ï¿½[ï¿½Jï¿½[
     [SerializeField] protected GameObject[] makerObj;
 
     [SerializeField] private HealItem heal;
 
-    // Šî–{s“®—p
+    // ï¿½ï¿½{ï¿½sï¿½ï¿½ï¿½p
     protected int destinationIndex = 0;
     protected Rigidbody rigidBody;
     protected NavMeshAgent agent;
 
-    // ‹ŠE‚É“ü‚Á‚Ä‚¢‚é‚Ì‚©@W’c‚ª”½‰‚³‚¹‚é‚½‚ß‚Éå‚Ég—p
+    // ï¿½ï¿½ï¿½Eï¿½É“ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½@ï¿½Wï¿½cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ß‚Éï¿½Égï¿½p
     protected bool isInSight = false;
-    // UŒ‚’†‚©‚Ç‚¤‚©
+    // ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½
     protected bool isAttack = false;
     protected bool isDead = false;
 
@@ -64,8 +64,8 @@ public class DefaultEnemy : MonoBehaviour
 
     public void MoveRandom()
     {
-        // ƒG[ƒWƒFƒ“ƒg‚ªŒ»–Ú•W’n“_‚É‹ß‚Ã‚¢‚Ä‚«‚½‚çA
-        // Ÿ‚Ì–Ú•W’n“_‚ğ‘I‘ğ
+        // ï¿½Gï¿½[ï¿½Wï¿½Fï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Ú•Wï¿½nï¿½_ï¿½É‹ß‚Ã‚ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½A
+        // ï¿½ï¿½ï¿½Ì–Ú•Wï¿½nï¿½_ï¿½ï¿½Iï¿½ï¿½
         if (!agent.pathPending && agent.remainingDistance < 0.5f)GetNextPoint();
     }
 
@@ -78,16 +78,16 @@ public class DefaultEnemy : MonoBehaviour
 
         agent.SetDestination(makerObj[destinationIndex].transform.position);
 
-        //”z—ñ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğ+1‚µ‚ÄAÅŒã‚Ì’n“_‚¾‚Á‚½ê‡‚Í0‚É–ß‚·
+        //ï¿½zï¿½ï¿½ÌƒCï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½Xï¿½ï¿½+1ï¿½ï¿½ï¿½ÄAï¿½ÅŒï¿½Ì’nï¿½_ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½0ï¿½É–ß‚ï¿½
         destinationIndex = (destinationIndex + 1) % makerObj.Length;
     }
 
 
-    // ‹ŠE‚ÉƒvƒŒƒCƒ„[‚ª“ü‚Á‚Ä‚¢‚é‚©‚Ç‚¤‚©
+    // ï¿½ï¿½ï¿½Eï¿½Éƒvï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚©ï¿½Ç‚ï¿½ï¿½ï¿½
     public bool MoveWithinSight()
     {
 
-        // ‹ŠE‚ÉƒIƒuƒWƒFƒNƒg‚ª‚ ‚é‚©”»’è ƒIƒuƒWƒFƒNƒg‚Ì–Ú‚ÌˆÊ’u‚ğl—¶‚·‚é‚½‚ß‚É1‚¾‚¯y²‚Éƒvƒ‰ƒX‚µ‚Ä‚¢‚é
+        // ï¿½ï¿½ï¿½Eï¿½ÉƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½é‚©ï¿½ï¿½ï¿½ï¿½ ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½Ì–Ú‚ÌˆÊ’uï¿½ï¿½ï¿½lï¿½ï¿½ï¿½ï¿½ï¿½é‚½ï¿½ß‚ï¿½1ï¿½ï¿½ï¿½ï¿½yï¿½ï¿½ï¿½Éƒvï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
         var fixedPosition = transform.position;
         fixedPosition.y += heightOfVision;
 
@@ -96,7 +96,7 @@ public class DefaultEnemy : MonoBehaviour
         var angle = Vector3.Angle(transform.forward, diff) * (axis.y < 0 ? -1 : 1); 
         if (angle <= visualAngle && angle >= -visualAngle)
         {
-            // ‹ŠE‚ÉƒIƒuƒWƒFƒNƒg‚ª‚ ‚ê‚ÎƒŒƒC‚ğ”ò‚Î‚·
+            // ï¿½ï¿½ï¿½Eï¿½ÉƒIï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îƒï¿½ï¿½Cï¿½ï¿½ï¿½Î‚ï¿½
             RaycastHit hit;
             Vector3 temp = playerObject.transform.position - fixedPosition;
             Vector3 normal = temp.normalized;
@@ -107,7 +107,7 @@ public class DefaultEnemy : MonoBehaviour
             Debug.DrawRay(ray.origin, ray.direction * sightDistance, Color.red);
             if (Physics.Raycast(fixedPosition, normal, out hit, sightDistance))
             {
-                // player‚ª‹ŠE“à‚É‚¢‚½‚Æ‚«
+                // playerï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½
                 if(hit.transform.gameObject == playerObject)
                 {
                     return true;
@@ -116,23 +116,23 @@ public class DefaultEnemy : MonoBehaviour
 
         }
 
-        // ‹ŠE“à‚Éplayer‚ª‚¢‚È‚¢‚Æ‚«false
+        // ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½playerï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Æ‚ï¿½false
         return false;
     }
 
-    // eƒNƒ‰ƒX‚Ì‰Šú‰»ˆ—‚ğqƒNƒ‰ƒX‚Å—˜—p‚·‚é‚½‚ß‚Éì¬
+    // ï¿½eï¿½Nï¿½ï¿½ï¿½Xï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½qï¿½Nï¿½ï¿½ï¿½Xï¿½Å—ï¿½ï¿½pï¿½ï¿½ï¿½é‚½ï¿½ß‚Éì¬
     public void InitializeEnemy()
     {
-        // ƒGƒ‰[‚ğ‚È‚­‚·‚½‚ß‚Ì‚à‚Ì
+        // ï¿½Gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚Ì‚ï¿½ï¿½ï¿½
         deadTime = 3.0f;
 
-        // ‚à‚µ‰½‚à“ü‚Á‚Ä‚¢‚È‚©‚Á‚½‚Æ‚«‚Éplayerƒ^ƒO‚©‚ç‘ã“ü
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½ï¿½playerï¿½^ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (playerObject == null)
         {
             playerObject = GameObject.FindGameObjectWithTag("Player");
         }
 
-        // Šî–{s“®—p
+        // ï¿½ï¿½{ï¿½sï¿½ï¿½ï¿½p
         agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = 0.1f;
 

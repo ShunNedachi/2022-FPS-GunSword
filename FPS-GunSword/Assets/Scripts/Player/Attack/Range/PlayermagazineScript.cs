@@ -6,7 +6,7 @@ public class PlayerMagazineScript : MonoBehaviour
 {
     public static PlayerMagazineScript instance;
 
-    [SerializeField] private int magazineMax;
+    [SerializeField] private int magazineMax = 6;
 
     private int remainingBullets;
     
