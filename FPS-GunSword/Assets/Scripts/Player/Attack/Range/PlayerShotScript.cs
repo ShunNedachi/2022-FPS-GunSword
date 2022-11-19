@@ -35,7 +35,7 @@ public class PlayerShotScript : MonoBehaviour
         shootIntervalTimer ++;
         reloadTimer ++;
 
-        if (Input.GetMouseButton(0) && shootIntervalTimer > shootInterval)
+        if (Input.GetMouseButtonDown(0) && shootIntervalTimer > shootInterval)
         {
             PlayerSlashScript.instance.ModeChange();
             if(PlayerMagazineScript.instance.GetRemainingBullets()>0)
@@ -52,10 +52,11 @@ public class PlayerShotScript : MonoBehaviour
                 {
                     if(hit.collider.CompareTag("MeleeEnemy"))
                     {
-                        //hit.collider.gameObject.GetComponent<DefaultEnemy>().GetDamage(damage);
+                        hit.collider.gameObject.GetComponent<EnemyDamageScript>().HitPlayerAttack(damage);
                         Instantiate(healItem, hit.collider.gameObject.transform.position, hit.collider.gameObject.transform.rotation);
 
-                        Destroy(hit.collider.gameObject);
+                        Debug.Log("hit Shot");
+                        //Destroy(hit.collider.gameObject);
                     }
                 }
             }
