@@ -8,7 +8,7 @@ public class PlayerStaminaScript : MonoBehaviour
 
     [SerializeField] private int staminaMax = 100;
 
-    private int stamina;
+    private int stamina = 0;
 
     public void Awake()
     {
