@@ -10,6 +10,7 @@ public class PlayerShotScript : MonoBehaviour
     [SerializeField] private int shootInterval = 30;
     [SerializeField] private int reloadInterval = 120;
     [SerializeField] private float damage = 25;
+    [SerializeField] private GameObject healItem;
 
     private int shootIntervalTimer = 0;
     private int reloadTimer = 0;
@@ -34,7 +35,7 @@ public class PlayerShotScript : MonoBehaviour
         shootIntervalTimer ++;
         reloadTimer ++;
 
-        if (Input.GetMouseButton(0) && shootIntervalTimer > shootInterval)
+        if (Input.GetMouseButtonDown(0) && shootIntervalTimer > shootInterval)
         {
             PlayerSlashScript.instance.ModeChange();
             if(PlayerMagazineScript.instance.GetRemainingBullets()>0)
@@ -49,12 +50,13 @@ public class PlayerShotScript : MonoBehaviour
                 RaycastHit hit;
                 if(Physics.Raycast(ray,out hit) )//&& gameObject.tag = "Enemy"
                 {
-                    //string name = hit.collider.CompareTag();
-                    //Debug.Log(name);
-                    if(hit.collider.CompareTag("MeleeEnemy")
-                        )
+                    if(hit.collider.CompareTag("MeleeEnemy"))
                     {
                         hit.collider.gameObject.GetComponent<EnemyDamageScript>().HitPlayerAttack(damage);
+                        Instantiate(healItem, hit.collider.gameObject.transform.position, hit.collider.gameObject.transform.rotation);
+
+                        Debug.Log("hit Shot");
+                        //Destroy(hit.collider.gameObject);
                     }
                 }
             }

@@ -18,11 +18,11 @@ public class EnemyDamageScript : MonoBehaviour
         // •Ï”‚É“G‚Ìî•ñ‚ğ‚Á‚Ä‚­‚é
         if (transform.parent.tag == "RangeEnemy")
         {
-            enemy = transform.parent.GetComponent<RangeEnemy>();
+            enemy = transform.parent.GetComponentInParent<RangeEnemy>();
         }
         else if (transform.parent.tag == "MeleeEnemy")
         {
-            enemy = transform.parent.GetComponent<MeleeEnemy>();
+            enemy = transform.parent.GetComponentInParent<MeleeEnemy>();
         }
 
     }
