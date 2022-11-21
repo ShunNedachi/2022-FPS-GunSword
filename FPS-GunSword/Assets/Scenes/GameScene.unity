@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 156915691}
   m_Layer: 0
   m_Name: floar2 (3)
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -540,6 +540,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5bf93804fb2b164895da62721e8a0f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeLimit: 180
+  graceTime: 5
 --- !u!4 &227157385
 Transform:
   m_ObjectHideFlags: 0
@@ -1421,6 +1423,7 @@ GameObject:
   - component: {fileID: 550974431}
   - component: {fileID: 550974439}
   - component: {fileID: 550974438}
+  - component: {fileID: 550974440}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1523,7 +1526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackInterval: 50
   comboResetInterval: 300
-  attackDictance: 1
+  attackDictance: 3
   camera: {fileID: 1755245806}
   AttackRange: {fileID: 3259127025878488114, guid: 7d0641bc491289a4892e2a58454db14b, type: 3}
 --- !u!114 &550974432
@@ -1555,6 +1558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e54c72091fbdbf4eae7b13d1031ad92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  magazineMax: 6
 --- !u!114 &550974434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,6 +1645,22 @@ MonoBehaviour:
   attackInterval: 50
   comboResetInterval: 300
   ULTAttackRange: {fileID: 5307462568428215260, guid: 44403d23829d8bd41a28da258f5f1ead, type: 3}
+--- !u!54 &550974440
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550974426}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 4
+  m_CollisionDetection: 2
 --- !u!1 &555638480
 GameObject:
   m_ObjectHideFlags: 0
@@ -3811,7 +3831,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3779421259341992116, guid: 5bbafe698c85e914ab71ae51fed3ff0b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.000009536743
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3779421259341992116, guid: 5bbafe698c85e914ab71ae51fed3ff0b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4937,7 +4957,7 @@ GameObject:
   - component: {fileID: 1597579168}
   m_Layer: 0
   m_Name: Block
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5771,7 +5791,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1755245806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.44, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6621,7 +6641,7 @@ GameObject:
   - component: {fileID: 2018669135}
   m_Layer: 0
   m_Name: Block
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -7179,7 +7199,7 @@ GameObject:
   - component: {fileID: 2094099915}
   m_Layer: 0
   m_Name: floar2
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
