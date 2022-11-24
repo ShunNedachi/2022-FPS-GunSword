@@ -7,7 +7,7 @@ public class PlayerDefaultMove : MonoBehaviour
     public static PlayerDefaultMove instance;
 
     [SerializeField] public float moveSpeed = 0.05f;
-    [SerializeField] public float dashSpeed = 1.0f;
+    [SerializeField] public float dashSpeed = 0.5f;
     [SerializeField] public int recastInterval = 180;
     [SerializeField] public int dashInterval = 20;
     
@@ -53,8 +53,8 @@ public class PlayerDefaultMove : MonoBehaviour
 
         if(dashMode)
         {
-            trans.position += trans.TransformDirection(Vector3.forward) * vertical * moveSpeed;
-            trans.position += trans.TransformDirection(Vector3.right) * horizontal * moveSpeed;
+            trans.position += trans.TransformDirection(Vector3.forward) * vertical * dashSpeed;
+            trans.position += trans.TransformDirection(Vector3.right) * horizontal * dashSpeed;
 
             dashTimer++;
             
