@@ -86,6 +86,7 @@ public class PlayerEnergyScript : MonoBehaviour
         switch (energy / energyItem)
         {
             default:
+
                 gaugeImage.sprite = gauge[0];
                 break;
             case 10:
@@ -117,7 +118,9 @@ public class PlayerEnergyScript : MonoBehaviour
                 break;
             case 1:
                 gaugeImage.sprite = gauge[1];
+
                 break;
+  
 
         }
 
