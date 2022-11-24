@@ -1,25 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerEnergyScript : MonoBehaviour
 {
     public static PlayerEnergyScript instance;
-
-    [SerializeField] private int energyMax = 1000;
+    public Image gaugeImage;
+    public Sprite[] gauge;
+    [SerializeField] private float energyMax = 1000;
     [SerializeField] private int energySlash = 60;
     [SerializeField] private int energyDecrease = 1;
 
     private float energy = 0;
-    private int energyItem = 60;
+    private float energyItem = 100;
     private int baceEnergyAbsorption = 25;
     private bool ULTchack = false;
+
     public void Awake()
     {
         if (instance == null)
         {
             instance = this;
         }
+       
+        gaugeImage.enabled = true;
     }
 
     // Update is called once per frame
@@ -29,7 +34,7 @@ public class PlayerEnergyScript : MonoBehaviour
         {
             ULTchack = true;
         }
-        
+        energyGaugeUpdate();
     }
 
     public float GetEnergy()
@@ -46,7 +51,8 @@ public class PlayerEnergyScript : MonoBehaviour
     }
     public void SetEnergyItem()
     {
-        if(energy<energyMax)
+        
+        if (energy<energyMax)
         {
             energy += energyItem;
         }
@@ -74,5 +80,55 @@ public class PlayerEnergyScript : MonoBehaviour
     public void EnemyConsumption()
     {
         energy -= energyDecrease;
+    }
+    public void energyGaugeUpdate()
+    {
+        switch (energy / energyItem)
+        {
+            default:
+                break;
+            case 10:
+                gaugeImage.sprite = gauge[10];
+                Debug.Log("10");
+                break;
+            case 9:
+                gaugeImage.sprite = gauge[9];
+                Debug.Log("9");
+                break;
+            case 8:
+                gaugeImage.sprite = gauge[8];
+                Debug.Log("8");
+                break;
+            case 7:
+                gaugeImage.sprite = gauge[7];
+                Debug.Log("7");
+                break;
+            case 6:
+                gaugeImage.sprite = gauge[6];
+                Debug.Log("6");
+                break;
+            case 5:
+                gaugeImage.sprite = gauge[5];
+                Debug.Log("5");
+                break;
+            case 4:
+                gaugeImage.sprite = gauge[4];
+                Debug.Log("4");
+                break;
+            case 3:
+                gaugeImage.sprite = gauge[3];
+                Debug.Log("3");
+                break;
+            case 2:
+                gaugeImage.sprite = gauge[2];
+                Debug.Log("2");
+                break;
+            case 1:
+                gaugeImage.sprite = gauge[1];
+                Debug.Log("1");
+                break;
+
+        }
+
     }
 }
