@@ -86,46 +86,37 @@ public class PlayerEnergyScript : MonoBehaviour
         switch (energy / energyItem)
         {
             default:
+                gaugeImage.sprite = gauge[0];
                 break;
             case 10:
                 gaugeImage.sprite = gauge[10];
-                Debug.Log("10");
                 break;
             case 9:
                 gaugeImage.sprite = gauge[9];
-                Debug.Log("9");
                 break;
             case 8:
                 gaugeImage.sprite = gauge[8];
-                Debug.Log("8");
                 break;
             case 7:
                 gaugeImage.sprite = gauge[7];
-                Debug.Log("7");
                 break;
             case 6:
                 gaugeImage.sprite = gauge[6];
-                Debug.Log("6");
                 break;
             case 5:
                 gaugeImage.sprite = gauge[5];
-                Debug.Log("5");
                 break;
             case 4:
                 gaugeImage.sprite = gauge[4];
-                Debug.Log("4");
                 break;
             case 3:
                 gaugeImage.sprite = gauge[3];
-                Debug.Log("3");
                 break;
             case 2:
                 gaugeImage.sprite = gauge[2];
-                Debug.Log("2");
                 break;
             case 1:
                 gaugeImage.sprite = gauge[1];
-                Debug.Log("1");
                 break;
 
         }
