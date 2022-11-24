@@ -38,16 +38,16 @@ public class CameraDefaultScript : MonoBehaviour
         UpdateCursorLock();
     }
 
-    private void FixedUpdate()
-    {
-        x = 0;
-        z = 0;
+    // private void FixedUpdate()
+    // {
+    //     x = 0;
+    //     z = 0;
 
-        x = Input.GetAxisRaw("Horizontal") * sensitivity;
-        z = Input.GetAxisRaw("Vertical") * sensitivity;
+    //     x = Input.GetAxisRaw("Horizontal") * sensitivity;
+    //     z = Input.GetAxisRaw("Vertical") * sensitivity;
 
-        transform.position += camera.transform.forward * z + camera.transform.right * x;
-    }
+    //     transform.position += camera.transform.forward * z + camera.transform.right * x;
+    // }
 
     // �J�[�\���\���p(�N���b�N�Ŕ�\���@ESC�ŕ\��)
     public void UpdateCursorLock()

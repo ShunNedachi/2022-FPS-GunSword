@@ -73,10 +73,9 @@ public class PlayerDefaultMove : MonoBehaviour
         }
         else
         {
-            moveX = Input.GetAxis("Vertical") * moveSpeed;
-            moveZ = Input.GetAxis("Horizontal") * moveSpeed;
+            moveX = Input.GetAxisRaw("Vertical") * moveSpeed;
+            moveZ = Input.GetAxisRaw("Horizontal") * moveSpeed;
             Vector3 direction = new Vector3(moveX,0,moveZ);
-            transform.position = new Vector3(moveX,3,moveZ);
             controller.SimpleMove(direction);
 
             recastTimer++;
