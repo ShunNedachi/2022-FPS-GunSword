@@ -7,7 +7,7 @@ public class PlayerDefaultMove : MonoBehaviour
     public static PlayerDefaultMove instance;
 
     [SerializeField] public float moveSpeed = 0.05f;
-    [SerializeField] public float dashSpeed = 1.0f;
+    [SerializeField] public float dashSpeed = 0.5f;
     [SerializeField] public int recastInterval = 180;
     [SerializeField] public int dashInterval = 20;
     
@@ -18,6 +18,10 @@ public class PlayerDefaultMove : MonoBehaviour
     float vertical;
     float horizontal;
     float defaultY;
+    float moveX;
+    float moveZ;
+    //Rigidbody rb;
+    CharacterController controller;
     public void Awake()
     {
         if (instance == null)
@@ -31,6 +35,9 @@ public class PlayerDefaultMove : MonoBehaviour
     public void Start()
     {
         PlayerStaminaScript.instance.Start();
+        //rb = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
+        dashTimer = dashInterval;
         defaultY = this.gameObject.transform.position.y;
     }
 
@@ -47,15 +54,15 @@ public class PlayerDefaultMove : MonoBehaviour
                 PlayerStaminaScript.instance.Dash();
             }
         }
-
         Transform trans = transform;
         transform.position = trans.position;
 
         if(dashMode)
         {
-            trans.position += trans.TransformDirection(Vector3.forward) * vertical * moveSpeed;
-            trans.position += trans.TransformDirection(Vector3.right) * horizontal * moveSpeed;
-
+            moveX = vertical * dashSpeed;
+            moveZ = horizontal * dashSpeed;
+            Vector3 direction = new Vector3(moveX,0,moveZ);
+            controller.SimpleMove (direction);
             dashTimer++;
             
             if(dashTimer>dashInterval)
@@ -66,14 +73,28 @@ public class PlayerDefaultMove : MonoBehaviour
         }
         else
         {
-            trans.position += trans.TransformDirection(Vector3.forward) * Input.GetAxis("Vertical") * moveSpeed;
-            trans.position += trans.TransformDirection(Vector3.right) * Input.GetAxis("Horizontal") * moveSpeed;
-            trans.position = new Vector3(trans.position.x,3,trans.position.z);
+            moveX = Input.GetAxisRaw("Vertical") * moveSpeed;
+            moveZ = Input.GetAxisRaw("Horizontal") * moveSpeed;
+            Vector3 direction = new Vector3(moveX,0,moveZ);
+            controller.SimpleMove(direction);
+
             recastTimer++;
             if(recastTimer>recastInterval)
             {
                 PlayerStaminaScript.instance.Recharge();
             }
         }
+    }
+    public bool GetDashMode()
+    {
+        return dashMode;
+    }
+    public float GetSpeed()
+    {
+        if(dashMode)
+        {
+            return dashSpeed;
+        }
+        return moveSpeed;
     }
 }
