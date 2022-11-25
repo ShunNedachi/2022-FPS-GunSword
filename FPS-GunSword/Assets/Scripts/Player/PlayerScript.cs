@@ -29,6 +29,10 @@ public class PlayerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerEnergyScript.instance.Update();
+
+        PlayerMagazineScript.instance.Update();
+
         if(Input.GetKeyDown(KeyCode.F) && PlayerEnergyScript.instance.GetULTchack())
         {
             ULT = true;
