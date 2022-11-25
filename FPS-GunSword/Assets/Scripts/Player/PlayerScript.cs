@@ -30,7 +30,7 @@ public class PlayerScript : MonoBehaviour
     void Update()
     {
         PlayerEnergyScript.instance.Update();
-
+        PlayerStaminaScript.instance.Update();
         PlayerMagazineScript.instance.Update();
 
         if(Input.GetKeyDown(KeyCode.F) && PlayerEnergyScript.instance.GetULTchack())
