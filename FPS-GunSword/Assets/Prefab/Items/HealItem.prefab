@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9c074db172f3a4ea3f92c6ec79d696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  instance: {fileID: 0}
   moveDistance: 10
   hitDistance: 1
   speed: 1
-  player: {fileID: 2402955252646821453}
