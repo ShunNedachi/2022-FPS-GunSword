@@ -47,6 +47,7 @@ public class CameraDefaultScript : MonoBehaviour
         z = Input.GetAxisRaw("Vertical") * sensitivity;
 
         transform.position += camera.transform.forward * z + camera.transform.right * x;
+        transform.position = new Vector3(transform.position.x,3.1f,transform.position.z);
     }
 
     // �J�[�\���\���p(�N���b�N�Ŕ�\���@ESC�ŕ\��)
