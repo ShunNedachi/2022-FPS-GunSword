@@ -19,6 +19,8 @@ public class AttackRange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position = PlayerSlashScript.instance.GetAttackPos();
+
         if(destroyTimer>DestroyInterval)
         {
             if(hit == false)
