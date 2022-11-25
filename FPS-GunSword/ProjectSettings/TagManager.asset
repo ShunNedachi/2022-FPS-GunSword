@@ -9,6 +9,7 @@ TagManager:
   - MeleeEnemy
   - RangeEnemy
   - wall
+  - Core
   layers:
   - Default
   - TransparentFX
