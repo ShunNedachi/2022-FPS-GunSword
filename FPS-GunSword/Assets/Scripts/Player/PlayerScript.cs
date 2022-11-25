@@ -24,6 +24,7 @@ public class PlayerScript : MonoBehaviour
         PlayerSlashScript.instance.Start();
         PlayerULTScript.instance.Start();
         PlayerDefaultMove.instance.Start();
+        PlayerHPScript.instance.Start();
     }
 
     // Update is called once per frame

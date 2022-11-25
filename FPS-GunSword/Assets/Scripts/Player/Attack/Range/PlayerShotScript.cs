@@ -53,7 +53,7 @@ public class PlayerShotScript : MonoBehaviour
                     if(hit.collider.CompareTag("MeleeEnemy"))
                     {
                         hit.collider.gameObject.GetComponent<EnemyDamageScript>().HitPlayerAttack(damage);
-                        Instantiate(healItem, hit.collider.gameObject.transform.position, hit.collider.gameObject.transform.rotation);
+                        //Instantiate(healItem, hit.collider.gameObject.transform.position, hit.collider.gameObject.transform.rotation);
 
                         Debug.Log("hit Shot");
                         //Destroy(hit.collider.gameObject);
