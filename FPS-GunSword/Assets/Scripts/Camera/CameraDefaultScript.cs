@@ -12,7 +12,7 @@ public class CameraDefaultScript : MonoBehaviour
     private bool cursorLock = false;
 
     // �p�x�̐����p
-    private float minX = -90.0f, maxX = 90.0f;
+    private float minX = -30.0f, maxX = 15.0f;
     float x,z;
     // Start is called before the first frame update
     void Start()
@@ -47,7 +47,7 @@ public class CameraDefaultScript : MonoBehaviour
         z = Input.GetAxisRaw("Vertical") * sensitivity;
 
         transform.position += camera.transform.forward * z + camera.transform.right * x;
-        transform.position = new Vector3(transform.position.x,3.1f,transform.position.z);
+        transform.position = new Vector3(transform.position.x,3.08f,transform.position.z);
     }
 
     // �J�[�\���\���p(�N���b�N�Ŕ�\���@ESC�ŕ\��)

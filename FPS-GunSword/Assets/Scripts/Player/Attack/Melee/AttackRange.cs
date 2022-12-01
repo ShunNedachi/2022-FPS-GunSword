@@ -32,15 +32,15 @@ public class AttackRange : MonoBehaviour
         destroyTimer++;
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter(Collider t)
     {
-        if(collider.gameObject.tag == "MeleeEnemy"
-            ||collider.gameObject.tag == "RangeEnemy")
+        if(t.gameObject.tag == "MeleeEnemy"
+            ||t.gameObject.tag == "RangeEnemy")
             {
                 hit = true;
-                Debug.Log("Hit");
+                Debug.Log(t.gameObject.name);
                 //damage処理
-                collider.gameObject.GetComponent<DefaultEnemy>().GetDamage(damage);
+                t.gameObject.GetComponent<EnemyDamageScript>().HitPlayerAttack(damage);
                 //エネルギー加算
                 PlayerEnergyScript.instance.SlashChargeEnergy();
                 //コンボ加算
