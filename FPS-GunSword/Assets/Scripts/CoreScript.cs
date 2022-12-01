@@ -7,11 +7,25 @@ public class CoreScript : MonoBehaviour
     public int hp=100;
     public int meleeDamage=100;
     public int rangeDagame=10;
-    public static int count = 0;
+    public int StageNum = 0;
+    public static int coreCount0 = 0;
+    public static int coreCount1 = 0;
+    public static int coreCount2 = 0;
     // Start is called before the first frame update
     void Start()
-    {
-        count++;
+    { 
+        if(StageNum==0)
+        {
+            coreCount0++; 
+        }
+        if(StageNum==1)
+        {
+            coreCount1++;
+        }
+        if(StageNum==2)
+        {
+            coreCount2++;
+        }
     }
 
     // Update is called once per frame
@@ -24,7 +38,18 @@ public class CoreScript : MonoBehaviour
     }
     public void Break()
     {
-        count--;
+        if (StageNum == 0)
+        {
+            coreCount0++;
+        }
+        if (StageNum == 1)
+        {
+            coreCount1++;
+        }
+        if (StageNum == 2)
+        {
+            coreCount2++;
+        }
         Destroy(this.gameObject);
     }
 
