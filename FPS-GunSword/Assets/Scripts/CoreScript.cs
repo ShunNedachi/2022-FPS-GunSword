@@ -43,6 +43,8 @@ public class CoreScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+       
         if(hp<0)
         {
             Break();
@@ -52,15 +54,15 @@ public class CoreScript : MonoBehaviour
     {
         if (StageNum == 0)
         {
-            coreCount0++;
+            coreCount0--;
         }
         if (StageNum == 1)
         {
-            coreCount1++;
+            coreCount1--;
         }
         if (StageNum == 2)
         {
-            coreCount2++;
+            coreCount2--;
         }
         Destroy(this.gameObject);
     }
@@ -72,6 +74,7 @@ public class CoreScript : MonoBehaviour
     public void RangeHit()
     {
         hp -= rangeDagame;
+        Debug.Log(hp);
     }
 
 }
