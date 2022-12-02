@@ -36,16 +36,24 @@ public class AttackRange : MonoBehaviour
     {
         if(t.gameObject.tag == "MeleeEnemy"
             ||t.gameObject.tag == "RangeEnemy")
-            {
-                hit = true;
-                Debug.Log(t.gameObject.name);
-                //damage処理
-                t.gameObject.GetComponent<EnemyDamageScript>().HitPlayerAttack(damage);
-                //エネルギー加算
-                PlayerEnergyScript.instance.SlashChargeEnergy();
-                //コンボ加算
-                PlayerSlashScript.instance.AddCombo();
-
-            }
+        {
+            hit = true;
+            Debug.Log(t.gameObject.name);
+            //damage処理
+            t.gameObject.GetComponent<EnemyDamageScript>().HitPlayerAttack(damage);
+            //エネルギー加算
+            PlayerEnergyScript.instance.SlashChargeEnergy();
+            //コンボ加算
+            PlayerSlashScript.instance.AddCombo();
+        }
+        if(t.gameObject.tag == "Core")
+        {
+            //コアに対するダメージ処理
+            CoreScript.instance.MeleeHit();
+            //エネルギー加算
+            PlayerEnergyScript.instance.SlashChargeEnergy();
+            //コンボ加算
+            PlayerSlashScript.instance.AddCombo();
+        }
     }
 }

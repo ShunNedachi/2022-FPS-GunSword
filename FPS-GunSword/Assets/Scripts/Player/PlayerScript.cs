@@ -35,7 +35,7 @@ public class PlayerScript : MonoBehaviour
         PlayerStaminaScript.instance.Update();
         PlayerMagazineScript.instance.Update();
 
-        if(Input.GetKeyDown(KeyCode.F) )
+        if(Input.GetKeyDown(KeyCode.F) && PlayerEnergyScript.instance.GetULTchack())
         {
             ULT = true;
             CameraController.instance.ChangeThirdViewCamera();
