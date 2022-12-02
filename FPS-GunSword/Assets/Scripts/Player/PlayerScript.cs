@@ -40,7 +40,6 @@ public class PlayerScript : MonoBehaviour
             CameraController.instance.ChangeThirdViewCamera();
 
         }
-
         PlayerDefaultMove.instance.Update();
 
         if(ULT)
@@ -54,6 +53,7 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
+            CameraController.instance.ChangeMainCamera();
             PlayerShotScript.instance.Update();
             PlayerSlashScript.instance.Update();
         } 
