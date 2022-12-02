@@ -1826,7 +1826,6 @@ GameObject:
   - component: {fileID: 550974436}
   - component: {fileID: 550974435}
   - component: {fileID: 550974434}
-  - component: {fileID: 550974440}
   - component: {fileID: 550974432}
   - component: {fileID: 550974431}
   - component: {fileID: 550974442}
@@ -2051,29 +2050,6 @@ MonoBehaviour:
   attackDictance: 5
   camera: {fileID: 0}
   ULTAttackRange: {fileID: 5307462568428215260, guid: 44403d23829d8bd41a28da258f5f1ead, type: 3}
---- !u!114 &550974440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550974426}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e54c72091fbdbf4eae7b13d1031ad92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  magazineMax: 6
-  MagazineImage: {fileID: 1715573299}
-  Magazine:
-  - {fileID: 21300000, guid: e2916163b1238bf4fb2f4f4c4972e7df, type: 3}
-  - {fileID: 21300000, guid: b20ff2e321c07ef479f8dc7dcbe31fe0, type: 3}
-  - {fileID: 21300000, guid: 3f8790de3a192254ea0dd0c0594fb2bc, type: 3}
-  - {fileID: 21300000, guid: f30ae450a71715e44993e09fffb542d0, type: 3}
-  - {fileID: 21300000, guid: 53f83eff2af3ae240ac08ddd56f5f198, type: 3}
-  - {fileID: 21300000, guid: 1fab77bad42cedd41b9ca50ac0bcfa11, type: 3}
-  - {fileID: 21300000, guid: 204a619511e8f1a4f978ea07b515b5aa, type: 3}
-  TextFrame: {fileID: 1443679818}
 --- !u!143 &550974441
 CharacterController:
   m_ObjectHideFlags: 0
