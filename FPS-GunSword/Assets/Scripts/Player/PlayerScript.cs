@@ -11,6 +11,8 @@ public class PlayerScript : MonoBehaviour
 
     private bool ULT = false;
     private int deformationTimer = 0;
+    public Image gaugeWeaponImage;
+    public Sprite[] gaugeWeaponSprite;
     public void Awake()
     {
         if (instance == null)
@@ -39,12 +41,12 @@ public class PlayerScript : MonoBehaviour
         {
             ULT = true;
             CameraController.instance.ChangeThirdViewCamera();
-
         }
         PlayerDefaultMove.instance.Update();
 
         if(ULT)
         {
+            gaugeWeaponImage.sprite = gaugeWeaponSprite[0];
             deformationTimer++;
             if(deformationTimer>deformationInterval)
             {
@@ -55,6 +57,7 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
+            gaugeWeaponImage.sprite = gaugeWeaponSprite[1];
             CameraController.instance.ChangeMainCamera();
             PlayerShotScript.instance.Update();
             PlayerSlashScript.instance.Update();
