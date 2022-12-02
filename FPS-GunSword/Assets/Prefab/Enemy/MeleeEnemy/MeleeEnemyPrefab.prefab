@@ -183,8 +183,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3779421259341992116}
   - component: {fileID: 3942505104885377308}
-  - component: {fileID: 4540501799373416964}
   - component: {fileID: 4714829940610730219}
+  - component: {fileID: -3495437727812920339}
   m_Layer: 0
   m_Name: MeleeEnemyPrefab
   m_TagString: MeleeEnemy
@@ -230,36 +230,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4540501799373416964
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3647217949585557207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ba0d16ef065e3840ae8f6c980f86ebb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 100
-  damageValue: 30
-  sightDistance: 100
-  walkSpeed: 10
-  runSpeed: 30
-  stunFrame: 20000
-  deadTime: 3
-  attackStartDistance: 30
-  playerObject: {fileID: 2402955252646821453, guid: 17ef2d9a9b1194a4fb28a4c6f925cf66, type: 3}
-  groupDistance: 30
-  visualAngle: 70
-  heightOfVision: 1
-  makerObj: []
-  heal: {fileID: 5119100897755989617, guid: 17ef2d9a9b1194a4fb28a4c6f925cf66, type: 3}
-  walkDistance: 100
-  attackFrame: 120
-  attackIntervalFrame: 300
-  attackActiveFrame: 1
 --- !u!54 &4714829940610730219
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -276,6 +246,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-3495437727812920339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3647217949585557207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440379851a70ec9449c0e2fde5bdaa94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 100
+  damageValue: 30
+  sightDistance: 100
+  walkSpeed: 10
+  runSpeed: 30
+  stunFrame: 30
+  deadTime: 3
+  attackStartDistance: 5
+  playerObject: {fileID: 0}
+  visualAngle: 70
+  heightOfVision: 1
+  makerObj: []
+  heal: {fileID: 0}
+  walkDistance: 100
+  attackFrame: 120
+  attackIntervalFrame: 300
+  attackActiveFrame: 1
+  stepDistance: 20
+  stepSpeed: 20
 --- !u!1 &4329608343728991756
 GameObject:
   m_ObjectHideFlags: 0

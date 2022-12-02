@@ -1,75 +1,84 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeEnemy : DefaultEnemy
+public class MeleeEnemyScript : DefaultEnemyScript
 {
-    // 歩きに変わる距離
     [SerializeField] private float walkDistance = 100.0f;
 
+    // for Attack
     [SerializeField] private int attackFrame = 120;
     [SerializeField] private int attackIntervalFrame = 300;
     [SerializeField] private int attackActiveFrame = 1;
-
+    // for Step
     [SerializeField] private float stepDistance = 20.0f;
-    [SerializeField] private float stepSpeed = 2.0f;
+    [SerializeField] private float stepSpeed = 20.0f;
 
     private bool isWalk = false;
 
-
-    // 攻撃動作中かどうか判定用
-    private bool attackMotion = false; 
+    // for Attack
+    private bool attackMotion = false;
     private int countAttack = 0;
     private int countAttackInterval = 0;
     private int countAttackActive = 0;
     private bool isAttackInterval = false;
-
     private bool attackActive = false;
 
-    // ステップ用　変数
+    // for Step
     private bool stepInitialize = false;
     private bool canStep = false;
-    private Vector3 stepVector;
-
     private bool backstepInit = false;
     private bool canBackStep = false;
-    // ステップ中かどうか判定用
-    private bool stepMotion = false;
-
 
     // Start is called before the first frame update
     void Start()
     {
-        // 初期化処理
+        // Init State
+        state = enemyState.patrol;
+        // Initalize EnemyInfo
         InitializeEnemy();
-
-        //// 自身の周辺に近距離エネミーを3,4沸かせる
-        //System.Random rand = new System.Random();
-        //int spawnRandNum = rand.Next(3, 5);
-
-        //// 生成処理は後ほど追加
-        //for (int i = 0; i < spawnRandNum; i++)
-        //{
-            
-        //}
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab)) isDead = true;
+        // 視界から外れた時に行動パターン切り替え
+        if (!MoveWithinSight()) ChangePatrol();
 
-        if (!IsStun)
+        // stateを参照して行動パターン切り替え
+        switch (state)
         {
-            NormalMove();
-        }
-        else
-        {
-            StunMove();
+            case enemyState.patrol:
+                
+                PatrolMove();
+                break;
+
+            case enemyState.follow:
+
+                FollowMove();
+                
+                break;
+
+            case enemyState.attack:
+                AttackMove();
+
+                break;
+
+            case enemyState.step:
+                StepMove();
+                
+                break;
+
+            case enemyState.stun:
+                
+                StunMove();
+                break;
         }
 
-        // 移動速度の変更
-        if(!stepMotion || !MoveWithinSight())MoveSpeedChange();
 
-        // 死亡処理
+        // スタンしたかどうかのチェック
+        StunCheck();
+        // 死亡時の処理
         Dead();
     }
 
@@ -80,65 +89,61 @@ public class MeleeEnemy : DefaultEnemy
         set { attackActive = value; }
     }
 
-    private void StunMove()
+    private void MoveSpeedChange()
     {
-        agent.isStopped = true;
-        //agent.SetDestination(transform.position);
-
-        stunCount++;
-
-        // スタン時間分止まったら
-        if (stunCount > stunFrame)
+        // for Follow
+        if (isWalk)
         {
-            agent.isStopped = false;
-
-            stunCount = 0;
-            IsStun = false;
+            agent.speed = walkSpeed;
         }
+        else
+        {
+            agent.speed = runSpeed;
+        }
+
     }
-    
-    private void NormalMove()
+
+    private void SetLookPlayer()
     {
-        // 視界内にplayerがいなければマーカーに沿って移動
-        if (!MoveWithinSight())
-        {
-            MoveRandom();
+        Vector3 lookVector = playerObject.transform.position - transform.position;
+        lookVector.y = 0.0f;
 
-            agent.isStopped = false;
+        Quaternion quaternion = Quaternion.LookRotation(lookVector);
+
+        transform.rotation = quaternion;
+
+    }
+
+    private void PatrolMove()
+    {
+        // playerが視界に入ったときに行動パターン切り替え
+        if(MoveWithinSight())
+        {
+            ChangeFollow();
         }
-        else // 視界内にplayerがいる場合
+ 
+
+        MoveRandom();
+    }
+
+    private void FollowMove()
+    {
+        agent.SetDestination(playerObject.transform.position);
+
+        var distance = Vector3.Distance(transform.position, playerObject.transform.position);
+        if (distance <= walkDistance)
         {
-            // 視界に入ったらplayerの位置を追いかける 攻撃時、ステップ中じゃない時
-            if (!attackMotion && !stepMotion)
-            {
-                agent.SetDestination(playerObject.transform.position);
-            }
+            isWalk = true;
 
-            // 一定距離以上近ければ歩く
-            var distanceToPlayer = Vector3.Distance(playerObject.transform.position, transform.position);
-            if (distanceToPlayer <= walkDistance)
-            {
-                isWalk = true;
-
-                // 攻撃できる位置まで近づいたら攻撃行動開始
-                if (distanceToPlayer <= attackStartDistance && !isAttackInterval && !stepMotion)
-                {
-                    isAttack = true;
-                    attackMotion = true;
-                }
-
-            }
-            else
-            {
-                isWalk = false;
-            }
-
-            // ステップを踏む
-            StepAction();
+            // 範囲に入っていたら
+            if(distance <= attackStartDistance) { ChangeAttack(); }
 
         }
+        else isWalk = false;
+    }
 
-
+    private void AttackMove()
+    {
         // 攻撃前の予備動作
         if (isAttack)
         {
@@ -170,7 +175,6 @@ public class MeleeEnemy : DefaultEnemy
                 attackActive = false;
                 isAttackInterval = true;
 
-                agent.isStopped = false;
             }
         }
         // 攻撃の硬直中
@@ -184,62 +188,77 @@ public class MeleeEnemy : DefaultEnemy
                 isAttackInterval = false;
                 countAttackInterval = 0;
 
-                // 攻撃中判定を除去
-                attackMotion = false;
-
                 // ステップの行動を取れるように
-                backstepInit = false;
-                canBackStep = true;
-                stepMotion = true;
+
+                ChangeStep();
             }
 
         }
 
     }
 
-    private void MoveSpeedChange()
+    private void StepMove()
     {
-        //
-        if (isWalk)
+        if (canBackStep && !canStep)
         {
-            agent.speed = walkSpeed;
-        }
-        else
-        {
-            agent.speed = runSpeed;
-        }
+            BackStep();
 
+            SetLookPlayer();
+        }
+        else if (canStep && !canBackStep)
+        {
+            StepLeftAndRight();
+            SetLookPlayer();
+        }
     }
 
-    private void SetLookPlayer()
+    // for Stun
+    private void StunMove()
     {
-        Vector3 lookVector = playerObject.transform.position - transform.position;
-        lookVector.y = 0.0f;
+        // stopped
+        agent.isStopped = true;
 
-        Quaternion quaternion = Quaternion.LookRotation(lookVector);
+        stunCount++;
+        // スタン時間分止まったら
+        if (stunCount > stunFrame)
+        {
+            agent.isStopped = false;
 
-        transform.rotation = quaternion;
+            stunCount = 0;
+            IsStun = false;
 
+            state = beforeStunState;
+        }
     }
 
-    private void StepAction()
+    private void ChangePatrol()
     {
-        if (stepMotion && !attackMotion)
-        {
-            if (canBackStep && !canStep)
-            {
-                BackStep();
+        // 後程左右見渡した後に変更するように変更
+        // パトロール中じゃなかったら見渡すようにする
+        if(state != enemyState.patrol) { }
 
-                SetLookPlayer();
-            }
+        state = enemyState.patrol;
+    }
 
-            if (canStep && !canBackStep)
-            {
-                StepLeftAndRight();
-                SetLookPlayer();
-            }
+    private void ChangeFollow()
+    {
+        state = enemyState.follow;
+    }
 
-        }
+    private void ChangeAttack()
+    {
+        state = enemyState.attack;
+
+        isAttack = true;
+    }
+    
+    private void ChangeStep()
+    {
+        // ステップの初期化
+        backstepInit = false;
+        canBackStep = true;
+
+        state = enemyState.step;
     }
 
     private void BackStep()
@@ -252,7 +271,7 @@ public class MeleeEnemy : DefaultEnemy
             backstepInit = true;
         }
 
-        if(!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
             canBackStep = false;
             canStep = true;
@@ -290,12 +309,12 @@ public class MeleeEnemy : DefaultEnemy
         }
 
         // 移動が終わったら終了時処理 後で変更できるようにするかも？(その場合remainingDaistanceを使用している箇所全て)
-        if(!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
             canStep = false;
-            stepMotion = false;
-
             stepInitialize = false;
+
+            ChangeFollow();
         }
     }
 
@@ -305,8 +324,6 @@ public class MeleeEnemy : DefaultEnemy
     {
         // 初期値では失敗判定を入れておく
         bool moveResult = false;
-
-        stepMotion = true;
 
         RaycastHit hit;
         Vector3 agentPoint;
@@ -337,5 +354,4 @@ public class MeleeEnemy : DefaultEnemy
 
         return moveResult;
     }
-
 }

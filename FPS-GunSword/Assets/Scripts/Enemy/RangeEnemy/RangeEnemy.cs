@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RangeEnemy : DefaultEnemy
+public class RangeEnemy : DefaultEnemyScript
 {
     // 行動パターン切り替え用
     [SerializeField] bool patern1 = true;
@@ -178,10 +178,10 @@ public class RangeEnemy : DefaultEnemy
         // 視界にプレイヤーがいたら行動
         if(MoveWithinSight())
         {
-            Vector3 lockVector = playerObject.transform.position - transform.position;
-            lockVector.y = 0.0f;
+            Vector3 lookVector = playerObject.transform.position - transform.position;
+            lookVector.y = 0.0f;
 
-            Quaternion quaternion = Quaternion.LookRotation(lockVector);
+            Quaternion quaternion = Quaternion.LookRotation(lookVector);
 
             transform.rotation = quaternion; 
         }
