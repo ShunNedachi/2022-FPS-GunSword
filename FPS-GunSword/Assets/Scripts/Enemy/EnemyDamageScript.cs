@@ -9,8 +9,10 @@ public class EnemyDamageScript : MonoBehaviour
     [SerializeField] private bool isHead = false;
     [SerializeField] private float damageMaltiply = 2.0f; 
 
+
     // �X�e�[�^�X���Q�Ɨp
-    DefaultEnemy enemy;
+    DefaultEnemyScript enemy;
+
 
     // Start is called before the first frame update
     void Start()
@@ -22,7 +24,7 @@ public class EnemyDamageScript : MonoBehaviour
         }
         else if (transform.parent.tag == "MeleeEnemy")
         {
-            enemy = transform.parent.GetComponentInParent<MeleeEnemy>();
+            enemy = transform.parent.GetComponentInParent<MeleeEnemyScript>();
         }
 
     }
