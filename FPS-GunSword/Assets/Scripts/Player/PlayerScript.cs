@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
@@ -49,6 +50,7 @@ public class PlayerScript : MonoBehaviour
             {
                 //ULT中処理
                 PlayerULTScript.instance.Update();
+
             }
         }
         else
