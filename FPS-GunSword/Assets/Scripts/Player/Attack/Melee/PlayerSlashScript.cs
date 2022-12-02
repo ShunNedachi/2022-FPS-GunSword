@@ -72,4 +72,10 @@ public class PlayerSlashScript : MonoBehaviour
         comboResetTimer = 0;
         comboCount++;
     }
+    public Vector3 GetAttackPos()
+    {
+        Vector3 createPos = transform.position + camera.transform.forward * attackDictance;
+
+        return createPos;
+    }
 }

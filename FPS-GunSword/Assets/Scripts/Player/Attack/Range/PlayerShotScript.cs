@@ -14,6 +14,7 @@ public class PlayerShotScript : MonoBehaviour
 
     private int shootIntervalTimer = 0;
     private int reloadTimer = 0;
+    private bool hitEnemy = false;
 
     public void Awake()
     {
@@ -35,6 +36,7 @@ public class PlayerShotScript : MonoBehaviour
         shootIntervalTimer ++;
         reloadTimer ++;
 
+        hitEnemy = false;
         if (Input.GetMouseButtonDown(0) && shootIntervalTimer > shootInterval)
         {
             PlayerSlashScript.instance.ModeChange();
@@ -50,13 +52,24 @@ public class PlayerShotScript : MonoBehaviour
                 RaycastHit hit;
                 if(Physics.Raycast(ray,out hit) )//&& gameObject.tag = "Enemy"
                 {
-                    if(hit.collider.CompareTag("MeleeEnemy"))
+                    if(hit.collider.CompareTag("MeleeEnemy")
+                    || hit.collider.CompareTag("RangeEnemy"))
                     {
                         hit.collider.gameObject.GetComponent<EnemyDamageScript>().HitPlayerAttack(damage);
-                        //Instantiate(healItem, hit.collider.gameObject.transform.position, hit.collider.gameObject.transform.rotation);
-
                         Debug.Log("hit Shot");
-                        //Destroy(hit.collider.gameObject);
+                        PlayerSlashScript.instance.AddCombo();
+                        hitEnemy = true;
+                    }
+                    if(hit.collider.CompareTag("Core"))
+                    {
+                        hit.collider.gameObject.GetComponent<CoreScript>().RangeHit();
+                        PlayerSlashScript.instance.AddCombo();
+                        hitEnemy = true;
+
+                    }
+                    if(!hitEnemy)
+                    {
+                        PlayerSlashScript.instance.ComboReset();
                     }
                 }
             }
@@ -73,7 +86,7 @@ public class PlayerShotScript : MonoBehaviour
             PlayerMagazineScript.instance.Reload();
         }
     }
-        public void ModeChange()
+    public void ModeChange()
     {
         shootIntervalTimer = 0;
     }
