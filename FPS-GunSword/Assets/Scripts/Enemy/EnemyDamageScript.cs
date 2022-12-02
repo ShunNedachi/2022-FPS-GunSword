@@ -2,27 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// “G‚ªƒ_ƒ[ƒW‚ğó‚¯‚½—p
+// ï¿½Gï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½ï¿½ï¿½ó‚¯‚ï¿½ï¿½ï¿½ï¿½p
 public class EnemyDamageScript : MonoBehaviour
 {
-    // ‚±‚±‚ğ•ÏX‚µ‚Äƒ_ƒ[ƒW—Ê‚ğ’²®
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÏXï¿½ï¿½ï¿½Äƒ_ï¿½ï¿½ï¿½[ï¿½Wï¿½Ê‚ğ’²ï¿½
     [SerializeField] private bool isHead = false;
     [SerializeField] private float damageMaltiply = 2.0f; 
 
-    // ƒXƒe[ƒ^ƒXî•ñQÆ—p
-    DefaultEnemy enemy;
+
+    // ï¿½Xï¿½eï¿½[ï¿½^ï¿½Xï¿½ï¿½ï¿½Qï¿½Æ—p
+    DefaultEnemyScript enemy;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        // •Ï”‚É“G‚Ìî•ñ‚ğ‚Á‚Ä‚­‚é
+        // ï¿½Ïï¿½ï¿½É“Gï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
         if (transform.parent.tag == "RangeEnemy")
         {
             enemy = transform.parent.GetComponentInParent<RangeEnemy>();
         }
         else if (transform.parent.tag == "MeleeEnemy")
         {
-            enemy = transform.parent.GetComponentInParent<MeleeEnemy>();
+            enemy = transform.parent.GetComponentInParent<MeleeEnemyScript>();
         }
 
     }
@@ -33,10 +35,10 @@ public class EnemyDamageScript : MonoBehaviour
         
     }
 
-    // ƒvƒŒƒCƒ„[‚ÌUŒ‚‚ª“–‚½‚Á‚½‚Æ‚«—p
+    // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ÌUï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½p
     public void HitPlayerAttack(float baseDamage)
     {
-        // ã“_‚É“–‚½‚Á‚½‚Æ‚«
+        // ï¿½ï¿½_ï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½
         if (isHead)
         {
             enemy.GetDamage(baseDamage * damageMaltiply);

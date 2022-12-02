@@ -52,31 +52,31 @@ public class PlayerMagazineScript : MonoBehaviour
         {
             default:
                MagazineImage.sprite = Magazine[0];
-                Debug.Log("0");
+                //Debug.Log("0");
                 break;
             case 1:
                 MagazineImage.sprite = Magazine[1];
-                Debug.Log("1");
+                //Debug.Log("1");
                 break;
             case 2:
                 MagazineImage.sprite = Magazine[2];
-                Debug.Log("2");
+                //Debug.Log("2");
                 break;
             case 3:
                 MagazineImage.sprite = Magazine[3];
-                Debug.Log("3");
+                //Debug.Log("3");
                 break;
             case 4:
                 MagazineImage.sprite = Magazine[4];
-                Debug.Log("4");
+                //Debug.Log("4");
                 break;
             case 5:
                 MagazineImage.sprite = Magazine[5];
-                Debug.Log("5");
+                //Debug.Log("5");
                 break;
             case 6:
                 MagazineImage.sprite = Magazine[6];
-                Debug.Log("6");
+                //Debug.Log("6");
                 break;
 
         }
