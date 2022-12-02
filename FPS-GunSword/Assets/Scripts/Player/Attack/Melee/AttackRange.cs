@@ -49,7 +49,7 @@ public class AttackRange : MonoBehaviour
         if(t.gameObject.tag == "Core")
         {
             //コアに対するダメージ処理
-            CoreScript.instance.MeleeHit();
+            t.gameObject.GetComponent<CoreScript>().MeleeHit();
             //エネルギー加算
             PlayerEnergyScript.instance.SlashChargeEnergy();
             //コンボ加算

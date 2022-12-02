@@ -62,8 +62,7 @@ public class PlayerShotScript : MonoBehaviour
                     }
                     if(hit.collider.CompareTag("Core"))
                     {
-                        Debug.Log("hit Core");
-                        CoreScript.instance.RangeHit();
+                        hit.collider.gameObject.GetComponent<CoreScript>().RangeHit();
                         PlayerSlashScript.instance.AddCombo();
                         hitEnemy = true;
 
