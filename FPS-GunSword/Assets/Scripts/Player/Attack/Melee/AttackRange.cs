@@ -19,6 +19,8 @@ public class AttackRange : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.position = PlayerSlashScript.instance.GetAttackPos();
+
         if(destroyTimer>DestroyInterval)
         {
             if(hit == false)
@@ -30,15 +32,15 @@ public class AttackRange : MonoBehaviour
         destroyTimer++;
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider t)
     {
-        if(collision.gameObject.tag == "MeleeEnemy"
-            ||collision.gameObject.tag == "RangeEnemy")
+        if(t.gameObject.tag == "MeleeEnemy"
+            ||t.gameObject.tag == "RangeEnemy")
             {
                 hit = true;
-                Debug.Log("Hit");
+                Debug.Log(t.gameObject.name);
                 //damage処理
-                collision.gameObject.GetComponent<DefaultEnemy>().GetDamage(damage);
+                t.gameObject.GetComponent<EnemyDamageScript>().HitPlayerAttack(damage);
                 //エネルギー加算
                 PlayerEnergyScript.instance.SlashChargeEnergy();
                 //コンボ加算

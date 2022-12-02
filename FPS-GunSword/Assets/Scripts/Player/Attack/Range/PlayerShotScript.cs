@@ -73,7 +73,7 @@ public class PlayerShotScript : MonoBehaviour
             PlayerMagazineScript.instance.Reload();
         }
     }
-        public void ModeChange()
+    public void ModeChange()
     {
         shootIntervalTimer = 0;
     }
