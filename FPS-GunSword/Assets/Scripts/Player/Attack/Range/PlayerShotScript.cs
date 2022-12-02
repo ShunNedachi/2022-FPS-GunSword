@@ -14,6 +14,7 @@ public class PlayerShotScript : MonoBehaviour
 
     private int shootIntervalTimer = 0;
     private int reloadTimer = 0;
+    private bool hitEnemy = false;
 
     public void Awake()
     {
@@ -56,7 +57,12 @@ public class PlayerShotScript : MonoBehaviour
                         //Instantiate(healItem, hit.collider.gameObject.transform.position, hit.collider.gameObject.transform.rotation);
 
                         Debug.Log("hit Shot");
+                        PlayerSlashScript.instance.AddCombo();
                         //Destroy(hit.collider.gameObject);
+                    }
+                    if(!hitEnemy)
+                    {
+                        PlayerSlashScript.instance.ComboReset();
                     }
                 }
             }

@@ -27,10 +27,14 @@ public class PlayerEnergyScript : MonoBehaviour
         gaugeImage.enabled = true;
     }
 
+    public void Start()
+    {
+        energy = energyMax;
+    }
     // Update is called once per frame
     public void Update()
     {
-        if(energy>energyMax)
+        if(energy == energyMax)
         {
             ULTchack = true;
         }
