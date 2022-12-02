@@ -17,7 +17,7 @@ public class Door : MonoBehaviour
     {
       if(GameScene.instance.stageClear[stageNum])
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }
