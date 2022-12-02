@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CoreScript : MonoBehaviour
 {
+    public static CoreScript instance;
+
     public int hp=100;
     public int meleeDamage=100;
     public int rangeDagame=10;
@@ -11,6 +13,16 @@ public class CoreScript : MonoBehaviour
     public static int coreCount0 = 0;
     public static int coreCount1 = 0;
     public static int coreCount2 = 0;
+
+    public void Awake()
+    {
+        if(instance ==null)
+        {
+            instance = this;
+        }
+    }
+
+
     // Start is called before the first frame update
     void Start()
     { 
