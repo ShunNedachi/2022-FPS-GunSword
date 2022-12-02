@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1705,7 +1705,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 550974430}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 24.356, y: 0, z: 0}
 --- !u!81 &490861171
 AudioListener:
@@ -1834,6 +1834,8 @@ GameObject:
   - component: {fileID: 550974432}
   - component: {fileID: 550974431}
   - component: {fileID: 550974442}
+  - component: {fileID: 550974444}
+  - component: {fileID: 550974443}
   - component: {fileID: 550974439}
   - component: {fileID: 550974438}
   - component: {fileID: 550974441}
@@ -1907,8 +1909,8 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1755245809}
-  - {fileID: 828651181}
   - {fileID: 490861170}
+  - {fileID: 828651181}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2049,8 +2051,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackInterval: 50
-  comboResetInterval: 300
-  ULTAttackRange: {fileID: 5307462568428215260, guid: 44403d23829d8bd41a28da258f5f1ead, type: 3}
+  attackDictance: 5
+  camera: {fileID: 1755245806}
+  ULTAttackRange: {fileID: 3786816699062897162, guid: 44403d23829d8bd41a28da258f5f1ead, type: 3}
 --- !u!114 &550974440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2106,6 +2109,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpMax: 1000
   hpImage: {fileID: 1874540552}
+--- !u!114 &550974443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550974426}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64dfc6ce0f0b116489e54f28b94e6fce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackInterval: 50
+  attackDictance: 5
+  camera: {fileID: 0}
+  Excalibur: {fileID: 0}
+--- !u!114 &550974444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550974426}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d6ae6024bed71b4ca344703d99b4987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &555638480
 GameObject:
   m_ObjectHideFlags: 0
@@ -2433,7 +2464,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 95b1ce616904d6044912094c121c57e0, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 95b1ce616904d6044912094c121c57e0, type: 3}
       propertyPath: m_LocalScale.x
