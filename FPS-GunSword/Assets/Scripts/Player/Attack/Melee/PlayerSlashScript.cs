@@ -12,10 +12,12 @@ public class PlayerSlashScript : MonoBehaviour
     [SerializeField] private float attackDictance = 5.0f;
     [SerializeField] private new GameObject camera;
     [SerializeField] private GameObject AttackRange;
+    [SerializeField] public AudioClip sword;
 
     private float attackTimer = 0;
     private float comboResetTimer = 0;
     private int comboCount = 0;
+    AudioSource audioSource;
 
     public void Awake()
     {
@@ -29,6 +31,8 @@ public class PlayerSlashScript : MonoBehaviour
     public void Start()
     {
         attackTimer = attackInterval;
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -43,6 +47,8 @@ public class PlayerSlashScript : MonoBehaviour
             // プレイヤーの少し前に生成する
             Vector3 createPos = transform.position + camera.transform.forward * attackDictance;
             Instantiate(AttackRange, createPos, camera.transform.rotation);
+
+            audioSource.PlayOneShot(sword);
         }
         if(comboCount>0)
         {

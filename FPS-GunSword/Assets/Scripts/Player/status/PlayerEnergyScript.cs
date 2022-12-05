@@ -11,11 +11,12 @@ public class PlayerEnergyScript : MonoBehaviour
     [SerializeField] private float energyMax = 1000;
     [SerializeField] private int energySlash = 60;
     [SerializeField] private int energyDecrease = 1;
-
+    [SerializeField] public AudioClip heal;
     private float energy = 0;
     private float energyItem = 100;
     private int baceEnergyAbsorption = 25;
     private bool ULTchack = false;
+    AudioSource audioSource;
 
     public void Awake()
     {
@@ -30,6 +31,8 @@ public class PlayerEnergyScript : MonoBehaviour
     public void Start()
     {
         energy = energyMax;
+        audioSource = GetComponent<AudioSource>();
+
     }
     // Update is called once per frame
     public void Update()
@@ -55,7 +58,8 @@ public class PlayerEnergyScript : MonoBehaviour
     }
     public void SetEnergyItem()
     {
-        
+        audioSource.PlayOneShot(heal);
+
         if (energy<energyMax)
         {
             energy += energyItem;

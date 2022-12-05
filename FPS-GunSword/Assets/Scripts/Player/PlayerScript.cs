@@ -7,12 +7,17 @@ public class PlayerScript : MonoBehaviour
 {
     public static PlayerScript instance;
 
-    [SerializeField] public int deformationInterval = 30;
+    [SerializeField] private int deformationInterval = 30;
+    [SerializeField] private GameObject canvas;
+    [SerializeField] public AudioClip ULTStart;
+
 
     private bool ULT = false;
     private int deformationTimer = 0;
     public Image gaugeWeaponImage;
     public Sprite[] gaugeWeaponSprite;
+    AudioSource audioSource;
+
     public void Awake()
     {
         if (instance == null)
@@ -25,9 +30,11 @@ public class PlayerScript : MonoBehaviour
     {
         PlayerShotScript.instance.Start();
         PlayerSlashScript.instance.Start();
-        PlayerULTScript.instance.Start();
         PlayerDefaultMove.instance.Start();
         PlayerHPScript.instance.Start();
+        ULTController.instance.Start();
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -37,10 +44,13 @@ public class PlayerScript : MonoBehaviour
         PlayerStaminaScript.instance.Update();
         PlayerMagazineScript.instance.Update();
 
-        if(Input.GetKeyDown(KeyCode.F) && PlayerEnergyScript.instance.GetULTchack())
+        if(Input.GetKeyDown(KeyCode.F) && PlayerEnergyScript.instance.GetULTchack() && ULT == false)
         {
             ULT = true;
             CameraController.instance.ChangeThirdViewCamera();
+            canvas.SetActive(false);
+            audioSource.PlayOneShot(ULTStart);
+
         }
         PlayerDefaultMove.instance.Update();
 
@@ -51,8 +61,7 @@ public class PlayerScript : MonoBehaviour
             if(deformationTimer>deformationInterval)
             {
                 //ULT中処理
-                PlayerULTScript.instance.Update();
-
+                ULTController.instance.Update();
             }
         }
         else
@@ -61,6 +70,7 @@ public class PlayerScript : MonoBehaviour
             CameraController.instance.ChangeMainCamera();
             PlayerShotScript.instance.Update();
             PlayerSlashScript.instance.Update();
+            canvas.SetActive(true);
         } 
     }
     public void SetULTchack(bool chack)

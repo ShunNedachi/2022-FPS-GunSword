@@ -14,6 +14,7 @@ public class PlayerExcaliburScript : MonoBehaviour
     private float objectRange = 0;
     private bool action = false;
 
+    AudioSource audioSource;
     public void Awake()
     {
         if (instance == null)
@@ -26,7 +27,7 @@ public class PlayerExcaliburScript : MonoBehaviour
     public void Start()
     {
         attackTimer = attackInterval;
-
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

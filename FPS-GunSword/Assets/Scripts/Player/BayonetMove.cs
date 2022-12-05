@@ -16,7 +16,6 @@ public class BayonetMove : MonoBehaviour
     void Update()
     {
         this.transform.localRotation = camera.transform.localRotation;
-        this.transform.localRotation *= Quaternion.Euler(0,180,0);
     }
     void FixedUpdate()
     {
