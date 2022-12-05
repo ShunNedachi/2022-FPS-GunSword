@@ -113,4 +113,4 @@ MonoBehaviour:
   hp: 100
   meleeDamage: 100
   rangeDagame: 10
-  StageNum: 1
+  StageNum: 0
