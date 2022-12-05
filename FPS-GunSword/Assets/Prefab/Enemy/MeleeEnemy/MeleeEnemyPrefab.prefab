@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5213395740446781084
 Transform:
   m_ObjectHideFlags: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
   visualAngle: 70
   heightOfVision: 1
   makerObj: []
-  heal: {fileID: 0}
+  heal: {fileID: 5119100897755989617, guid: 17ef2d9a9b1194a4fb28a4c6f925cf66, type: 3}
   walkDistance: 100
   attackFrame: 120
   attackIntervalFrame: 300
