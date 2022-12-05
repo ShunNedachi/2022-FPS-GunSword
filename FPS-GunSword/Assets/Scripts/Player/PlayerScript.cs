@@ -25,9 +25,9 @@ public class PlayerScript : MonoBehaviour
     {
         PlayerShotScript.instance.Start();
         PlayerSlashScript.instance.Start();
-        PlayerULTScript.instance.Start();
         PlayerDefaultMove.instance.Start();
         PlayerHPScript.instance.Start();
+        ULTController.instance.Start();
     }
 
     // Update is called once per frame
@@ -51,8 +51,7 @@ public class PlayerScript : MonoBehaviour
             if(deformationTimer>deformationInterval)
             {
                 //ULT中処理
-                PlayerULTScript.instance.Update();
-
+                ULTController.instance.Update();
             }
         }
         else
