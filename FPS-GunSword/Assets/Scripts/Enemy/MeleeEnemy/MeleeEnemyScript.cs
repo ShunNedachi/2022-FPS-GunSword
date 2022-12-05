@@ -153,13 +153,6 @@ public class MeleeEnemyScript : DefaultEnemyScript
 
     private void AttackMove()
     {
-        if(attackInitialize)
-        {
-            // “–‚½‚è”»’è—LŒø‰»
-            attackCollider.enabled = true;
-
-            attackInitialize = false;
-        }
 
         // UŒ‚‘O‚Ì—\”õ“®ì
         if (isAttack)
@@ -183,6 +176,14 @@ public class MeleeEnemyScript : DefaultEnemyScript
         // UŒ‚‚ÌŽ‘±
         if (attackActive)
         {
+            if (attackInitialize)
+            {
+                // “–‚½‚è”»’è—LŒø‰»
+                attackCollider.enabled = true;
+
+                attackInitialize = false;
+            }
+
             countAttackActive++;
 
             if (countAttackActive > attackActiveFrame)
