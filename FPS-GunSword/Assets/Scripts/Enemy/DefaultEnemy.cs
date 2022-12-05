@@ -36,6 +36,7 @@ public class DefaultEnemy : MonoBehaviour
     [SerializeField] protected GameObject[] makerObj;
 
     [SerializeField] private HealItem heal;
+    [SerializeField] protected float instanceObjectFixedPosY = 50.0f;
 
     // ��{�s���p
     protected int destinationIndex = 0;
@@ -156,7 +157,10 @@ public class DefaultEnemy : MonoBehaviour
     {
         if (isDead)
         {
-            var tempObj = Instantiate(heal, transform.position, transform.rotation);
+            var fixedPos = new Vector3(transform.position.x, 
+                transform.position.y + instanceObjectFixedPosY, transform.position.z);
+
+            var tempObj = Instantiate(heal,fixedPos, transform.rotation);
             tempObj.Awake();
             //heal.SetPosition(transform.position);
             Destroy(transform.gameObject); 
