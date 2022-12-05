@@ -30,6 +30,11 @@ public class DefaultEnemyScript : MonoBehaviour
     [SerializeField] protected GameObject[] makerObj;
     // for Destroy
     [SerializeField] private HealItem heal;
+    [SerializeField] protected float instanceObjectFixedPosY = 50.0f;
+
+    // for Particle
+    [SerializeField] private GameObject damageParticle;
+    [SerializeField] private float particleStartDistance;
 
     // state info
     protected enum enemyState
@@ -43,7 +48,6 @@ public class DefaultEnemyScript : MonoBehaviour
     }
     protected enemyState state;
     protected bool isDead = false;
-
 
     // for Patrol
     protected int destinationIndex = 0;
@@ -147,6 +151,20 @@ public class DefaultEnemyScript : MonoBehaviour
     {
         hp -= damage;
 
+        // Position fixed
+        var fixedPosition = new Vector3(transform.position.x,
+            transform.position.y + instanceObjectFixedPosY, transform.position.z);
+        var playerV = playerObject.transform.position - transform.position;
+
+        fixedPosition += playerV.normalized * particleStartDistance;
+
+        // particle Create
+        var tempParticle = Instantiate(damageParticle, fixedPosition, transform.rotation);
+        tempParticle.transform.rotation.SetLookRotation(playerV);
+
+        var particleSystem = tempParticle.GetComponentInChildren<ParticleSystem>();
+        particleSystem.Play();
+
         // dead Flag
         if (hp <= 0) isDead = true;
 
@@ -157,10 +175,12 @@ public class DefaultEnemyScript : MonoBehaviour
     protected void Dead()
     {
         if (isDead)
-        {   
+        {
             // HealObject  Instantiate
-            var tempObj = Instantiate(heal, transform.position, transform.rotation);
-            tempObj.Awake();
+            var fixedPos = new Vector3(transform.position.x,
+                transform.position.y + instanceObjectFixedPosY, transform.position.z);
+
+            var tempObj = Instantiate(heal, fixedPos, transform.rotation);
 
             // deastroy Gameobject
             Destroy(transform.gameObject);
