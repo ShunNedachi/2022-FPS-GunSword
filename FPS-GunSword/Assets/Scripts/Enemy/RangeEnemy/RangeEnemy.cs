@@ -13,6 +13,7 @@ public class RangeEnemy : DefaultEnemyScript
 
     // 弾用のオブジェクト
     [SerializeField] private GameObject bullet;
+    [SerializeField] private float bulletFixedPosY = 1.0f;
 
     private bool isWalk = false;
 
@@ -107,10 +108,11 @@ public class RangeEnemy : DefaultEnemyScript
                         attackActive = true;
 
                         // 弾のオブジェクト生成 生成位置をプレイヤーの少し前にする
-                        var createPos = transform.position + transform.forward.normalized;
-                        createPos.y = heightOfVision;
-                    
-                        Instantiate(bullet, createPos, transform.rotation);
+                        var fixedPos = new Vector3(transform.position.x,
+                                transform.position.y + bulletFixedPosY, transform.position.z);
+
+                        fixedPos += transform.forward.normalized;
+                        Instantiate(bullet, fixedPos, transform.rotation);
 
                     }
                 }

@@ -286,12 +286,16 @@ MonoBehaviour:
   heightOfVision: 1
   makerObj: []
   heal: {fileID: 5119100897755989617, guid: 17ef2d9a9b1194a4fb28a4c6f925cf66, type: 3}
+  instanceObjectFixedPosY: 0.5
+  damageParticle: {fileID: 1217801672677172237, guid: ef910f83ecefb4143ae549468947de56, type: 3}
+  particleStartDistance: 0
   patern1: 1
   walkDistance: 100
   attackFrame: 120
   attackIntervalFrame: 300
   attackActiveFrame: 1
   bullet: {fileID: 6725413664847006165, guid: 6fba60cf5a2289a488bbdee511992ac9, type: 3}
+  bulletFixedPosY: 3
 --- !u!195 &2208640376098717277
 NavMeshAgent:
   m_ObjectHideFlags: 0

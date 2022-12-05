@@ -271,6 +271,9 @@ MonoBehaviour:
   heightOfVision: 1
   makerObj: []
   heal: {fileID: 5119100897755989617, guid: 17ef2d9a9b1194a4fb28a4c6f925cf66, type: 3}
+  instanceObjectFixedPosY: 0.5
+  damageParticle: {fileID: 1217801672677172237, guid: ef910f83ecefb4143ae549468947de56, type: 3}
+  particleStartDistance: 0
   walkDistance: 100
   attackFrame: 120
   attackIntervalFrame: 300
