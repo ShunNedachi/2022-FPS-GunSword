@@ -10,19 +10,23 @@ public class MeleeEnemyScript : DefaultEnemyScript
     [SerializeField] private int attackFrame = 120;
     [SerializeField] private int attackIntervalFrame = 300;
     [SerializeField] private int attackActiveFrame = 1;
+    [SerializeField] private GameObject attackObject;
     // for Step
     [SerializeField] private float stepDistance = 20.0f;
     [SerializeField] private float stepSpeed = 20.0f;
 
+
     private bool isWalk = false;
 
     // for Attack
-    private bool attackMotion = false;
+    private bool attackInitialize = false;
     private int countAttack = 0;
     private int countAttackInterval = 0;
     private int countAttackActive = 0;
     private bool isAttackInterval = false;
     private bool attackActive = false;
+    // for AttackHit
+    private Collider attackCollider;
 
     // for Step
     private bool stepInitialize = false;
@@ -37,6 +41,11 @@ public class MeleeEnemyScript : DefaultEnemyScript
         state = enemyState.patrol;
         // Initalize EnemyInfo
         InitializeEnemy();
+
+        // attackHit
+        attackCollider = attackObject.GetComponent<Collider>();
+        attackCollider.enabled = false;
+
     }
 
     // Update is called once per frame
@@ -144,6 +153,14 @@ public class MeleeEnemyScript : DefaultEnemyScript
 
     private void AttackMove()
     {
+        if(attackInitialize)
+        {
+            // “–‚½‚è”»’è—LŒø‰»
+            attackCollider.enabled = true;
+
+            attackInitialize = false;
+        }
+
         // UŒ‚‘O‚Ì—\”õ“®ì
         if (isAttack)
         {
@@ -175,6 +192,8 @@ public class MeleeEnemyScript : DefaultEnemyScript
                 attackActive = false;
                 isAttackInterval = true;
 
+                // UŒ‚‚Ì”»’è–³Œø‰»
+                attackCollider.enabled = false;
             }
         }
         // UŒ‚‚Ìd’¼’†
@@ -250,6 +269,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
         state = enemyState.attack;
 
         isAttack = true;
+        attackInitialize = true;
     }
     
     private void ChangeStep()
