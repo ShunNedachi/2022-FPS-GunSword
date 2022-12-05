@@ -9,7 +9,9 @@ public class PlayerDefaultMove : MonoBehaviour
     [SerializeField] public float moveSpeed = 0.05f;
     [SerializeField] public float dashSpeed = 0.5f;
     [SerializeField] public int recastInterval = 180;
-    [SerializeField] public int dashInterval = 20;
+    [SerializeField] public int dashInterval = 60;
+    [SerializeField] public AudioClip sound;
+
     
     private int recastTimer = 0;
     private int dashTimer = 0;
@@ -22,6 +24,9 @@ public class PlayerDefaultMove : MonoBehaviour
     float moveZ;
     //Rigidbody rb;
     CharacterController controller;
+
+    AudioSource audioSource;
+
     public void Awake()
     {
         if (instance == null)
@@ -39,6 +44,8 @@ public class PlayerDefaultMove : MonoBehaviour
         controller = GetComponent<CharacterController>();
         dashTimer = dashInterval;
         defaultY = this.gameObject.transform.position.y;
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -52,6 +59,8 @@ public class PlayerDefaultMove : MonoBehaviour
                 horizontal = Input.GetAxis("Horizontal");
                 dashMode = true;
                 PlayerStaminaScript.instance.Dash();
+                audioSource.PlayOneShot(sound);
+
             }
         }
         Transform trans = transform;
@@ -64,7 +73,7 @@ public class PlayerDefaultMove : MonoBehaviour
             Vector3 direction = new Vector3(moveX,0,moveZ);
             controller.SimpleMove (direction);
             dashTimer++;
-            
+
             if(dashTimer>dashInterval)
             {
                 dashMode = false;
