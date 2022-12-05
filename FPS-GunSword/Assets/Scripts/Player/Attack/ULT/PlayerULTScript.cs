@@ -12,6 +12,7 @@ public class PlayerULTScript : MonoBehaviour
     [SerializeField] private GameObject ULTAttackRange;
 
     private float attackTimer = 0;
+    private bool action = false;
 
     public void Awake()
     {
@@ -25,31 +26,23 @@ public class PlayerULTScript : MonoBehaviour
     public void Start()
     {
         attackTimer = attackInterval;
-        PlayerEnergyScript.instance.Start();
     }
 
     // Update is called once per frame
     public void Update()
     {
         attackTimer++;
-
-        if(Input.GetMouseButton(1) && attackTimer > attackInterval )
+        if(PlayerExcaliburScript.instance.GetAction() == false)
         {
-            PlayerEnergyScript.instance.EnemyConsumptionSlash();
-            attackTimer = 0;
-            // プレイヤーの少し前に生成する
-            Vector3 createPos = transform.position + camera.transform.forward * attackDictance;
-            Instantiate(ULTAttackRange, createPos, camera.transform.rotation);
-        }
-
-        PlayerEnergyScript.instance.EnemyConsumption();
-
-        if(PlayerEnergyScript.instance.GetEnergy()<0)
-        {
-            //ULT終了処理
-            PlayerEnergyScript.instance.SetULTchack(false);
-            PlayerScript.instance.SetULTchack(false);
-
+            if(Input.GetMouseButton(1) && attackTimer > attackInterval )
+            {
+                action =  true;
+                PlayerEnergyScript.instance.EnemyConsumptionSlash();
+                attackTimer = 0;
+                // プレイヤーの少し前に生成する
+                Vector3 createPos = transform.position + camera.transform.forward * attackDictance;
+                Instantiate(ULTAttackRange, createPos, camera.transform.rotation);
+            }
         }
     }
     public Vector3 GetAttackPos()
@@ -59,5 +52,14 @@ public class PlayerULTScript : MonoBehaviour
         return createPos;
     }
 
+    public bool GetAction()
+    {
+        return action;
+    }
+
+    public void ActionEND()
+    {
+        action = false;
+    }
 
 }
