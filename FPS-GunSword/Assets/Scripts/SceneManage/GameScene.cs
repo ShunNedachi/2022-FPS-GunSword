@@ -52,6 +52,7 @@ public class GameScene : MonoBehaviour
             if (CoreScript.coreCount0 <= 0)
             {
                 stageClear[currentStageNum] = true;
+                currentStageNum++;
             }
             /*coreText.text = string.Format("{0}/{1}", CoreScript.coreCount0, coreMaxCount[0]);
             if (CoreScript.coreCount0 <= 0)
@@ -65,6 +66,7 @@ public class GameScene : MonoBehaviour
             if (CoreScript.coreCount1 <= 0)
             {
                 stageClear[currentStageNum] = true;
+                currentStageNum++;
             }
         }
         if (currentStageNum == 2)
@@ -73,6 +75,7 @@ public class GameScene : MonoBehaviour
             if (CoreScript.coreCount2 <= 0)
             {
                 stageClear[currentStageNum] = true;
+                currentStageNum++;
             }
         }
 
