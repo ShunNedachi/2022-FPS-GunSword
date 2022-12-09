@@ -7,7 +7,7 @@ public class PlayerMagazineScript : MonoBehaviour
 {
     public static PlayerMagazineScript instance;
 
-    [SerializeField] private int magazineMax = 7;
+    [SerializeField] private int magazineMax = 6;
 
     private int remainingBullets;
 
@@ -47,46 +47,38 @@ public class PlayerMagazineScript : MonoBehaviour
     }
     public void Draw()
     {
-        if (!PlayerScript.instance.ULT)
+        TextFrame.text = string.Format("{0}/6", remainingBullets);
+        switch (remainingBullets)
         {
-            TextFrame.text = string.Format("{0}/6", remainingBullets);
-            switch (remainingBullets)
-            {
-                default:
-                    MagazineImage.sprite = Magazine[0];
-                    //Debug.Log("0");
-                    break;
-                case 1:
-                    MagazineImage.sprite = Magazine[1];
-                    //Debug.Log("1");
-                    break;
-                case 2:
-                    MagazineImage.sprite = Magazine[2];
-                    //Debug.Log("2");
-                    break;
-                case 3:
-                    MagazineImage.sprite = Magazine[3];
-                    //Debug.Log("3");
-                    break;
-                case 4:
-                    MagazineImage.sprite = Magazine[4];
-                    //Debug.Log("4");
-                    break;
-                case 5:
-                    MagazineImage.sprite = Magazine[5];
-                    //Debug.Log("5");
-                    break;
-                case 6:
-                    MagazineImage.sprite = Magazine[6];
-                    //Debug.Log("6");
-                    break;
+            default:
+               MagazineImage.sprite = Magazine[0];
+                //Debug.Log("0");
+                break;
+            case 1:
+                MagazineImage.sprite = Magazine[1];
+                //Debug.Log("1");
+                break;
+            case 2:
+                MagazineImage.sprite = Magazine[2];
+                //Debug.Log("2");
+                break;
+            case 3:
+                MagazineImage.sprite = Magazine[3];
+                //Debug.Log("3");
+                break;
+            case 4:
+                MagazineImage.sprite = Magazine[4];
+                //Debug.Log("4");
+                break;
+            case 5:
+                MagazineImage.sprite = Magazine[5];
+                //Debug.Log("5");
+                break;
+            case 6:
+                MagazineImage.sprite = Magazine[6];
+                //Debug.Log("6");
+                break;
 
-            }
-        }
-       else if (PlayerScript.instance.ULT)
-        {
-            TextFrame.text = string.Format("");
-            MagazineImage.sprite = Magazine[7];
         }
 
     }
