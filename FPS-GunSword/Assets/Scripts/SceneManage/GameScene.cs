@@ -18,15 +18,19 @@ public class GameScene : MonoBehaviour
     public static float clearTime;
 
     [SerializeField] public int StageNum = 0;
-    [SerializeField] public int currentStageNum = 0;
+    [SerializeField] public int currentCoreNum = 0;
+    public int currentStageNum = 0;
+    public int maxStageNum = 1;
     public int[] coreMaxCount;
     private bool onlyOnce = true;
     public bool[] stageClear;
     public Text TextFrame;
     public Text coreText;
+   
     // Start is called before the first frame update
     void Start()
     {
+        
         if (instance == null)
         {
             instance = this;
@@ -39,20 +43,21 @@ public class GameScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(onlyOnce)
+        
+        if (onlyOnce)
         {
             coreMaxCount[0] = CoreScript.coreCount0;
             coreMaxCount[1] = CoreScript.coreCount1;
             coreMaxCount[2] = CoreScript.coreCount2;
             onlyOnce = false;
         }
-        if(currentStageNum==0)
+        if (currentCoreNum == 0)
         {
             coreText.text = string.Format("{0}/{1}", CoreScript.coreCount0, coreMaxCount[0]);
             if (CoreScript.coreCount0 <= 0)
             {
-                stageClear[currentStageNum] = true;
-                currentStageNum++;
+                stageClear[currentCoreNum] = true;
+                currentCoreNum++;
             }
             /*coreText.text = string.Format("{0}/{1}", CoreScript.coreCount0, coreMaxCount[0]);
             if (CoreScript.coreCount0 <= 0)
@@ -60,29 +65,29 @@ public class GameScene : MonoBehaviour
                 stageClear[currentStageNum] = true;
             }*/
         }
-        if (currentStageNum == 1)
+        if (currentCoreNum == 1)
         {
             coreText.text = string.Format("{0}/{1}", CoreScript.coreCount1, coreMaxCount[1]);
             if (CoreScript.coreCount1 <= 0)
             {
-                stageClear[currentStageNum] = true;
-                currentStageNum++;
+                stageClear[currentCoreNum] = true;
+                currentCoreNum++;
             }
         }
-        if (currentStageNum == 2)
+        if (currentCoreNum == 2)
         {
             coreText.text = string.Format("{0}/{1}", CoreScript.coreCount1, coreMaxCount[2]);
             if (CoreScript.coreCount2 <= 0)
             {
-                stageClear[currentStageNum] = true;
-                currentStageNum++;
+                stageClear[currentCoreNum] = true;
+                currentCoreNum++;
             }
         }
 
         elapsedTime += Time.deltaTime;
         float currentTime = timeLimit - elapsedTime;
-        int min =(int)currentTime/60;
-        int sec = (int)currentTime-(min * 60);
+        int min = (int)currentTime / 60;
+        int sec = (int)currentTime - (min * 60);
         if (sec / 10 >= 1)
         {
             TextFrame.text = string.Format("{0}:{1}", min, sec);
@@ -94,29 +99,25 @@ public class GameScene : MonoBehaviour
 
 
 
-        if(timeLimit<0)
+        if (timeLimit < 0)
         {
             timeOver = true;
         }
-        if(timeOver)
+        if (timeOver)
         {
             graceTimeCounter++;
         }
         clearTime++;
 
-       
-        //ƒRƒAˆ—
+        if(SavePoint.saveStage[0]==true)
+        {
+            GameClear();
+        }
 
-
-        //if(remainEnemy<=0)
-        //{
-        //    GameClear();
-        //}
-
-        //if(playerHealth<=0||graceTime<graceTimeCounter)
-        //{
-        //    GameOver();
-        //}
+        if(playerHealth<=0||graceTime<graceTimeCounter)
+        {
+           //GameOver();
+        }
     }
 
     void GameClear()
