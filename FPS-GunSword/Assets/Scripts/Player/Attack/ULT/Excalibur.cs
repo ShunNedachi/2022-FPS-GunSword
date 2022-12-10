@@ -40,7 +40,7 @@ public class Excalibur : MonoBehaviour
             hit = true;
             Debug.Log(t.gameObject.name);
             //damage処理
-            t.gameObject.GetComponent<EnemyDamageScript>().HitPlayerAttack(damage);
+            t.gameObject.GetComponent<EnemyDamageScript>().HitPlayerAttack(damage,t.gameObject.transform.position);
             //エネルギー加算
             PlayerEnergyScript.instance.SlashChargeEnergy();
             //コンボ加算
