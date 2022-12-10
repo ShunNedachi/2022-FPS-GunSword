@@ -26,7 +26,7 @@ public class MeleeAttackScript : MonoBehaviour
         if (other.gameObject.tag == "Player" && enemy.AttackActive)
         {
             Debug.Log("Hit Attack to Player");
-
+            other.GetComponent<PlayerHPScript>().Sethp(enemy.TakeDamage());
         }
 
     }

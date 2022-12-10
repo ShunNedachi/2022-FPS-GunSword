@@ -34,6 +34,18 @@ public class MeleeEnemyScript : DefaultEnemyScript
     private bool backstepInit = false;
     private bool canBackStep = false;
 
+    // for patrol
+    private bool patrolEffect = false;
+    private bool patrolInit = false;
+    private int overLockCount = 0;
+    private bool firstOverLocktoRight = false;
+    private bool overLockSet = false;
+    private float patrolTotalRot;
+    [SerializeField]private float overLockStep = 2.0f;
+    [SerializeField]private float overlockAngle = 90;
+    [SerializeField] private int overLockNum = 2;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,14 +70,14 @@ public class MeleeEnemyScript : DefaultEnemyScript
         switch (state)
         {
             case enemyState.patrol:
-                
+
                 PatrolMove();
                 break;
 
             case enemyState.follow:
 
                 FollowMove();
-                
+
                 break;
 
             case enemyState.attack:
@@ -75,16 +87,16 @@ public class MeleeEnemyScript : DefaultEnemyScript
 
             case enemyState.step:
                 StepMove();
-                
+
                 break;
 
             case enemyState.stun:
-                
+
                 StunMove();
                 break;
         }
 
-
+        MoveSpeedChange();
         // スタンしたかどうかのチェック
         StunCheck();
         // 死亡時の処理
@@ -125,14 +137,80 @@ public class MeleeEnemyScript : DefaultEnemyScript
 
     private void PatrolMove()
     {
+        // 見渡すエフェクトが必要なとき
+        if (patrolEffect)
+        {
+            if (patrolInit) PatrolInitalize();
+
+            // 
+            if (overLockCount < overLockNum)
+            {
+                // 回転する角度の設定
+                if (!overLockSet)
+                {
+                    SetPatrolRotation();
+
+                    overLockSet = true;
+                }
+
+
+                if(firstOverLocktoRight)
+                {
+                    var rotateAngle = overlockAngle;
+                    if (overLockCount > 0) rotateAngle *= 2;
+
+                    // y軸で回転をさせる
+                    transform.Rotate(new Vector3(0, overLockStep, 0));
+                    patrolTotalRot += overLockStep;
+
+                    // 特定度数回転していたら終了
+                    if(patrolTotalRot >= overlockAngle)
+                    {
+                        overLockSet = false;
+                        firstOverLocktoRight = !firstOverLocktoRight;
+                        overLockCount++;
+                    }
+                }
+                else
+                {
+                    var rotateAngle = overlockAngle;
+                    if (overLockCount > 0) rotateAngle *= 2;
+
+                    // y軸で回転をさせる
+                    transform.Rotate(new Vector3(0, -overLockStep, 0));
+                    patrolTotalRot += overLockStep;
+
+                    // 特定度数回転していたら終了
+                    if (patrolTotalRot >= overlockAngle)
+                    {
+                        overLockSet = false;
+                        firstOverLocktoRight = !firstOverLocktoRight;
+                        overLockCount++;
+                    }
+                }
+
+
+            }
+            else
+            {
+                // 見渡しを終了
+                patrolEffect = false;
+                // 行動を再起動
+                agent.isStopped = false;
+            }
+        }
+
+
         // playerが視界に入ったときに行動パターン切り替え
-        if(MoveWithinSight())
+        if (MoveWithinSight())
         {
             ChangeFollow();
         }
- 
 
-        MoveRandom();
+        if (!patrolEffect)
+        {
+            MoveRandom();
+        }
     }
 
     private void FollowMove()
@@ -145,7 +223,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
             isWalk = true;
 
             // 範囲に入っていたら
-            if(distance <= attackStartDistance) { ChangeAttack(); }
+            if (distance <= attackStartDistance) { ChangeAttack(); }
 
         }
         else isWalk = false;
@@ -255,13 +333,22 @@ public class MeleeEnemyScript : DefaultEnemyScript
     {
         // 後程左右見渡した後に変更するように変更
         // パトロール中じゃなかったら見渡すようにする
-        if(state != enemyState.patrol) { }
+        if (state != enemyState.patrol)
+        {
+            patrolInit = true;
+            patrolEffect = true;
+
+            overLockSet = false;
+        }
 
         state = enemyState.patrol;
+
+        isWalk = false;
     }
 
     private void ChangeFollow()
     {
+        agent.isStopped = false;
         state = enemyState.follow;
     }
 
@@ -272,7 +359,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
         isAttack = true;
         attackInitialize = true;
     }
-    
+
     private void ChangeStep()
     {
         // ステップの初期化
@@ -374,5 +461,42 @@ public class MeleeEnemyScript : DefaultEnemyScript
         agent.speed = stepSpeed;
 
         return moveResult;
+    }
+
+    private void PatrolInitalize()
+    {
+        // 一旦止めておく
+        agent.isStopped = true;
+
+        overLockCount = 0;
+
+        var temp = Random.Range(0, 10);
+        temp %= 2;
+
+        if (temp == 0) firstOverLocktoRight = false;
+        else firstOverLocktoRight = true;
+
+        overLockSet = false;
+
+        patrolInit = false;
+    }
+
+    private void SetPatrolRotation()
+    {
+        patrolTotalRot = 0;
+        //if (firstOverLocktoRight)
+        //{
+
+        //    patrolEffectEndRot =
+        //        Quaternion.AngleAxis(overlockAngle, Vector3.up) * transform.rotation;
+        //}
+        //else
+        //{
+        //    patrolEffectEndRot =
+        //        Quaternion.AngleAxis(-overlockAngle, Vector3.up) * transform.rotation;
+        //}
+
+        //// 次回反対を向くように反転させる
+        //firstOverLocktoRight = !firstOverLocktoRight;
     }
 }

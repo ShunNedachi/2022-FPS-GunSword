@@ -36,15 +36,15 @@ public class EnemyDamageScript : MonoBehaviour
     }
 
     // �v���C���[�̍U�������������Ƃ��p
-    public void HitPlayerAttack(float baseDamage)
+    public void HitPlayerAttack(float baseDamage,Vector3 hitPoint)
     {
         // ��_�ɓ��������Ƃ�
         if (isHead)
         {
-            enemy.GetDamage(baseDamage * damageMaltiply);
+            enemy.GetDamage(baseDamage * damageMaltiply,hitPoint);
             enemy.IsStun = true;
         }
-        else enemy.GetDamage(baseDamage);
+        else enemy.GetDamage(baseDamage, hitPoint);
 
     }
 }

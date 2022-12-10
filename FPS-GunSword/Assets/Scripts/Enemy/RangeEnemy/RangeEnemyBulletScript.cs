@@ -6,11 +6,18 @@ public class RangeEnemyBulletScript : MonoBehaviour
 {
     [SerializeField] private float speed = 5.0f;
     [SerializeField] private float shootRange = 100.0f;
+    [SerializeField] private int damage = 30;
 
     private float totalMoveDistance = 0.0f;
 
     //　距離計算用
     private Vector3 initPosition;
+
+    public Vector3 targetV
+    {
+        get { return targetV; }
+        set { targetV = value; }
+    }
 
     public bool IsDead
     {
@@ -27,7 +34,7 @@ public class RangeEnemyBulletScript : MonoBehaviour
     void Update()
     {
         // 正面ベクトル方向に加速していく
-        var tempMoveVector = transform.forward.normalized * speed;
+        var tempMoveVector = targetV.normalized * speed;
 
         transform.position += tempMoveVector;
 
@@ -45,5 +52,11 @@ public class RangeEnemyBulletScript : MonoBehaviour
     {
         // とりあえず障害物に当たったら消す
         Destroy(transform.gameObject);
+
+        // プレイヤーに当たっていた時の処理
+        if(other.gameObject.tag == "Player")
+        {
+            other.gameObject.GetComponent<PlayerHPScript>().Sethp(damage);
+        }
     }
 }

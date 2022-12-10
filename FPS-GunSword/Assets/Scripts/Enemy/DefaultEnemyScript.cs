@@ -8,7 +8,7 @@ public class DefaultEnemyScript : MonoBehaviour
     // HP
     [SerializeField] protected float hp = 100.0f;
     // damage to Player
-    [SerializeField] protected float damageValue = 30.0f;
+    [SerializeField] protected int damageValue = 30;
     // 
     [SerializeField] protected float sightDistance = 100.0f;
     // 
@@ -147,13 +147,13 @@ public class DefaultEnemyScript : MonoBehaviour
 
     }
 
-    public void GetDamage(float damage)
+    public void GetDamage(float damage,Vector3 hitPos)
     {
         hp -= damage;
 
         // Position fixed
-        var fixedPosition = new Vector3(transform.position.x,
-            transform.position.y + instanceObjectFixedPosY, transform.position.z);
+        var fixedPosition = hitPos;
+
         var playerV = playerObject.transform.position - transform.position;
 
         fixedPosition += playerV.normalized * particleStartDistance;
@@ -170,7 +170,7 @@ public class DefaultEnemyScript : MonoBehaviour
 
     }
     // for EnemyAttack
-    public float TakeDamage() { return damageValue; }
+    public int TakeDamage() { return damageValue; }
 
     protected void Dead()
     {
