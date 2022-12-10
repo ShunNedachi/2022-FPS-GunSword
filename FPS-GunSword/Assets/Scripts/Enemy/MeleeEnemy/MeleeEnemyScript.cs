@@ -67,12 +67,12 @@ public class MeleeEnemyScript : DefaultEnemyScript
     // Update is called once per frame
     void Update()
     {
-        if(!option.IsOption)
+        //if(!option.IsOption)
         {
-            // ‹ŠE‚©‚çŠO‚ê‚½‚És“®ƒpƒ^[ƒ“Ø‚è‘Ö‚¦
+            // ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½ï¿½Oï¿½ê‚½ï¿½ï¿½ï¿½Ésï¿½ï¿½ï¿½pï¿½^ï¿½[ï¿½ï¿½ï¿½Ø‚ï¿½Ö‚ï¿½
             if (!MoveWithinSight()) ChangePatrol();
 
-            // state‚ğQÆ‚µ‚Äs“®ƒpƒ^[ƒ“Ø‚è‘Ö‚¦
+            // stateï¿½ï¿½ï¿½Qï¿½Æ‚ï¿½ï¿½Äsï¿½ï¿½ï¿½pï¿½^ï¿½[ï¿½ï¿½ï¿½Ø‚ï¿½Ö‚ï¿½
             switch (state)
             {
                 case enemyState.patrol:
@@ -103,9 +103,9 @@ public class MeleeEnemyScript : DefaultEnemyScript
             }
 
             MoveSpeedChange();
-            // ƒXƒ^ƒ“‚µ‚½‚©‚Ç‚¤‚©‚Ìƒ`ƒFƒbƒN
+            // ï¿½Xï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½Ìƒ`ï¿½Fï¿½bï¿½N
             StunCheck();
-            // €–S‚Ìˆ—
+            // ï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
             Dead();
 
         }
@@ -145,7 +145,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
 
     private void PatrolMove()
     {
-        // Œ©“n‚·ƒGƒtƒFƒNƒg‚ª•K—v‚È‚Æ‚«
+        // ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½Gï¿½tï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½Kï¿½vï¿½È‚Æ‚ï¿½
         if (patrolEffect)
         {
             if (patrolInit) PatrolInitalize();
@@ -153,7 +153,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
             // 
             if (overLockCount < overLockNum)
             {
-                // ‰ñ“]‚·‚éŠp“x‚Ìİ’è
+                // ï¿½ï¿½]ï¿½ï¿½ï¿½ï¿½pï¿½xï¿½Ìİ’ï¿½
                 if (!overLockSet)
                 {
                     SetPatrolRotation();
@@ -167,11 +167,11 @@ public class MeleeEnemyScript : DefaultEnemyScript
                     var rotateAngle = overlockAngle;
                     if (overLockCount > 0) rotateAngle *= 2;
 
-                    // y²‚Å‰ñ“]‚ğ‚³‚¹‚é
+                    // yï¿½ï¿½ï¿½Å‰ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     transform.Rotate(new Vector3(0, overLockStep, 0));
                     patrolTotalRot += overLockStep;
 
-                    // “Á’è“x”‰ñ“]‚µ‚Ä‚¢‚½‚çI—¹
+                    // ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½]ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½
                     if(patrolTotalRot >= overlockAngle)
                     {
                         overLockSet = false;
@@ -184,11 +184,11 @@ public class MeleeEnemyScript : DefaultEnemyScript
                     var rotateAngle = overlockAngle;
                     if (overLockCount > 0) rotateAngle *= 2;
 
-                    // y²‚Å‰ñ“]‚ğ‚³‚¹‚é
+                    // yï¿½ï¿½ï¿½Å‰ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     transform.Rotate(new Vector3(0, -overLockStep, 0));
                     patrolTotalRot += overLockStep;
 
-                    // “Á’è“x”‰ñ“]‚µ‚Ä‚¢‚½‚çI—¹
+                    // ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½ï¿½]ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½
                     if (patrolTotalRot >= overlockAngle)
                     {
                         overLockSet = false;
@@ -201,15 +201,15 @@ public class MeleeEnemyScript : DefaultEnemyScript
             }
             else
             {
-                // Œ©“n‚µ‚ğI—¹
+                // ï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½
                 patrolEffect = false;
-                // s“®‚ğÄ‹N“®
+                // ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½Ä‹Nï¿½ï¿½
                 agent.isStopped = false;
             }
         }
 
 
-        // player‚ª‹ŠE‚É“ü‚Á‚½‚Æ‚«‚És“®ƒpƒ^[ƒ“Ø‚è‘Ö‚¦
+        // playerï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½ï¿½Ésï¿½ï¿½ï¿½pï¿½^ï¿½[ï¿½ï¿½ï¿½Ø‚ï¿½Ö‚ï¿½
         if (MoveWithinSight())
         {
             ChangeFollow();
@@ -230,7 +230,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
         {
             isWalk = true;
 
-            // ”ÍˆÍ‚É“ü‚Á‚Ä‚¢‚½‚ç
+            // ï¿½ÍˆÍ‚É“ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½
             if (distance <= attackStartDistance) { ChangeAttack(); }
 
         }
@@ -240,16 +240,16 @@ public class MeleeEnemyScript : DefaultEnemyScript
     private void AttackMove()
     {
 
-        // UŒ‚‘O‚Ì—\”õ“®ì
+        // ï¿½Uï¿½ï¿½ï¿½Oï¿½Ì—\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         if (isAttack)
         {
-            // Šî‘bs“®‚ğ~‚ß‚é
+            // ï¿½ï¿½bï¿½sï¿½ï¿½ï¿½ï¿½ï¿½~ï¿½ß‚ï¿½
             agent.isStopped = true;
             agent.SetDestination(transform.position);
 
 
             countAttack++;
-            // UŒ‚”­¶
+            // ï¿½Uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             if (countAttack > attackFrame)
             {
                 isAttack = false;
@@ -261,12 +261,12 @@ public class MeleeEnemyScript : DefaultEnemyScript
                 attackActive = true;
             }
         }
-        // UŒ‚‚Ì‘±
+        // ï¿½Uï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½
         if (attackActive)
         {
             if (attackInitialize)
             {
-                // “–‚½‚è”»’è—LŒø‰»
+                // ï¿½ï¿½ï¿½ï¿½ï¿½è”»ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½
                 attackCollider.enabled = true;
 
                 attackInitialize = false;
@@ -281,11 +281,11 @@ public class MeleeEnemyScript : DefaultEnemyScript
                 attackActive = false;
                 isAttackInterval = true;
 
-                // UŒ‚‚Ì”»’è–³Œø‰»
+                // ï¿½Uï¿½ï¿½ï¿½Ì”ï¿½ï¿½è–³ï¿½ï¿½ï¿½ï¿½
                 attackCollider.enabled = false;
             }
         }
-        // UŒ‚‚Ìd’¼’†
+        // ï¿½Uï¿½ï¿½ï¿½Ìdï¿½ï¿½ï¿½ï¿½
         if (isAttackInterval)
         {
             countAttackInterval++;
@@ -296,7 +296,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
                 isAttackInterval = false;
                 countAttackInterval = 0;
 
-                // ƒXƒeƒbƒv‚Ìs“®‚ğæ‚ê‚é‚æ‚¤‚É
+                // ï¿½Xï¿½eï¿½bï¿½vï¿½Ìsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½ï¿½
 
                 ChangeStep();
             }
@@ -327,7 +327,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
         agent.isStopped = true;
 
         stunCount++;
-        // ƒXƒ^ƒ“ŠÔ•ª~‚Ü‚Á‚½‚ç
+        // ï¿½Xï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½Ô•ï¿½ï¿½~ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½ï¿½
         if (stunCount > stunFrame)
         {
             agent.isStopped = false;
@@ -341,8 +341,8 @@ public class MeleeEnemyScript : DefaultEnemyScript
 
     private void ChangePatrol()
     {
-        // Œã’ö¶‰EŒ©“n‚µ‚½Œã‚É•ÏX‚·‚é‚æ‚¤‚É•ÏX
-        // ƒpƒgƒ[ƒ‹’†‚¶‚á‚È‚©‚Á‚½‚çŒ©“n‚·‚æ‚¤‚É‚·‚é
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½ï¿½ï¿½nï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É•ÏXï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É•ÏX
+        // ï¿½pï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½çŒ©ï¿½nï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
         if (state != enemyState.patrol)
         {
             patrolInit = true;
@@ -372,7 +372,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
 
     private void ChangeStep()
     {
-        // ƒXƒeƒbƒv‚Ì‰Šú‰»
+        // ï¿½Xï¿½eï¿½bï¿½vï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½
         backstepInit = false;
         canBackStep = true;
 
@@ -383,7 +383,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
     {
         if (!backstepInit)
         {
-            // Œã‚ë•ûŒü‚ÉƒXƒeƒbƒv‚·‚éˆ—
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÉƒXï¿½eï¿½bï¿½vï¿½ï¿½ï¿½éˆï¿½ï¿½
             StepInitialize(-transform.forward);
 
             backstepInit = true;
@@ -403,21 +403,21 @@ public class MeleeEnemyScript : DefaultEnemyScript
     {
         if (!stepInitialize)
         {
-            // ƒ‰ƒ“ƒ_ƒ€‚ÅˆÚ“®•ûŒü‚ğŒˆ‚ß‚é
-            // ƒ‰ƒ“ƒ_ƒ€‚Ì¸“x—p‚É”O‚Ì‚½‚ß
+            // ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½ÅˆÚ“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½
+            // ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½Ìï¿½ï¿½xï¿½pï¿½É”Oï¿½Ì‚ï¿½ï¿½ï¿½
             int rand = Random.Range(0, 10);
             if (rand % 2 == 0)
             {
-                // Å‰‚É‰E‚ÖˆÚ“®‚Å‚«‚é‚©Šm”F
+                // ï¿½Åï¿½ï¿½É‰Eï¿½ÖˆÚ“ï¿½ï¿½Å‚ï¿½ï¿½é‚©ï¿½mï¿½F
                 var result = StepInitialize(transform.right);
-                // •Ç‚É“–‚½‚Á‚½ê‡¶‚ÉˆÚ“®‚Å‚«‚é‚Ì‚©Šm”F‚·‚é
+                // ï¿½Ç‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½ï¿½ï¿½ÉˆÚ“ï¿½ï¿½Å‚ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½ï¿½
                 if (result) StepInitialize(-transform.right);
             }
             else
             {
-                // Å‰‚É¶‚ÉˆÚ“®‚Å‚«‚é‚Ì‚©Šm”F
+                // ï¿½Åï¿½ï¿½Éï¿½ï¿½ÉˆÚ“ï¿½ï¿½Å‚ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½mï¿½F
                 var result = StepInitialize(-transform.right);
-                // ˆÚ“®‚Å‚«‚È‚©‚Á‚½ê‡‚É‰E‚ÉˆÚ“®‚Å‚«‚é‚Ì‚©Šm”F
+                // ï¿½Ú“ï¿½ï¿½Å‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½É‰Eï¿½ÉˆÚ“ï¿½ï¿½Å‚ï¿½ï¿½ï¿½Ì‚ï¿½ï¿½mï¿½F
                 if (result) StepInitialize(transform.right);
 
             }
@@ -426,7 +426,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
             stepInitialize = true;
         }
 
-        // ˆÚ“®‚ªI‚í‚Á‚½‚çI—¹ˆ— Œã‚Å•ÏX‚Å‚«‚é‚æ‚¤‚É‚·‚é‚©‚àH(‚»‚Ìê‡remainingDaistance‚ğg—p‚µ‚Ä‚¢‚é‰ÓŠ‘S‚Ä)
+        // ï¿½Ú“ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å•ÏXï¿½Å‚ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½é‚©ï¿½ï¿½ï¿½H(ï¿½ï¿½ï¿½Ìê‡remainingDaistanceï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Óï¿½ï¿½Sï¿½ï¿½)
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
             canStep = false;
@@ -436,23 +436,23 @@ public class MeleeEnemyScript : DefaultEnemyScript
         }
     }
 
-    // stepV = ˆÚ“®•ûŒü‚ÌƒxƒNƒgƒ‹
-    // •Ô‚è’l‚Í•Ç‚É“–‚½‚Á‚½‚©‚Ç‚¤‚©‚Ì¬Œ÷”»’è
+    // stepV = ï¿½Ú“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ìƒxï¿½Nï¿½gï¿½ï¿½
+    // ï¿½Ô‚ï¿½lï¿½Í•Ç‚É“ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     private bool StepInitialize(Vector3 stepV)
     {
-        // ‰Šú’l‚Å‚Í¸”s”»’è‚ğ“ü‚ê‚Ä‚¨‚­
+        // ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½Å‚Íï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½
         bool moveResult = false;
 
         RaycastHit hit;
         Vector3 agentPoint;
 
-        // ©•ª‚Ì‰E‘¤‚ÉƒŒƒC‚ğ”ò‚Î‚·
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ì‰Eï¿½ï¿½ï¿½Éƒï¿½ï¿½Cï¿½ï¿½ï¿½Î‚ï¿½
         if (Physics.Raycast(transform.position, stepV.normalized, out hit, stepDistance))
         {
-            // •Ç‚ÉƒŒƒC‚ª“–‚½‚Á‚½ˆÊ’u‚æ‚è‚à­‚µ‚¾‚¯ƒGƒlƒ~[‘¤‚ÉŠñ‚¹‚½ˆÊ’u‚É
-            // ˆÚ“®’n“_‚ğİ’u‚·‚é
+            // ï¿½Ç‚Éƒï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê’uï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Gï¿½lï¿½~ï¿½[ï¿½ï¿½ï¿½ÉŠñ‚¹‚ï¿½ï¿½Ê’uï¿½ï¿½
+            // ï¿½Ú“ï¿½ï¿½nï¿½_ï¿½ï¿½İ’uï¿½ï¿½ï¿½ï¿½
 
-            // •Ç‚Æ‚Ì‹——£‚ğŠm”F‚µ‚Ä‚©‚çg‚¤‚©‚Ç‚¤‚©l‚¦‚é
+            // ï¿½Ç‚Æ‚Ì‹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Fï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½ï¿½
             const float DISTANCE_WALL = 0.1f;
             agentPoint = hit.point + (-stepV * DISTANCE_WALL);
 
@@ -460,13 +460,13 @@ public class MeleeEnemyScript : DefaultEnemyScript
         }
         else
         {
-            // stepDistance‚Ì‹——£•ª‚ÌˆÊ’u‚ÉˆÚ“®’n“_‚ğİ’è‚·‚é
+            // stepDistanceï¿½Ì‹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌˆÊ’uï¿½ÉˆÚ“ï¿½ï¿½nï¿½_ï¿½ï¿½İ’è‚·ï¿½ï¿½
             agentPoint = transform.position + (stepV.normalized * stepDistance);
 
             moveResult = false;
         }
 
-        // ŒvZ‚µ‚½ˆÊ’u‚ÉŸ‚ÌˆÚ“®–Ú•W‚ğİ’è
+        // ï¿½vï¿½Zï¿½ï¿½ï¿½ï¿½ï¿½Ê’uï¿½Éï¿½ï¿½ÌˆÚ“ï¿½ï¿½Ú•Wï¿½ï¿½İ’ï¿½
         agent.SetDestination(agentPoint);
         agent.speed = stepSpeed;
 
@@ -475,7 +475,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
 
     private void PatrolInitalize()
     {
-        // ˆê’U~‚ß‚Ä‚¨‚­
+        // ï¿½ï¿½Uï¿½~ï¿½ß‚Ä‚ï¿½ï¿½ï¿½
         agent.isStopped = true;
 
         overLockCount = 0;
@@ -506,7 +506,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
         //        Quaternion.AngleAxis(-overlockAngle, Vector3.up) * transform.rotation;
         //}
 
-        //// Ÿ‰ñ”½‘Î‚ğŒü‚­‚æ‚¤‚É”½“]‚³‚¹‚é
+        //// ï¿½ï¿½ï¿½ñ”½‘Î‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½æ‚¤ï¿½É”ï¿½ï¿½]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         //firstOverLocktoRight = !firstOverLocktoRight;
     }
 }

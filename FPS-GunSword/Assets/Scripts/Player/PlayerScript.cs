@@ -50,6 +50,8 @@ public class PlayerScript : MonoBehaviour
             CameraController.instance.ChangeThirdViewCamera();
             canvas.SetActive(false);
             audioSource.PlayOneShot(ULTStart);
+            BayonetMove.instance.SetActivity(false);
+            TPSControl.instance.SetActivity(true);
 
         }
         PlayerDefaultMove.instance.Update();
@@ -71,6 +73,8 @@ public class PlayerScript : MonoBehaviour
             PlayerShotScript.instance.Update();
             PlayerSlashScript.instance.Update();
             canvas.SetActive(true);
+            BayonetMove.instance.SetActivity(true);
+            TPSControl.instance.SetActivity(false);
         } 
     }
     public void SetULTchack(bool chack)
