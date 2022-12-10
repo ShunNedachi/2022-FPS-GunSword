@@ -288,11 +288,15 @@ MonoBehaviour:
   visualAngle: 70
   heightOfVision: 1
   makerObj: []
+<<<<<<< Updated upstream
   heal: {fileID: 5119100897755989617, guid: 17ef2d9a9b1194a4fb28a4c6f925cf66, type: 3}
   instanceObjectFixedPosY: 0.5
   damageParticle: {fileID: 1217801672677172237, guid: ef910f83ecefb4143ae549468947de56, type: 3}
   particleStartDistance: 0
   discoverSE: {fileID: 8300000, guid: 64ff822d654c5a14aab702d0ae794c57, type: 3}
+=======
+  heal: {fileID: 0}
+>>>>>>> Stashed changes
   patern1: 1
   walkDistance: 100
   attackFrame: 120
