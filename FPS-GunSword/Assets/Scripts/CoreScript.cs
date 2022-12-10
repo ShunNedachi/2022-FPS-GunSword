@@ -9,7 +9,7 @@ public class CoreScript : MonoBehaviour
     public int hp=100;
     public int meleeDamage=100;
     public int rangeDagame=10;
-    public int StageNum = 0;
+    public int keyNum = 0;
     public static int coreCount0 = 0;
     public static int coreCount1 = 0;
     public static int coreCount2 = 0;
@@ -26,15 +26,15 @@ public class CoreScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     { 
-        if(StageNum==0)
+        if(keyNum==0)
         {
             coreCount0++; 
         }
-        if(StageNum==1)
+        if(keyNum==1)
         {
             coreCount1++;
         }
-        if(StageNum==2)
+        if(keyNum==2)
         {
             coreCount2++;
         }
@@ -52,15 +52,15 @@ public class CoreScript : MonoBehaviour
     }
     public void Break()
     {
-        if (StageNum == 0)
+        if (keyNum == 0)
         {
             coreCount0--;
         }
-        if (StageNum == 1)
+        if (keyNum == 1)
         {
             coreCount1--;
         }
-        if (StageNum == 2)
+        if (keyNum == 2)
         {
             coreCount2--;
         }

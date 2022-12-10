@@ -5,7 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     // Start is called before the first frame update
-    public int stageNum;
+    public int keyNum;
    
     void Start()
     {
@@ -15,7 +15,7 @@ public class Door : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if(GameScene.instance.stageClear[stageNum])
+      if(GameScene.instance.stageClear[keyNum])
         {
             Destroy(this.gameObject);
         }

@@ -11,10 +11,12 @@ public class PlayerShotScript : MonoBehaviour
     [SerializeField] private int reloadInterval = 120;
     [SerializeField] private float damage = 25;
     [SerializeField] private GameObject healItem;
-
+    [SerializeField] public AudioClip shot;
+    [SerializeField] public AudioClip reload;
     private int shootIntervalTimer = 0;
     private int reloadTimer = 0;
     private bool hitEnemy = false;
+    AudioSource audioSource;
 
     public void Awake()
     {
@@ -28,6 +30,8 @@ public class PlayerShotScript : MonoBehaviour
     public void Start()
     {
         PlayerMagazineScript.instance.Start();
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     public void Update()
@@ -42,7 +46,11 @@ public class PlayerShotScript : MonoBehaviour
             PlayerSlashScript.instance.ModeChange();
             if(PlayerMagazineScript.instance.GetRemainingBullets()>0)
             {
+
                 var direction = trans.forward;
+
+                audioSource.PlayOneShot(shot);
+
 
                Vector3 rayPosition = trans.position + new Vector3(0.0f, 0.0f, 0.0f);
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -75,6 +83,7 @@ public class PlayerShotScript : MonoBehaviour
             }
             else
             {
+                audioSource.PlayOneShot(reload);
                 PlayerMagazineScript.instance.Reload();
             }
         }
@@ -82,6 +91,7 @@ public class PlayerShotScript : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R) && reloadTimer >= reloadInterval)
         {
             // �^�C�}�[�̏�����
+            audioSource.PlayOneShot(reload);
             reloadTimer = 0;
             PlayerMagazineScript.instance.Reload();
         }
