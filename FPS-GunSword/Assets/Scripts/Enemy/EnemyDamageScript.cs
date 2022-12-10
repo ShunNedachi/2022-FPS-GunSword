@@ -7,16 +7,20 @@ public class EnemyDamageScript : MonoBehaviour
 {
     // ������ύX���ă_���[�W�ʂ𒲐�
     [SerializeField] private bool isHead = false;
-    [SerializeField] private float damageMaltiply = 2.0f; 
+    [SerializeField] private float damageMaltiply = 2.0f;
 
+    [SerializeField] private AudioClip damageSE;
 
     // �X�e�[�^�X���Q�Ɨp
     DefaultEnemyScript enemy;
 
+    AudioSource audio;
 
     // Start is called before the first frame update
     void Start()
     {
+        audio = GetComponentInParent<AudioSource>();
+
         // �ϐ��ɓG�̏��������Ă���
         if (transform.parent.tag == "RangeEnemy")
         {
@@ -32,19 +36,23 @@ public class EnemyDamageScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // �v���C���[�̍U�������������Ƃ��p
-    public void HitPlayerAttack(float baseDamage,Vector3 hitPoint)
+    public void HitPlayerAttack(float baseDamage, Vector3 hitPoint)
     {
+        audio.PlayOneShot(damageSE);
         // ��_�ɓ��������Ƃ�
         if (isHead)
         {
-            enemy.GetDamage(baseDamage * damageMaltiply,hitPoint);
+            enemy.GetDamage(baseDamage * damageMaltiply, hitPoint);
             enemy.IsStun = true;
         }
-        else enemy.GetDamage(baseDamage, hitPoint);
-
+        else
+        {
+            enemy.GetDamage(baseDamage, hitPoint);
+        }
     }
+
 }

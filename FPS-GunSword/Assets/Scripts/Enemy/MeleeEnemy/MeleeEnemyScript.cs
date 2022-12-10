@@ -45,6 +45,9 @@ public class MeleeEnemyScript : DefaultEnemyScript
     [SerializeField]private float overlockAngle = 90;
     [SerializeField] private int overLockNum = 2;
 
+    [SerializeField] private AudioClip attackSE;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +61,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
         attackCollider = attackObject.GetComponent<Collider>();
         attackCollider.enabled = false;
 
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -247,6 +251,8 @@ public class MeleeEnemyScript : DefaultEnemyScript
                 isAttack = false;
                 countAttack = 0;
                 //isAttackInterval = true;
+
+                audio.PlayOneShot(attackSE);
 
                 attackActive = true;
             }
