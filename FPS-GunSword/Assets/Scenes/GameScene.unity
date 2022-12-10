@@ -25533,6 +25533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpMax: 1000
   hpImage: {fileID: 1874540552}
+  damageSound: {fileID: 8300000, guid: 08454eccef4451549b440687a4fe7134, type: 3}
 --- !u!114 &550974443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78776,7 +78777,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 40
+  field of view: 80
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -81007,7 +81008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1a8a2bcd940ab5241a89f903076f5fdb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.15
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1a8a2bcd940ab5241a89f903076f5fdb, type: 3}
       propertyPath: m_LocalRotation.w
