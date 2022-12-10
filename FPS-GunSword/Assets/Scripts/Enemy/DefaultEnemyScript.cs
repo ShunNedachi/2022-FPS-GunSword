@@ -36,6 +36,9 @@ public class DefaultEnemyScript : MonoBehaviour
     [SerializeField] private GameObject damageParticle;
     [SerializeField] private float particleStartDistance;
 
+    [SerializeField] private AudioClip discoverSE;
+    protected AudioSource audio;
+
     // state info
     protected enum enemyState
     {
@@ -121,6 +124,8 @@ public class DefaultEnemyScript : MonoBehaviour
                 // player Hit
                 if (hit.transform.gameObject == playerObject)
                 {
+                    // ”­Œ©Žž
+                    audio.PlayOneShot(discoverSE);
                     return true;
                 }
             }
