@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 1130035716637254039}
   - component: {fileID: 5645857477225053782}
   m_Layer: 0
-  m_Name: GlassTank
+  m_Name: Core2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
