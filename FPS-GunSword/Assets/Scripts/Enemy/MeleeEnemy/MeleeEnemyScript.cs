@@ -67,12 +67,12 @@ public class MeleeEnemyScript : DefaultEnemyScript
     // Update is called once per frame
     void Update()
     {
-        //if(!option.IsOption)
+        if(!option.IsOption)
         {
-            // ���E����O�ꂽ���ɍs���p�^�[���؂�ւ�
+            // 視界から外れた時に行動パターン切り替え
             if (!MoveWithinSight()) ChangePatrol();
 
-            // state���Q�Ƃ��čs���p�^�[���؂�ւ�
+            // stateを参照して行動パターン切り替え
             switch (state)
             {
                 case enemyState.patrol:
@@ -103,9 +103,10 @@ public class MeleeEnemyScript : DefaultEnemyScript
             }
 
             MoveSpeedChange();
-            // �X�^���������ǂ����̃`�F�b�N
+
+            // スタンしたかどうかのチェック
             StunCheck();
-            // ���S���̏���
+            // 死亡時の処理
             Dead();
 
         }
@@ -145,7 +146,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
 
     private void PatrolMove()
     {
-        // ���n���G�t�F�N�g���K�v�ȂƂ�
+        // �ｽ�ｽ�ｽn�ｽ�ｽ�ｽG�ｽt�ｽF�ｽN�ｽg�ｽ�ｽ�ｽK�ｽv�ｽﾈとゑｿｽ
         if (patrolEffect)
         {
             if (patrolInit) PatrolInitalize();
@@ -153,7 +154,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
             // 
             if (overLockCount < overLockNum)
             {
-                // ��]����p�x�̐ݒ�
+                // �ｽ�ｽ]�ｽ�ｽ�ｽ�ｽp�ｽx�ｽﾌ設抵ｿｽ
                 if (!overLockSet)
                 {
                     SetPatrolRotation();
@@ -167,11 +168,11 @@ public class MeleeEnemyScript : DefaultEnemyScript
                     var rotateAngle = overlockAngle;
                     if (overLockCount > 0) rotateAngle *= 2;
 
-                    // y���ŉ�]��������
+                    // y�ｽ�ｽ�ｽﾅ会ｿｽ]�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ
                     transform.Rotate(new Vector3(0, overLockStep, 0));
                     patrolTotalRot += overLockStep;
 
-                    // ����x����]���Ă�����I��
+                    // �ｽ�ｽ�ｽ�ｽx�ｽ�ｽ�ｽ�ｽ]�ｽ�ｽ�ｽﾄゑｿｽ�ｽ�ｽ�ｽ�ｽI�ｽ�ｽ
                     if(patrolTotalRot >= overlockAngle)
                     {
                         overLockSet = false;
@@ -184,11 +185,11 @@ public class MeleeEnemyScript : DefaultEnemyScript
                     var rotateAngle = overlockAngle;
                     if (overLockCount > 0) rotateAngle *= 2;
 
-                    // y���ŉ�]��������
+                    // y�ｽ�ｽ�ｽﾅ会ｿｽ]�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ
                     transform.Rotate(new Vector3(0, -overLockStep, 0));
                     patrolTotalRot += overLockStep;
 
-                    // ����x����]���Ă�����I��
+                    // �ｽ�ｽ�ｽ�ｽx�ｽ�ｽ�ｽ�ｽ]�ｽ�ｽ�ｽﾄゑｿｽ�ｽ�ｽ�ｽ�ｽI�ｽ�ｽ
                     if (patrolTotalRot >= overlockAngle)
                     {
                         overLockSet = false;
@@ -201,15 +202,15 @@ public class MeleeEnemyScript : DefaultEnemyScript
             }
             else
             {
-                // ���n�����I��
+                // �ｽ�ｽ�ｽn�ｽ�ｽ�ｽ�ｽ�ｽI�ｽ�ｽ
                 patrolEffect = false;
-                // �s�����ċN��
+                // �ｽs�ｽ�ｽ�ｽ�ｽ�ｽﾄ起�ｽ�ｽ
                 agent.isStopped = false;
             }
         }
 
 
-        // player�����E�ɓ������Ƃ��ɍs���p�^�[���؂�ւ�
+        // player�ｽ�ｽ�ｽ�ｽ�ｽE�ｽﾉ難ｿｽ�ｽ�ｽ�ｽ�ｽ�ｽﾆゑｿｽ�ｽﾉ行�ｽ�ｽ�ｽp�ｽ^�ｽ[�ｽ�ｽ�ｽﾘゑｿｽﾖゑｿｽ
         if (MoveWithinSight())
         {
             ChangeFollow();
@@ -230,7 +231,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
         {
             isWalk = true;
 
-            // �͈͂ɓ����Ă�����
+            // �ｽﾍ囲に難ｿｽ�ｽ�ｽ�ｽﾄゑｿｽ�ｽ�ｽ�ｽ�ｽ
             if (distance <= attackStartDistance) { ChangeAttack(); }
 
         }
@@ -240,16 +241,16 @@ public class MeleeEnemyScript : DefaultEnemyScript
     private void AttackMove()
     {
 
-        // �U���O�̗\������
+        // �ｽU�ｽ�ｽ�ｽO�ｽﾌ予�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ
         if (isAttack)
         {
-            // ��b�s�����~�߂�
+            // �ｽ�ｽb�ｽs�ｽ�ｽ�ｽ�ｽ�ｽ~�ｽﾟゑｿｽ
             agent.isStopped = true;
             agent.SetDestination(transform.position);
 
 
             countAttack++;
-            // �U������
+            // �ｽU�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ
             if (countAttack > attackFrame)
             {
                 isAttack = false;
@@ -261,12 +262,12 @@ public class MeleeEnemyScript : DefaultEnemyScript
                 attackActive = true;
             }
         }
-        // �U���̎���
+        // �ｽU�ｽ�ｽ�ｽﾌ趣ｿｽ�ｽ�ｽ
         if (attackActive)
         {
             if (attackInitialize)
             {
-                // �����蔻��L����
+                // �ｽ�ｽ�ｽ�ｽ�ｽ阡ｻ�ｽ�ｽL�ｽ�ｽ�ｽ�ｽ
                 attackCollider.enabled = true;
 
                 attackInitialize = false;
@@ -281,11 +282,11 @@ public class MeleeEnemyScript : DefaultEnemyScript
                 attackActive = false;
                 isAttackInterval = true;
 
-                // �U���̔��薳����
+                // �ｽU�ｽ�ｽ�ｽﾌ費ｿｽ�ｽ阮ｳ�ｽ�ｽ�ｽ�ｽ
                 attackCollider.enabled = false;
             }
         }
-        // �U���̍d����
+        // �ｽU�ｽ�ｽ�ｽﾌ硬�ｽ�ｽ�ｽ�ｽ
         if (isAttackInterval)
         {
             countAttackInterval++;
@@ -296,7 +297,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
                 isAttackInterval = false;
                 countAttackInterval = 0;
 
-                // �X�e�b�v�̍s��������悤��
+                // �ｽX�ｽe�ｽb�ｽv�ｽﾌ行�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ謔､�ｽ�ｽ
 
                 ChangeStep();
             }
@@ -327,7 +328,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
         agent.isStopped = true;
 
         stunCount++;
-        // �X�^�����ԕ��~�܂�����
+        // �ｽX�ｽ^�ｽ�ｽ�ｽ�ｽ�ｽﾔ包ｿｽ�ｽ~�ｽﾜゑｿｽ�ｽ�ｽ�ｽ�ｽ
         if (stunCount > stunFrame)
         {
             agent.isStopped = false;
@@ -341,8 +342,8 @@ public class MeleeEnemyScript : DefaultEnemyScript
 
     private void ChangePatrol()
     {
-        // ������E���n������ɕύX����悤�ɕύX
-        // �p�g���[��������Ȃ������猩�n���悤�ɂ���
+        // �ｽ�ｽ�ｽ�ｽ�ｽ�ｽE�ｽ�ｽ�ｽn�ｽ�ｽ�ｽ�ｽ�ｽ�ｽﾉ変更�ｽ�ｽ�ｽ�ｽ謔､�ｽﾉ変更
+        // �ｽp�ｽg�ｽ�ｽ�ｽ[�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽﾈゑｿｽ�ｽ�ｽ�ｽ�ｽ�ｽ迪ｩ�ｽn�ｽ�ｽ�ｽ謔､�ｽﾉゑｿｽ�ｽ�ｽ
         if (state != enemyState.patrol)
         {
             patrolInit = true;
@@ -372,7 +373,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
 
     private void ChangeStep()
     {
-        // �X�e�b�v�̏�����
+        // �ｽX�ｽe�ｽb�ｽv�ｽﾌ擾ｿｽ�ｽ�ｽ�ｽ�ｽ
         backstepInit = false;
         canBackStep = true;
 
@@ -383,7 +384,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
     {
         if (!backstepInit)
         {
-            // �������ɃX�e�b�v���鏈��
+            // �ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽﾉス�ｽe�ｽb�ｽv�ｽ�ｽ�ｽ髀茨ｿｽ�ｽ
             StepInitialize(-transform.forward);
 
             backstepInit = true;
@@ -403,21 +404,21 @@ public class MeleeEnemyScript : DefaultEnemyScript
     {
         if (!stepInitialize)
         {
-            // �����_���ňړ����������߂�
-            // �����_���̐��x�p�ɔO�̂���
+            // �ｽ�ｽ�ｽ�ｽ�ｽ_�ｽ�ｽ�ｽﾅ移難ｿｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽﾟゑｿｽ
+            // �ｽ�ｽ�ｽ�ｽ�ｽ_�ｽ�ｽ�ｽﾌ撰ｿｽ�ｽx�ｽp�ｽﾉ念�ｽﾌゑｿｽ�ｽ�ｽ
             int rand = Random.Range(0, 10);
             if (rand % 2 == 0)
             {
-                // �ŏ��ɉE�ֈړ��ł��邩�m�F
+                // �ｽﾅ擾ｿｽ�ｽﾉ右�ｽﾖ移難ｿｽ�ｽﾅゑｿｽ�ｽ驍ｩ�ｽm�ｽF
                 var result = StepInitialize(transform.right);
-                // �ǂɓ��������ꍇ���Ɉړ��ł���̂��m�F����
+                // �ｽﾇに難ｿｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ鼾�ｿｽ�ｽ�ｽﾉ移難ｿｽ�ｽﾅゑｿｽ�ｽ�ｽﾌゑｿｽ�ｽm�ｽF�ｽ�ｽ�ｽ�ｽ
                 if (result) StepInitialize(-transform.right);
             }
             else
             {
-                // �ŏ��ɍ��Ɉړ��ł���̂��m�F
+                // �ｽﾅ擾ｿｽ�ｽﾉ搾ｿｽ�ｽﾉ移難ｿｽ�ｽﾅゑｿｽ�ｽ�ｽﾌゑｿｽ�ｽm�ｽF
                 var result = StepInitialize(-transform.right);
-                // �ړ��ł��Ȃ������ꍇ�ɉE�Ɉړ��ł���̂��m�F
+                // �ｽﾚ難ｿｽ�ｽﾅゑｿｽ�ｽﾈゑｿｽ�ｽ�ｽ�ｽ�ｽ�ｽ鼾�ｿｽﾉ右�ｽﾉ移難ｿｽ�ｽﾅゑｿｽ�ｽ�ｽﾌゑｿｽ�ｽm�ｽF
                 if (result) StepInitialize(transform.right);
 
             }
@@ -426,7 +427,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
             stepInitialize = true;
         }
 
-        // �ړ����I�������I�������� ��ŕύX�ł���悤�ɂ��邩���H(���̏ꍇremainingDaistance���g�p���Ă���ӏ��S��)
+        // �ｽﾚ難ｿｽ�ｽ�ｽ�ｽI�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽI�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ �ｽ�ｽﾅ変更�ｽﾅゑｿｽ�ｽ�ｽ謔､�ｽﾉゑｿｽ�ｽ驍ｩ�ｽ�ｽ�ｽH(�ｽ�ｽ�ｽﾌ場合remainingDaistance�ｽ�ｽ�ｽg�ｽp�ｽ�ｽ�ｽﾄゑｿｽ�ｽ�ｽﾓ擾ｿｽ�ｽS�ｽ�ｽ)
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
         {
             canStep = false;
@@ -436,23 +437,23 @@ public class MeleeEnemyScript : DefaultEnemyScript
         }
     }
 
-    // stepV = �ړ������̃x�N�g��
-    // �Ԃ�l�͕ǂɓ����������ǂ����̐�������
+    // stepV = �ｽﾚ難ｿｽ�ｽ�ｽ�ｽ�ｽ�ｽﾌベ�ｽN�ｽg�ｽ�ｽ
+    // �ｽﾔゑｿｽl�ｽﾍ壁に難ｿｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽﾇゑｿｽ�ｽ�ｽ�ｽﾌ撰ｿｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ
     private bool StepInitialize(Vector3 stepV)
     {
-        // �����l�ł͎��s��������Ă���
+        // �ｽ�ｽ�ｽ�ｽ�ｽl�ｽﾅは趣ｿｽ�ｽs�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽﾄゑｿｽ�ｽ�ｽ
         bool moveResult = false;
 
         RaycastHit hit;
         Vector3 agentPoint;
 
-        // �����̉E���Ƀ��C���΂�
+        // �ｽ�ｽ�ｽ�ｽ�ｽﾌ右�ｽ�ｽ�ｽﾉ�ｿｽ�ｽC�ｽ�ｽ�ｽﾎゑｿｽ
         if (Physics.Raycast(transform.position, stepV.normalized, out hit, stepDistance))
         {
-            // �ǂɃ��C�����������ʒu�������������G�l�~�[���Ɋ񂹂��ʒu��
-            // �ړ��n�_��ݒu����
+            // �ｽﾇに�ｿｽ�ｽC�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽﾊ置�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽG�ｽl�ｽ~�ｽ[�ｽ�ｽ�ｽﾉ寄せゑｿｽ�ｽﾊ置�ｽ�ｽ
+            // �ｽﾚ難ｿｽ�ｽn�ｽ_�ｽ�ｽﾝ置�ｽ�ｽ�ｽ�ｽ
 
-            // �ǂƂ̋������m�F���Ă���g�����ǂ����l����
+            // �ｽﾇとの具ｿｽ�ｽ�ｽ�ｽ�ｽ�ｽm�ｽF�ｽ�ｽ�ｽﾄゑｿｽ�ｽ�ｽg�ｽ�ｽ�ｽ�ｽ�ｽﾇゑｿｽ�ｽ�ｽ�ｽl�ｽ�ｽ�ｽ�ｽ
             const float DISTANCE_WALL = 0.1f;
             agentPoint = hit.point + (-stepV * DISTANCE_WALL);
 
@@ -460,13 +461,13 @@ public class MeleeEnemyScript : DefaultEnemyScript
         }
         else
         {
-            // stepDistance�̋������̈ʒu�Ɉړ��n�_��ݒ肷��
+            // stepDistance�ｽﾌ具ｿｽ�ｽ�ｽ�ｽ�ｽ�ｽﾌ位置�ｽﾉ移難ｿｽ�ｽn�ｽ_�ｽ�ｽﾝ定す�ｽ�ｽ
             agentPoint = transform.position + (stepV.normalized * stepDistance);
 
             moveResult = false;
         }
 
-        // �v�Z�����ʒu�Ɏ��̈ړ��ڕW��ݒ�
+        // �ｽv�ｽZ�ｽ�ｽ�ｽ�ｽ�ｽﾊ置�ｽﾉ趣ｿｽ�ｽﾌ移難ｿｽ�ｽﾚ標�ｽ�ｽﾝ抵ｿｽ
         agent.SetDestination(agentPoint);
         agent.speed = stepSpeed;
 
@@ -475,7 +476,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
 
     private void PatrolInitalize()
     {
-        // ��U�~�߂Ă���
+        // �ｽ�ｽU�ｽ~�ｽﾟてゑｿｽ�ｽ�ｽ
         agent.isStopped = true;
 
         overLockCount = 0;
@@ -506,7 +507,7 @@ public class MeleeEnemyScript : DefaultEnemyScript
         //        Quaternion.AngleAxis(-overlockAngle, Vector3.up) * transform.rotation;
         //}
 
-        //// ���񔽑΂������悤�ɔ��]������
+        //// �ｽ�ｽ�ｽｽ対ゑｿｽ�ｽ�ｽ�ｽ�ｽ�ｽ謔､�ｽﾉ費ｿｽ�ｽ]�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ
         //firstOverLocktoRight = !firstOverLocktoRight;
     }
 }

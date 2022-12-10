@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RangeEnemy : DefaultEnemyScript
 {
-    // �s���p�^�[���؂�ւ��p
+    // �ｽs�ｽ�ｽ�ｽp�ｽ^�ｽ[�ｽ�ｽ�ｽﾘゑｿｽﾖゑｿｽ�ｽp
     [SerializeField] bool patern1 = true;
 
     [SerializeField] private float walkDistance = 100.0f;
@@ -11,7 +11,7 @@ public class RangeEnemy : DefaultEnemyScript
     [SerializeField] private int attackIntervalFrame = 300;
     [SerializeField] private int attackActiveFrame = 1;
 
-    // �e�p�̃I�u�W�F�N�g
+    // �ｽe�ｽp�ｽﾌオ�ｽu�ｽW�ｽF�ｽN�ｽg
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletFixedPosY = 1.0f;
 
@@ -35,18 +35,20 @@ public class RangeEnemy : DefaultEnemyScript
     // Update is called once per frame
     void Update()
     {
-        //if(!option.IsOption)
+
+        if(!option.IsOption)
         {
             if (!IsStun)
             {
                 if (!patern1)
                 {
-                    // ��ڂ̃p�^�[���̍s��
+
+                    // 二つ目のパターンの行動
                     Patern2Move();
                 }
                 else
                 {
-                    // ���E����player�����Ȃ���΃}�[�J�[�ɉ����Ĉړ�
+                    // 視界内にplayerがいなければマーカーに沿って移動
                     if (!MoveWithinSight())
                     {
                         MoveRandom();
@@ -55,19 +57,20 @@ public class RangeEnemy : DefaultEnemyScript
                     }
                     else
                     {
-                        // ���E�ɓ�������player�̈ʒu��ǂ������� ��ōU�����͍X�V���Ȃ��悤�ɏC��
+                        // 視界に入ったらplayerの位置を追いかける 後で攻撃時は更新しないように修正
                         if (!isAttack)
                         {
                             agent.SetDestination(playerObject.transform.position);
                         }
 
-                        // ��苗���ȏ�߂���Ε���
+                        // 一定距離以上近ければ歩く
                         var distanceToPlayer = Vector3.Distance(playerObject.transform.position, transform.position);
                         if (distanceToPlayer <= walkDistance)
                         {
                             isWalk = true;
 
-                            // �U���ł���ʒu�܂ŋ߂Â�����U���s���J�n
+
+                            // 攻撃できる位置まで近づいたら攻撃行動開始
                             if (distanceToPlayer <= attackStartDistance && !isAttackInterval)
                             {
                                 isAttack = true;
@@ -91,16 +94,17 @@ public class RangeEnemy : DefaultEnemyScript
                         agent.speed = runSpeed;
                     }
 
-                    // �U���O�̗\������
+                    // 攻撃前の予備動作
                     if (isAttack)
                     {
-                        // ��b�s�����~�߂�
+                        // 基礎行動を止める
                         agent.isStopped = true;
                         agent.SetDestination(transform.position);
 
 
                         countAttack++;
-                        // �U���̔���
+
+                        // 攻撃の発射
                         if (countAttack > attackFrame)
                         {
                             isAttack = false;
@@ -109,7 +113,7 @@ public class RangeEnemy : DefaultEnemyScript
 
                             attackActive = true;
 
-                            // �e�̃I�u�W�F�N�g���� �����ʒu���v���C���[�̏����O�ɂ���
+                            // 弾のオブジェクト生成 生成位置をプレイヤーの少し前にする
                             var fixedPos = new Vector3(transform.position.x,
                                     transform.position.y + bulletFixedPosY, transform.position.z);
 
@@ -120,7 +124,7 @@ public class RangeEnemy : DefaultEnemyScript
                         }
                     }
 
-                    // �U���̍d����
+                    // 攻撃の硬直中
                     if (isAttackInterval)
                     {
                         countAttackInterval++;
@@ -134,7 +138,8 @@ public class RangeEnemy : DefaultEnemyScript
 
                     }
 
-                    // �U���̎���
+
+                    // 攻撃の持続
                     if (attackActive)
                     {
                         countAttackActive++;
@@ -159,7 +164,7 @@ public class RangeEnemy : DefaultEnemyScript
 
                 stunCount++;
 
-                // �X�^�����ԕ��~�܂�����
+                // スタン時間分止まったら
                 if (stunCount > stunFrame)
                 {
                     agent.isStopped = false;
@@ -170,7 +175,8 @@ public class RangeEnemy : DefaultEnemyScript
 
             }
 
-            // ���S����
+
+            // 死亡処理
             Dead();
 
         }
@@ -181,7 +187,7 @@ public class RangeEnemy : DefaultEnemyScript
     {
         agent.speed = 0.0f;
 
-        // ���E�Ƀv���C���[��������s��
+        // �ｽ�ｽ�ｽE�ｽﾉプ�ｽ�ｽ�ｽC�ｽ�ｽ�ｽ[�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽ�ｽs�ｽ�ｽ
         if(MoveWithinSight())
         {
             Vector3 lookVector = playerObject.transform.position - transform.position;
