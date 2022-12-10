@@ -67,44 +67,48 @@ public class MeleeEnemyScript : DefaultEnemyScript
     // Update is called once per frame
     void Update()
     {
-        // 視界から外れた時に行動パターン切り替え
-        if (!MoveWithinSight()) ChangePatrol();
-
-        // stateを参照して行動パターン切り替え
-        switch (state)
+        if(!option.IsOption)
         {
-            case enemyState.patrol:
+            // 視界から外れた時に行動パターン切り替え
+            if (!MoveWithinSight()) ChangePatrol();
 
-                PatrolMove();
-                break;
+            // stateを参照して行動パターン切り替え
+            switch (state)
+            {
+                case enemyState.patrol:
 
-            case enemyState.follow:
+                    PatrolMove();
+                    break;
 
-                FollowMove();
+                case enemyState.follow:
 
-                break;
+                    FollowMove();
 
-            case enemyState.attack:
-                AttackMove();
+                    break;
 
-                break;
+                case enemyState.attack:
+                    AttackMove();
 
-            case enemyState.step:
-                StepMove();
+                    break;
 
-                break;
+                case enemyState.step:
+                    StepMove();
 
-            case enemyState.stun:
+                    break;
 
-                StunMove();
-                break;
+                case enemyState.stun:
+
+                    StunMove();
+                    break;
+            }
+
+            MoveSpeedChange();
+            // スタンしたかどうかのチェック
+            StunCheck();
+            // 死亡時の処理
+            Dead();
+
         }
-
-        MoveSpeedChange();
-        // スタンしたかどうかのチェック
-        StunCheck();
-        // 死亡時の処理
-        Dead();
     }
 
     public bool AttackActive

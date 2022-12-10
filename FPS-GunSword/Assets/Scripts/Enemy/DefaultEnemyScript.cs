@@ -39,6 +39,7 @@ public class DefaultEnemyScript : MonoBehaviour
     [SerializeField] private AudioClip discoverSE;
     protected AudioSource audio;
 
+    protected OptionScript option;
     // state info
     protected enum enemyState
     {
@@ -125,7 +126,7 @@ public class DefaultEnemyScript : MonoBehaviour
                 if (hit.transform.gameObject == playerObject)
                 {
                     // ”­Œ©Žž
-                    audio.PlayOneShot(discoverSE);
+                    if(!audio.isPlaying)audio.PlayOneShot(discoverSE);
                     return true;
                 }
             }
@@ -150,6 +151,8 @@ public class DefaultEnemyScript : MonoBehaviour
         agent.stoppingDistance = 0.1f;
         agent.speed = runSpeed;
 
+        option = GameObject.FindGameObjectWithTag("System").GetComponent<OptionScript>();
+        
     }
 
     public void GetDamage(float damage,Vector3 hitPos)
