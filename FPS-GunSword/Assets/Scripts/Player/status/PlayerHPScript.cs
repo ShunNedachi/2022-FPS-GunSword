@@ -8,10 +8,10 @@ public class PlayerHPScript : MonoBehaviour
     public static PlayerHPScript instance;
     [SerializeField] private int hpMax = 1000;
     public Image hpImage;
+    [SerializeField] public AudioClip damageSound;
+    AudioSource audioSource;
+
     private int hp = 0;
-
-
-
     public void Awake()
     {
         if(instance ==null)
@@ -25,6 +25,8 @@ public class PlayerHPScript : MonoBehaviour
     public void Start()
     {
         hp = hpMax;
+        audioSource = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -36,6 +38,8 @@ public class PlayerHPScript : MonoBehaviour
     public void Sethp(int damage)
     {
         hp -= damage;
+        audioSource.PlayOneShot(damageSound);
+
     }
 
     public int GethP()

@@ -12,6 +12,8 @@ public class MeleeAttackScript : MonoBehaviour
         // 親クラスのステータスを参照する用
         GameObject parent = transform.parent.parent.gameObject;
         enemy = parent.GetComponent<MeleeEnemyScript>();
+
+
     }
 
     // Update is called once per frame
@@ -26,7 +28,7 @@ public class MeleeAttackScript : MonoBehaviour
         if (other.gameObject.tag == "Player" && enemy.AttackActive)
         {
             Debug.Log("Hit Attack to Player");
-
+            other.GetComponent<PlayerHPScript>().Sethp(enemy.TakeDamage());
         }
 
     }

@@ -63,7 +63,7 @@ public class PlayerShotScript : MonoBehaviour
                     if(hit.collider.CompareTag("MeleeEnemy")
                     || hit.collider.CompareTag("RangeEnemy"))
                     {
-                        hit.collider.gameObject.GetComponent<EnemyDamageScript>().HitPlayerAttack(damage);
+                        hit.collider.gameObject.GetComponent<EnemyDamageScript>().HitPlayerAttack(damage,hit.point);
                         Debug.Log("hit Shot");
                         PlayerSlashScript.instance.AddCombo();
                         hitEnemy = true;

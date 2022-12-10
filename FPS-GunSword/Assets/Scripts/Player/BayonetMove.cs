@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class BayonetMove : MonoBehaviour
 {
-    [SerializeField]public new GameObject camera;
+    public static BayonetMove instance;
 
+    [SerializeField]public new GameObject camera;
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +24,13 @@ public class BayonetMove : MonoBehaviour
     void Update()
     {
         this.transform.localRotation = camera.transform.localRotation;
+
     }
     void FixedUpdate()
     {
-
+    }
+    public void SetActivity(bool activity)
+    {
+        this.gameObject.SetActive(activity);
     }
 }

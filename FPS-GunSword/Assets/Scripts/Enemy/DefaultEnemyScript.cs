@@ -8,7 +8,7 @@ public class DefaultEnemyScript : MonoBehaviour
     // HP
     [SerializeField] protected float hp = 100.0f;
     // damage to Player
-    [SerializeField] protected float damageValue = 30.0f;
+    [SerializeField] protected int damageValue = 30;
     // 
     [SerializeField] protected float sightDistance = 100.0f;
     // 
@@ -36,6 +36,10 @@ public class DefaultEnemyScript : MonoBehaviour
     [SerializeField] private GameObject damageParticle;
     [SerializeField] private float particleStartDistance;
 
+    [SerializeField] private AudioClip discoverSE;
+    protected AudioSource audio;
+
+    protected OptionScript option;
     // state info
     protected enum enemyState
     {
@@ -121,6 +125,8 @@ public class DefaultEnemyScript : MonoBehaviour
                 // player Hit
                 if (hit.transform.gameObject == playerObject)
                 {
+                    // ”­Œ©Žž
+                    if(!audio.isPlaying)audio.PlayOneShot(discoverSE);
                     return true;
                 }
             }
@@ -145,15 +151,17 @@ public class DefaultEnemyScript : MonoBehaviour
         agent.stoppingDistance = 0.1f;
         agent.speed = runSpeed;
 
+        option = GameObject.FindGameObjectWithTag("System").GetComponent<OptionScript>();
+        
     }
 
-    public void GetDamage(float damage)
+    public void GetDamage(float damage,Vector3 hitPos)
     {
         hp -= damage;
 
         // Position fixed
-        var fixedPosition = new Vector3(transform.position.x,
-            transform.position.y + instanceObjectFixedPosY, transform.position.z);
+        var fixedPosition = hitPos;
+
         var playerV = playerObject.transform.position - transform.position;
 
         fixedPosition += playerV.normalized * particleStartDistance;
@@ -170,7 +178,7 @@ public class DefaultEnemyScript : MonoBehaviour
 
     }
     // for EnemyAttack
-    public float TakeDamage() { return damageValue; }
+    public int TakeDamage() { return damageValue; }
 
     protected void Dead()
     {

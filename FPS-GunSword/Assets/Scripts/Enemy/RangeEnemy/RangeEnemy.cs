@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RangeEnemy : DefaultEnemyScript
 {
-    // s“®ƒpƒ^[ƒ“Ø‚è‘Ö‚¦—p
+    // ï¿½ï½½sï¿½ï½½ï¿½ï½½ï¿½ï½½pï¿½ï½½^ï¿½ï½½[ï¿½ï½½ï¿½ï½½ï¿½ï½½ï¾˜ã‚‘ï½¿ï½½ï¾–ã‚‘ï½¿ï½½ï¿½ï½½p
     [SerializeField] bool patern1 = true;
 
     [SerializeField] private float walkDistance = 100.0f;
@@ -11,7 +11,7 @@ public class RangeEnemy : DefaultEnemyScript
     [SerializeField] private int attackIntervalFrame = 300;
     [SerializeField] private int attackActiveFrame = 1;
 
-    // ’e—p‚ÌƒIƒuƒWƒFƒNƒg
+    // ï¿½ï½½eï¿½ï½½pï¿½ï½½ï¾Œã‚ªï¿½ï½½uï¿½ï½½Wï¿½ï½½Fï¿½ï½½Nï¿½ï½½g
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletFixedPosY = 1.0f;
 
@@ -35,141 +35,151 @@ public class RangeEnemy : DefaultEnemyScript
     // Update is called once per frame
     void Update()
     {
-        if(!IsStun)
+
+        if(!option.IsOption)
         {
-            if (!patern1)
+            if (!IsStun)
             {
-                // “ñ‚Â–Ú‚Ìƒpƒ^[ƒ“‚Ìs“®
-                Patern2Move();
-            }
-            else
-            {
-                // ‹ŠE“à‚Éplayer‚ª‚¢‚È‚¯‚ê‚Îƒ}[ƒJ[‚É‰ˆ‚Á‚ÄˆÚ“®
-                if (!MoveWithinSight())
+                if (!patern1)
                 {
-                    MoveRandom();
 
-                    agent.isStopped = false;
+                    // äºŒã¤ç›®ã®ãƒ‘ã‚¿ãƒ¼ãƒ³ã®è¡Œå‹•
+                    Patern2Move();
                 }
                 else
                 {
-                    // ‹ŠE‚É“ü‚Á‚½‚çplayer‚ÌˆÊ’u‚ğ’Ç‚¢‚©‚¯‚é Œã‚ÅUŒ‚‚ÍXV‚µ‚È‚¢‚æ‚¤‚ÉC³
-                    if (!isAttack)
+                    // è¦–ç•Œå†…ã«playerãŒã„ãªã‘ã‚Œã°ãƒãƒ¼ã‚«ãƒ¼ã«æ²¿ã£ã¦ç§»å‹•
+                    if (!MoveWithinSight())
                     {
-                        agent.SetDestination(playerObject.transform.position);
-                    }
-
-                    // ˆê’è‹——£ˆÈã‹ß‚¯‚ê‚Î•à‚­
-                    var distanceToPlayer = Vector3.Distance(playerObject.transform.position, transform.position);
-                    if (distanceToPlayer <= walkDistance)
-                    {
-                        isWalk = true;
-
-                        // UŒ‚‚Å‚«‚éˆÊ’u‚Ü‚Å‹ß‚Ã‚¢‚½‚çUŒ‚s“®ŠJn
-                        if (distanceToPlayer <= attackStartDistance && !isAttackInterval)
-                        {
-                            isAttack = true;
-                        }
-
-                    }
-                    else
-                    {
-                        isWalk = false;
-                    }
-
-                }
-
-                //
-                if (isWalk)
-                {
-                    agent.speed = walkSpeed;
-                }
-                else
-                {
-                    agent.speed = runSpeed;
-                }
-
-                // UŒ‚‘O‚Ì—\”õ“®ì
-                if (isAttack)
-                {
-                    // Šî‘bs“®‚ğ~‚ß‚é
-                    agent.isStopped = true;
-                    agent.SetDestination(transform.position);
-
-
-                    countAttack++;
-                    // UŒ‚‚Ì”­Ë
-                    if (countAttack > attackFrame)
-                    {
-                        isAttack = false;
-                        countAttack = 0;
-                        isAttackInterval = true;
-
-                        attackActive = true;
-
-                        // ’e‚ÌƒIƒuƒWƒFƒNƒg¶¬ ¶¬ˆÊ’u‚ğƒvƒŒƒCƒ„[‚Ì­‚µ‘O‚É‚·‚é
-                        var fixedPos = new Vector3(transform.position.x,
-                                transform.position.y + bulletFixedPosY, transform.position.z);
-
-                        fixedPos += transform.forward.normalized;
-                        Instantiate(bullet, fixedPos, transform.rotation);
-
-                    }
-                }
-
-                // UŒ‚‚Ìd’¼’†
-                if (isAttackInterval)
-                {
-                    countAttackInterval++;
-
-                    if (countAttackInterval > attackIntervalFrame)
-                    {
-                        isAttackInterval = false;
-                        countAttackInterval = 0;
-
-                    }
-
-                }
-
-                // UŒ‚‚Ì‘±
-                if (attackActive)
-                {
-                    countAttackActive++;
-
-                    if (countAttackActive > attackActiveFrame)
-                    {
-                        countAttackActive = 0;
-
-                        attackActive = false;
+                        MoveRandom();
 
                         agent.isStopped = false;
                     }
+                    else
+                    {
+                        // è¦–ç•Œã«å…¥ã£ãŸã‚‰playerã®ä½ç½®ã‚’è¿½ã„ã‹ã‘ã‚‹ å¾Œã§æ”»æ’ƒæ™‚ã¯æ›´æ–°ã—ãªã„ã‚ˆã†ã«ä¿®æ­£
+                        if (!isAttack)
+                        {
+                            agent.SetDestination(playerObject.transform.position);
+                        }
+
+                        // ä¸€å®šè·é›¢ä»¥ä¸Šè¿‘ã‘ã‚Œã°æ­©ã
+                        var distanceToPlayer = Vector3.Distance(playerObject.transform.position, transform.position);
+                        if (distanceToPlayer <= walkDistance)
+                        {
+                            isWalk = true;
+
+
+                            // æ”»æ’ƒã§ãã‚‹ä½ç½®ã¾ã§è¿‘ã¥ã„ãŸã‚‰æ”»æ’ƒè¡Œå‹•é–‹å§‹
+                            if (distanceToPlayer <= attackStartDistance && !isAttackInterval)
+                            {
+                                isAttack = true;
+                            }
+
+                        }
+                        else
+                        {
+                            isWalk = false;
+                        }
+
+                    }
+
+                    //
+                    if (isWalk)
+                    {
+                        agent.speed = walkSpeed;
+                    }
+                    else
+                    {
+                        agent.speed = runSpeed;
+                    }
+
+                    // æ”»æ’ƒå‰ã®äºˆå‚™å‹•ä½œ
+                    if (isAttack)
+                    {
+                        // åŸºç¤è¡Œå‹•ã‚’æ­¢ã‚ã‚‹
+                        agent.isStopped = true;
+                        agent.SetDestination(transform.position);
+
+
+                        countAttack++;
+
+                        // æ”»æ’ƒã®ç™ºå°„
+                        if (countAttack > attackFrame)
+                        {
+                            isAttack = false;
+                            countAttack = 0;
+                            isAttackInterval = true;
+
+                            attackActive = true;
+
+                            // å¼¾ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ ç”Ÿæˆä½ç½®ã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å°‘ã—å‰ã«ã™ã‚‹
+                            var fixedPos = new Vector3(transform.position.x,
+                                    transform.position.y + bulletFixedPosY, transform.position.z);
+
+                            fixedPos += transform.forward.normalized;
+                            var tempObj = Instantiate(bullet, fixedPos, transform.rotation);
+                            tempObj.GetComponent<RangeEnemyBulletScript>().targetV =
+                                playerObject.transform.position - transform.position;
+                        }
+                    }
+
+                    // æ”»æ’ƒã®ç¡¬ç›´ä¸­
+                    if (isAttackInterval)
+                    {
+                        countAttackInterval++;
+
+                        if (countAttackInterval > attackIntervalFrame)
+                        {
+                            isAttackInterval = false;
+                            countAttackInterval = 0;
+
+                        }
+
+                    }
+
+
+                    // æ”»æ’ƒã®æŒç¶š
+                    if (attackActive)
+                    {
+                        countAttackActive++;
+
+                        if (countAttackActive > attackActiveFrame)
+                        {
+                            countAttackActive = 0;
+
+                            attackActive = false;
+
+                            agent.isStopped = false;
+                        }
+                    }
+
+
                 }
 
-
             }
-
-        }
-        else
-        {
-            agent.isStopped = true;
-
-            stunCount++;
-
-            // ƒXƒ^ƒ“ŠÔ•ª~‚Ü‚Á‚½‚ç
-            if (stunCount > stunFrame)
+            else
             {
-                agent.isStopped = false;
+                agent.isStopped = true;
 
-                stunCount = 0;
-                IsStun = false;
+                stunCount++;
+
+                // ã‚¹ã‚¿ãƒ³æ™‚é–“åˆ†æ­¢ã¾ã£ãŸã‚‰
+                if (stunCount > stunFrame)
+                {
+                    agent.isStopped = false;
+
+                    stunCount = 0;
+                    IsStun = false;
+                }
+
             }
 
+
+            // æ­»äº¡å‡¦ç†
+            Dead();
+
         }
-
-        // €–Sˆ—
-        Dead();
-
     }
 
 
@@ -177,7 +187,7 @@ public class RangeEnemy : DefaultEnemyScript
     {
         agent.speed = 0.0f;
 
-        // ‹ŠE‚ÉƒvƒŒƒCƒ„[‚ª‚¢‚½‚çs“®
+        // ï¿½ï½½ï¿½ï½½ï¿½ï½½Eï¿½ï½½ï¾‰ãƒ—ï¿½ï½½ï¿½ï½½ï¿½ï½½Cï¿½ï½½ï¿½ï½½ï¿½ï½½[ï¿½ï½½ï¿½ï½½ï¿½ï½½ï¿½ï½½ï¿½ï½½ï¿½ï½½ï¿½ï½½ï¿½ï½½sï¿½ï½½ï¿½ï½½
         if(MoveWithinSight())
         {
             Vector3 lookVector = playerObject.transform.position - transform.position;
