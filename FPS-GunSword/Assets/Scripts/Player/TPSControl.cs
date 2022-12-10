@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BayonetMove : MonoBehaviour
+public class TPSControl : MonoBehaviour
 {
-    public static BayonetMove instance;
+    public static TPSControl instance;
 
-    [SerializeField]public new GameObject camera;
     public void Awake()
     {
         if (instance == null)
@@ -23,12 +22,9 @@ public class BayonetMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.localRotation = camera.transform.localRotation;
+        
+    }
 
-    }
-    void FixedUpdate()
-    {
-    }
     public void SetActivity(bool activity)
     {
         this.gameObject.SetActive(activity);
