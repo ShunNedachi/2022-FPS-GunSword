@@ -112,8 +112,9 @@ public class RangeEnemy : DefaultEnemyScript
                                 transform.position.y + bulletFixedPosY, transform.position.z);
 
                         fixedPos += transform.forward.normalized;
-                        Instantiate(bullet, fixedPos, transform.rotation);
-
+                        var tempObj = Instantiate(bullet, fixedPos, transform.rotation);
+                        tempObj.GetComponent<RangeEnemyBulletScript>().targetV =
+                            playerObject.transform.position - transform.position;
                     }
                 }
 
