@@ -34,18 +34,17 @@ public class PlayerExcaliburScript : MonoBehaviour
     public void Update()
     {
         attackTimer++;
-        if(PlayerULTScript.instance.GetAction() == false)
-        {
+
             if(Input.GetMouseButton(0) && attackTimer > attackInterval )
             {
                 action = true;
                 PlayerEnergyScript.instance.EnemyConsumptionSlash();
                 attackTimer = 0;
                 // プレイヤーの少し前に生成する
-                Vector3 createPos = transform.position + camera.transform.forward * Excalibur.GetComponent<Renderer>().bounds.size.z / 2.0f;
-                Instantiate(Excalibur, createPos, camera.transform.rotation);
+                Vector3 createPos = transform.position + camera.transform.forward * attackDictance;
+                Instantiate(Excalibur, createPos, transform.rotation);
+                PlayerDefaultMove.instance.SetMove(false);
             }
-        }
     }
     public bool GetAction()
     {
