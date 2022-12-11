@@ -57,11 +57,11 @@ GameObject:
   - component: {fileID: 1126454163618052281}
   - component: {fileID: 1142182726466839811}
   - component: {fileID: 1151853115279325443}
+  - component: {fileID: -2981442736710391576}
   - component: {fileID: 1130035716637254039}
-  - component: {fileID: 5645857477225053782}
   m_Layer: 0
   m_Name: Core2
-  m_TagString: Untagged
+  m_TagString: Core
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -74,7 +74,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129021956802673757}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1582.8822, y: 598.1596, z: -2266.252}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -134,23 +134,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1130035716637254039
-MonoBehaviour:
+--- !u!65 &-2981442736710391576
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129021956802673757}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c27dfb1685682e478b3e715a6753eea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 100
-  meleeDamage: 100
-  rangeDagame: 10
-  keyNum: 0
---- !u!114 &5645857477225053782
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 2.4000006, z: 1.5}
+  m_Center: {x: 0, y: 1.2, z: 0}
+--- !u!114 &1130035716637254039
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
