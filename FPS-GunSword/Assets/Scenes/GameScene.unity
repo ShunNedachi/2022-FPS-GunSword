@@ -26008,7 +26008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackInterval: 50
-  attackDictance: 5
+  attackDictance: 2
   camera: {fileID: 1755245806}
   Excalibur: {fileID: 1911312624914565202, guid: 9b360851bcf0cd24cbac61bb0b06a485, type: 3}
 --- !u!114 &550974445
