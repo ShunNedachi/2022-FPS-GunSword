@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RangeEnemy : DefaultEnemyScript
 {
-    // s“®ƒpƒ^[ƒ“Ø‚è‘Ö‚¦—p
+    // ï¿½ï½½sï¿½ï½½ï¿½ï½½ï¿½ï½½pï¿½ï½½^ï¿½ï½½[ï¿½ï½½ï¿½ï½½ï¿½ï½½ï¾˜ã‚‘ï½¿ï½½ï¾–ã‚‘ï½¿ï½½ï¿½ï½½p
     [SerializeField] bool patern1 = true;
 
     [SerializeField] private float walkDistance = 100.0f;
@@ -11,7 +11,7 @@ public class RangeEnemy : DefaultEnemyScript
     [SerializeField] private int attackIntervalFrame = 300;
     [SerializeField] private int attackActiveFrame = 1;
 
-    // ’e—p‚ÌƒIƒuƒWƒFƒNƒg
+    // ï¿½ï½½eï¿½ï½½pï¿½ï½½ï¾Œã‚ªï¿½ï½½uï¿½ï½½Wï¿½ï½½Fï¿½ï½½Nï¿½ï½½g
     [SerializeField] private GameObject bullet;
     [SerializeField] private float bulletFixedPosY = 1.0f;
 
@@ -35,18 +35,20 @@ public class RangeEnemy : DefaultEnemyScript
     // Update is called once per frame
     void Update()
     {
+
         if(!option.IsOption)
         {
             if (!IsStun)
             {
                 if (!patern1)
                 {
-                    // “ñ‚Â–Ú‚Ìƒpƒ^[ƒ“‚Ìs“®
+
+                    // äºŒã¤ç›®ã®ãƒ‘ã‚¿ãƒ¼ãƒ³ã®è¡Œå‹•
                     Patern2Move();
                 }
                 else
                 {
-                    // ‹ŠE“à‚Éplayer‚ª‚¢‚È‚¯‚ê‚Îƒ}[ƒJ[‚É‰ˆ‚Á‚ÄˆÚ“®
+                    // è¦–ç•Œå†…ã«playerãŒã„ãªã‘ã‚Œã°ãƒãƒ¼ã‚«ãƒ¼ã«æ²¿ã£ã¦ç§»å‹•
                     if (!MoveWithinSight())
                     {
                         MoveRandom();
@@ -55,19 +57,20 @@ public class RangeEnemy : DefaultEnemyScript
                     }
                     else
                     {
-                        // ‹ŠE‚É“ü‚Á‚½‚çplayer‚ÌˆÊ’u‚ğ’Ç‚¢‚©‚¯‚é Œã‚ÅUŒ‚‚ÍXV‚µ‚È‚¢‚æ‚¤‚ÉC³
+                        // è¦–ç•Œã«å…¥ã£ãŸã‚‰playerã®ä½ç½®ã‚’è¿½ã„ã‹ã‘ã‚‹ å¾Œã§æ”»æ’ƒæ™‚ã¯æ›´æ–°ã—ãªã„ã‚ˆã†ã«ä¿®æ­£
                         if (!isAttack)
                         {
                             agent.SetDestination(playerObject.transform.position);
                         }
 
-                        // ˆê’è‹——£ˆÈã‹ß‚¯‚ê‚Î•à‚­
+                        // ä¸€å®šè·é›¢ä»¥ä¸Šè¿‘ã‘ã‚Œã°æ­©ã
                         var distanceToPlayer = Vector3.Distance(playerObject.transform.position, transform.position);
                         if (distanceToPlayer <= walkDistance)
                         {
                             isWalk = true;
 
-                            // UŒ‚‚Å‚«‚éˆÊ’u‚Ü‚Å‹ß‚Ã‚¢‚½‚çUŒ‚s“®ŠJn
+
+                            // æ”»æ’ƒã§ãã‚‹ä½ç½®ã¾ã§è¿‘ã¥ã„ãŸã‚‰æ”»æ’ƒè¡Œå‹•é–‹å§‹
                             if (distanceToPlayer <= attackStartDistance && !isAttackInterval)
                             {
                                 isAttack = true;
@@ -91,16 +94,17 @@ public class RangeEnemy : DefaultEnemyScript
                         agent.speed = runSpeed;
                     }
 
-                    // UŒ‚‘O‚Ì—\”õ“®ì
+                    // æ”»æ’ƒå‰ã®äºˆå‚™å‹•ä½œ
                     if (isAttack)
                     {
-                        // Šî‘bs“®‚ğ~‚ß‚é
+                        // åŸºç¤è¡Œå‹•ã‚’æ­¢ã‚ã‚‹
                         agent.isStopped = true;
                         agent.SetDestination(transform.position);
 
 
                         countAttack++;
-                        // UŒ‚‚Ì”­Ë
+
+                        // æ”»æ’ƒã®ç™ºå°„
                         if (countAttack > attackFrame)
                         {
                             isAttack = false;
@@ -109,7 +113,7 @@ public class RangeEnemy : DefaultEnemyScript
 
                             attackActive = true;
 
-                            // ’e‚ÌƒIƒuƒWƒFƒNƒg¶¬ ¶¬ˆÊ’u‚ğƒvƒŒƒCƒ„[‚Ì­‚µ‘O‚É‚·‚é
+                            // å¼¾ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”Ÿæˆ ç”Ÿæˆä½ç½®ã‚’ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å°‘ã—å‰ã«ã™ã‚‹
                             var fixedPos = new Vector3(transform.position.x,
                                     transform.position.y + bulletFixedPosY, transform.position.z);
 
@@ -120,7 +124,7 @@ public class RangeEnemy : DefaultEnemyScript
                         }
                     }
 
-                    // UŒ‚‚Ìd’¼’†
+                    // æ”»æ’ƒã®ç¡¬ç›´ä¸­
                     if (isAttackInterval)
                     {
                         countAttackInterval++;
@@ -134,7 +138,8 @@ public class RangeEnemy : DefaultEnemyScript
 
                     }
 
-                    // UŒ‚‚Ì‘±
+
+                    // æ”»æ’ƒã®æŒç¶š
                     if (attackActive)
                     {
                         countAttackActive++;
@@ -159,7 +164,7 @@ public class RangeEnemy : DefaultEnemyScript
 
                 stunCount++;
 
-                // ƒXƒ^ƒ“ŠÔ•ª~‚Ü‚Á‚½‚ç
+                // ã‚¹ã‚¿ãƒ³æ™‚é–“åˆ†æ­¢ã¾ã£ãŸã‚‰
                 if (stunCount > stunFrame)
                 {
                     agent.isStopped = false;
@@ -170,7 +175,8 @@ public class RangeEnemy : DefaultEnemyScript
 
             }
 
-            // €–Sˆ—
+
+            // æ­»äº¡å‡¦ç†
             Dead();
 
         }
@@ -181,7 +187,7 @@ public class RangeEnemy : DefaultEnemyScript
     {
         agent.speed = 0.0f;
 
-        // ‹ŠE‚ÉƒvƒŒƒCƒ„[‚ª‚¢‚½‚çs“®
+        // ï¿½ï½½ï¿½ï½½ï¿½ï½½Eï¿½ï½½ï¾‰ãƒ—ï¿½ï½½ï¿½ï½½ï¿½ï½½Cï¿½ï½½ï¿½ï½½ï¿½ï½½[ï¿½ï½½ï¿½ï½½ï¿½ï½½ï¿½ï½½ï¿½ï½½ï¿½ï½½ï¿½ï½½ï¿½ï½½sï¿½ï½½ï¿½ï½½
         if(MoveWithinSight())
         {
             Vector3 lookVector = playerObject.transform.position - transform.position;
