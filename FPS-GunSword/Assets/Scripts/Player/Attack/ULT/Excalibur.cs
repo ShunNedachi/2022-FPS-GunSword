@@ -6,20 +6,26 @@ public class Excalibur : MonoBehaviour
 {
     [SerializeField] private float damage = 25.0f;
     [SerializeField] private float destroyTimer = 0;
-    [SerializeField] private float DestroyInterval = 10.0f;
+    [SerializeField] private float DestroyInterval = 100.0f;
+    [SerializeField] private float speed = 0.01f;
 
     private bool hit = false;
+    private Rigidbody rigidBody;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rigidBody = GetComponent<Rigidbody>();
+
+        // �e�̈ړ��p
+        rigidBody.velocity = transform.forward * speed;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = PlayerSlashScript.instance.GetAttackPos();
 
         if(destroyTimer>DestroyInterval)
         {
@@ -27,6 +33,7 @@ public class Excalibur : MonoBehaviour
             {
                 PlayerSlashScript.instance.ComboReset();
             }
+            PlayerDefaultMove.instance.SetMove(true);
             Destroy(this.gameObject);
         }
         destroyTimer++;

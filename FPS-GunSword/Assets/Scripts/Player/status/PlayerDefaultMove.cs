@@ -22,6 +22,7 @@ public class PlayerDefaultMove : MonoBehaviour
     float defaultY;
     float moveX;
     float moveZ;
+    bool isMove = true;
     //Rigidbody rb;
     CharacterController controller;
 
@@ -51,46 +52,49 @@ public class PlayerDefaultMove : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if(dashMode == false && recastTimer > recastInterval)
+        if(isMove)
         {
-            if(Input.GetKeyDown(KeyCode.LeftShift) && PlayerStaminaScript.instance.GetStamina() > dashEnergy)
+            if(dashMode == false && recastTimer > recastInterval)
             {
-                vertical = Input.GetAxis("Vertical");
-                horizontal = Input.GetAxis("Horizontal");
-                dashMode = true;
-                PlayerStaminaScript.instance.Dash();
-                audioSource.PlayOneShot(sound);
+                if(Input.GetKeyDown(KeyCode.LeftShift) && PlayerStaminaScript.instance.GetStamina() > dashEnergy)
+                {
+                    vertical = Input.GetAxis("Vertical");
+                    horizontal = Input.GetAxis("Horizontal");
+                    dashMode = true;
+                    PlayerStaminaScript.instance.Dash();
+                    audioSource.PlayOneShot(sound);
 
+                }
             }
-        }
-        Transform trans = transform;
-        transform.position = trans.position;
+            Transform trans = transform;
+            transform.position = trans.position;
 
-        if(dashMode)
-        {
-            moveX = vertical * dashSpeed;
-            moveZ = horizontal * dashSpeed;
-            Vector3 direction = new Vector3(moveX,0,moveZ);
-            controller.SimpleMove (direction);
-            dashTimer++;
-
-            if(dashTimer>dashInterval)
+            if(dashMode)
             {
-                dashMode = false;
-                dashTimer = 0;
+                moveX = vertical * dashSpeed;
+                moveZ = horizontal * dashSpeed;
+                Vector3 direction = new Vector3(moveX,0,moveZ);
+                controller.SimpleMove (direction);
+                dashTimer++;
+
+                if(dashTimer>dashInterval)
+                {
+                    dashMode = false;
+                    dashTimer = 0;
+                }
             }
-        }
-        else
-        {
-            moveX = Input.GetAxisRaw("Vertical") * moveSpeed;
-            moveZ = Input.GetAxisRaw("Horizontal") * moveSpeed;
-            Vector3 direction = new Vector3(moveX,0,moveZ);
-            controller.SimpleMove(direction);
-
-            recastTimer++;
-            if(recastTimer>recastInterval)
+            else
             {
-                PlayerStaminaScript.instance.Recharge();
+                moveX = Input.GetAxisRaw("Vertical") * moveSpeed;
+                moveZ = Input.GetAxisRaw("Horizontal") * moveSpeed;
+                Vector3 direction = new Vector3(moveX,0,moveZ);
+                controller.SimpleMove(direction);
+
+                recastTimer++;
+                if(recastTimer>recastInterval)
+                {
+                    PlayerStaminaScript.instance.Recharge();
+                }
             }
         }
     }
@@ -105,5 +109,14 @@ public class PlayerDefaultMove : MonoBehaviour
             return dashSpeed;
         }
         return moveSpeed;
+    }
+
+    public void SetMove(bool chack)
+    {
+        isMove = chack;
+    }
+    public bool GetIsMove()
+    {
+        return isMove;
     }
 }
