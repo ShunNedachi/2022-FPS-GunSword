@@ -16,8 +16,6 @@ public class PlayerAttackScript : MonoBehaviour
     {
     }
 
-    //chack
-
     // Update is called once per frame
     void Update()
     {
@@ -29,7 +27,8 @@ public class PlayerAttackScript : MonoBehaviour
         {
             // プレイヤーの少し前に生成する
             Vector3 createPos = transform.position + camera.transform.forward * forwardPlusValue;
-            
+
+
             // 弾の生成
             Instantiate(bullet, createPos, camera.transform.rotation);
 
