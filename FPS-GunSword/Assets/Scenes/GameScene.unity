@@ -11048,6 +11048,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -721029506792565507, guid: 22c79a5c337c28043904a681292100b9, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 550974426}
     - target: {fileID: 3499874771084483777, guid: 22c79a5c337c28043904a681292100b9, type: 3}
       propertyPath: m_Name
       value: SavePoint
@@ -25903,6 +25907,7 @@ MonoBehaviour:
   deformationInterval: 30
   canvas: {fileID: 1429948977}
   ULTStart: {fileID: 8300000, guid: d54964b6fe3aae5488a63af3b6e5b1b9, type: 3}
+  ULT: 0
   gaugeWeaponImage: {fileID: 1773234025}
   gaugeWeaponSprite:
   - {fileID: 21300000, guid: 5d11fe94418d62d478f766e3fd833282, type: 3}

@@ -8,10 +8,17 @@ public class ClearScene : MonoBehaviour
     // Start is called before the first frame update
     float clearTime;
     public Text TextFlame;
+    public Image clearImage;
+    public Sprite clearSprite;
+    public Image nextImage;
+    public Sprite nextSprite;
     void Start()
     {
+        clearImage.sprite = clearSprite;
+        nextImage.sprite = nextSprite;
         clearTime = GameScene.clearTime;
         Invoke("ChangeScene", 1.5f);
+
 
     }
 
