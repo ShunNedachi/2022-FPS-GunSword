@@ -43,7 +43,8 @@ public class GameScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         if (onlyOnce)
         {
             coreMaxCount[0] = CoreScript.coreCount0;
@@ -114,9 +115,9 @@ public class GameScene : MonoBehaviour
             GameClear();
         }
 
-        if(playerHealth<=0||graceTime<graceTimeCounter)
+        if(PlayerHPScript.instance.GethP()<0||graceTime<graceTimeCounter)
         {
-           //GameOver();
+           GameOver();
         }
     }
 

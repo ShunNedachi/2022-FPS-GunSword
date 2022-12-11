@@ -17,18 +17,18 @@ public class ClearScene : MonoBehaviour
         clearImage.sprite = clearSprite;
         nextImage.sprite = nextSprite;
         clearTime = GameScene.clearTime;
-        Invoke("ChangeScene", 1.5f);
-
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
         TextFlame.text = string.Format("{0:###.#}", clearTime);
     }
 
-    void ChangeScene()
+    public void ChangeScene()
     {
         SceneManager.LoadScene("TitleScene");
     }
