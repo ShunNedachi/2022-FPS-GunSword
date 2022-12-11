@@ -37,8 +37,6 @@ public class PlayerULTScript : MonoBehaviour
     public void Update()
     {
         attackTimer++;
-        if(PlayerExcaliburScript.instance.GetAction() == false)
-        {
             if(Input.GetMouseButton(1) && attackTimer > attackInterval )
             {
                 action =  true;
@@ -46,10 +44,9 @@ public class PlayerULTScript : MonoBehaviour
                 attackTimer = 0;
                 // プレイヤーの少し前に生成する
                 Vector3 createPos = transform.position + camera.transform.forward * attackDictance;
-                Instantiate(ULTAttackRange, createPos, camera.transform.rotation);
+                Instantiate(ULTAttackRange, createPos, transform.rotation);
                 audioSource.PlayOneShot(sound);
             }
-        }
     }
     public Vector3 GetAttackPos()
     {
