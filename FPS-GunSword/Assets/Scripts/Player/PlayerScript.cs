@@ -12,7 +12,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] public AudioClip ULTStart;
 
 
-    private bool ULT = false;
+    public bool ULT = false;
     private int deformationTimer = 0;
     public Image gaugeWeaponImage;
     public Sprite[] gaugeWeaponSprite;
