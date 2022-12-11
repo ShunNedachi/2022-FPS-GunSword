@@ -58,7 +58,6 @@ GameObject:
   - component: {fileID: 1142182726466839811}
   - component: {fileID: 1151853115279325443}
   - component: {fileID: 1130035716637254039}
-  - component: {fileID: 5645857477225053782}
   m_Layer: 0
   m_Name: Core2
   m_TagString: Untagged
@@ -135,22 +134,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1130035716637254039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1129021956802673757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c27dfb1685682e478b3e715a6753eea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 100
-  meleeDamage: 100
-  rangeDagame: 10
-  keyNum: 0
---- !u!114 &5645857477225053782
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
