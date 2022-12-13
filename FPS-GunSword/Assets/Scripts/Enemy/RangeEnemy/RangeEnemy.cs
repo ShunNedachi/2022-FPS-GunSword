@@ -29,7 +29,7 @@ public class RangeEnemy : DefaultEnemyScript
     void Start()
     {
         InitializeEnemy();
-
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
