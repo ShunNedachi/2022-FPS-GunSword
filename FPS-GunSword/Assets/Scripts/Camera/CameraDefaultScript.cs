@@ -24,30 +24,36 @@ public class CameraDefaultScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float xRot = Input.GetAxis("Mouse X") * sensitivity;
-        float yRot = Input.GetAxis("Mouse Y") * sensitivity;
+        if(PlayerDefaultMove.instance.GetIsMove())
+        {
+            float xRot = Input.GetAxis("Mouse X") * sensitivity;
+            float yRot = Input.GetAxis("Mouse Y") * sensitivity;
 
-        cameraRot *= Quaternion.Euler(-yRot, 0, 0);
-        characterRot *= Quaternion.Euler(0,xRot, 0);
+            cameraRot *= Quaternion.Euler(-yRot, 0, 0);
+            characterRot *= Quaternion.Euler(0,xRot, 0);
 
-        cameraRot = ClampRotation(cameraRot);
+            cameraRot = ClampRotation(cameraRot);
 
-        camera.transform.localRotation = cameraRot;
-        transform.localRotation = characterRot;
+            camera.transform.localRotation = cameraRot;
+            transform.localRotation = characterRot;
 
-        UpdateCursorLock();
+            UpdateCursorLock();
+        }
     }
 
     private void FixedUpdate()
     {
-        x = 0;
-        z = 0;
+        if(PlayerDefaultMove.instance.GetIsMove())
+        {
+            x = 0;
+            z = 0;
 
-        x = Input.GetAxisRaw("Horizontal") * sensitivity;
-        z = Input.GetAxisRaw("Vertical") * sensitivity;
+            x = Input.GetAxisRaw("Horizontal") * sensitivity;
+            z = Input.GetAxisRaw("Vertical") * sensitivity;
 
-        transform.position += camera.transform.forward * z + camera.transform.right * x;
-        transform.position = new Vector3(transform.position.x,3.08f,transform.position.z);
+            transform.position += camera.transform.forward * z + camera.transform.right * x;
+            transform.position = new Vector3(transform.position.x,3.08f,transform.position.z);
+        }
     }
 
     // �J�[�\���\���p(�N���b�N�Ŕ�\���@ESC�ŕ\��)
