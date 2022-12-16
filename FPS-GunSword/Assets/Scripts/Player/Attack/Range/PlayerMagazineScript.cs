@@ -47,9 +47,10 @@ public class PlayerMagazineScript : MonoBehaviour
     }
     public void Draw()
     {
-        TextFrame.text = string.Format("{0}/6", remainingBullets);
+        
         if (PlayerScript.instance.ULT)
         {
+            TextFrame.text = string.Format("");
             MagazineImage.sprite = Magazine[7];
         }
         else
