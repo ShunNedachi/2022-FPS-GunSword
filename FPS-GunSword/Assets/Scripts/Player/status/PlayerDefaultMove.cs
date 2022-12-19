@@ -11,7 +11,7 @@ public class PlayerDefaultMove : MonoBehaviour
     [SerializeField] public int recastInterval = 180;
     [SerializeField] public int dashInterval = 60;
     [SerializeField] public AudioClip sound;
-    [SerializeField]public new GameObject camera;
+
     
     private int recastTimer = 0;
     private int dashTimer = 0;
@@ -58,6 +58,8 @@ public class PlayerDefaultMove : MonoBehaviour
             {
                 if(Input.GetKeyDown(KeyCode.LeftShift) && PlayerStaminaScript.instance.GetStamina() > dashEnergy)
                 {
+                    vertical = Input.GetAxis("Vertical");
+                    horizontal = Input.GetAxis("Horizontal");
                     dashMode = true;
                     PlayerStaminaScript.instance.Dash();
                     audioSource.PlayOneShot(sound);
@@ -69,9 +71,9 @@ public class PlayerDefaultMove : MonoBehaviour
 
             if(dashMode)
             {
-                moveX = Input.GetAxisRaw("Vertical") * dashSpeed;
-                moveZ = Input.GetAxisRaw("Horizontal") * dashSpeed;
-                Vector3 direction = camera.transform.forward * moveX + camera.transform.right * moveZ;
+                moveX = vertical * dashSpeed;
+                moveZ = horizontal * dashSpeed;
+                Vector3 direction = new Vector3(moveX,0,moveZ);
                 controller.SimpleMove (direction);
                 dashTimer++;
 
@@ -85,7 +87,7 @@ public class PlayerDefaultMove : MonoBehaviour
             {
                 moveX = Input.GetAxisRaw("Vertical") * moveSpeed;
                 moveZ = Input.GetAxisRaw("Horizontal") * moveSpeed;
-                Vector3 direction = camera.transform.forward * moveX + camera.transform.right * moveZ;
+                Vector3 direction = new Vector3(moveX,0,moveZ);
                 controller.SimpleMove(direction);
 
                 recastTimer++;

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CameraDefaultScript : MonoBehaviour
 {
-    public static CameraDefaultScript instance;
-
     [SerializeField]public float sensitivity = 0.1f;
     [SerializeField]public new GameObject camera;
 
@@ -16,25 +14,17 @@ public class CameraDefaultScript : MonoBehaviour
     // �p�x�̐����p
     private float minX = -30.0f, maxX = 15.0f;
     float x,z;
-    public void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
-
     // Start is called before the first frame update
-    public void Start()
+    void Start()
     {
         cameraRot = camera.transform.localRotation;
         characterRot = transform.localRotation;
     }
 
     // Update is called once per frame
-    public void Update()
+    void Update()
     {
-        //if(PlayerDefaultMove.instance.GetIsMove())
+        if(PlayerDefaultMove.instance.GetIsMove())
         {
             float xRot = Input.GetAxis("Mouse X") * sensitivity;
             float yRot = Input.GetAxis("Mouse Y") * sensitivity;
@@ -51,19 +41,19 @@ public class CameraDefaultScript : MonoBehaviour
         }
     }
 
-    public void FixedUpdate()
+    private void FixedUpdate()
     {
-        // if(PlayerDefaultMove.instance.GetIsMove())
-        // {
-        //     x = 0;
-        //     z = 0;
+        if(PlayerDefaultMove.instance.GetIsMove())
+        {
+            x = 0;
+            z = 0;
 
-        //     x = Input.GetAxisRaw("Horizontal") * sensitivity;
-        //     z = Input.GetAxisRaw("Vertical") * sensitivity;
+            x = Input.GetAxisRaw("Horizontal") * sensitivity;
+            z = Input.GetAxisRaw("Vertical") * sensitivity;
 
-        //     transform.position += transform.forward * z + transform.right * x;
-        //     transform.position = new Vector3(transform.position.x,3.08f,transform.position.z);
-        // }
+            transform.position += camera.transform.forward * z + camera.transform.right * x;
+            transform.position = new Vector3(transform.position.x,3.08f,transform.position.z);
+        }
     }
 
     // �J�[�\���\���p(�N���b�N�Ŕ�\���@ESC�ŕ\��)
