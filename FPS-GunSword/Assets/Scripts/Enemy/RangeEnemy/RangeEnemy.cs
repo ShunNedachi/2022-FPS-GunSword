@@ -24,12 +24,13 @@ public class RangeEnemy : DefaultEnemyScript
 
     private bool attackActive = false;
 
+    private bool initStun = false;
 
     // Start is called before the first frame update
     void Start()
     {
         InitializeEnemy();
-        audio = GetComponent<AudioSource>();
+
     }
 
     // Update is called once per frame
@@ -160,6 +161,26 @@ public class RangeEnemy : DefaultEnemyScript
             }
             else
             {
+                if(!initStun)
+                {
+                    var fixedPosition =
+                              new Vector3(transform.position.x, instanceObjectFixedPosY, transform.position.z);
+
+                    var playerV = playerObject.transform.position - transform.position;
+
+
+                    // particle Create
+                    var tempParticle = Instantiate(stunParticle, fixedPosition, transform.rotation);
+                    tempParticle.transform.rotation.SetLookRotation(playerV);
+
+                    var particleSystem = tempParticle.GetComponentsInChildren<ParticleSystem>();
+                    for (int i = 0; i < particleSystem.Length; i++)
+                    {
+                        particleSystem[i].Play();
+                    }
+
+                    initStun = true;
+                }
                 agent.isStopped = true;
 
                 stunCount++;
@@ -171,10 +192,11 @@ public class RangeEnemy : DefaultEnemyScript
 
                     stunCount = 0;
                     IsStun = false;
+
+                    initStun = false;
                 }
 
             }
-
 
             // 死亡処理
             Dead();
