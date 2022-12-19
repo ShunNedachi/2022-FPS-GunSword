@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
+    public static AnimationController instance;
+
     public enum State
     {
         Idle,
@@ -18,6 +20,14 @@ public class AnimationController : MonoBehaviour
     [SerializeField] State animationstate;
 
     private Animator animator;
+
+    public void Awake()
+    {
+        if(instance ==null)
+        {
+            instance = this;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
