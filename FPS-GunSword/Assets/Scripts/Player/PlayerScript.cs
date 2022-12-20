@@ -33,6 +33,7 @@ public class PlayerScript : MonoBehaviour
         PlayerDefaultMove.instance.Start();
         PlayerHPScript.instance.Start();
         ULTController.instance.Start();
+        CameraDefaultScript.instance.Start();
         audioSource = GetComponent<AudioSource>();
 
     }
@@ -43,6 +44,8 @@ public class PlayerScript : MonoBehaviour
         PlayerEnergyScript.instance.Update();
         PlayerStaminaScript.instance.Update();
         PlayerMagazineScript.instance.Update();
+        PlayerDefaultMove.instance.Update();
+        CameraDefaultScript.instance.Update();
 
         if(Input.GetKeyDown(KeyCode.F) && PlayerEnergyScript.instance.GetULTchack() && ULT == false)
         {
@@ -54,7 +57,6 @@ public class PlayerScript : MonoBehaviour
             TPSControl.instance.SetActivity(true);
 
         }
-        PlayerDefaultMove.instance.Update();
 
         if(ULT)
         {
