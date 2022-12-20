@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -25883,8 +25883,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca52e7235fa25e24b9b31124732400a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 50
-  dashSpeed: 200
+  moveSpeed: 0.01
+  dashSpeed: 0.5
   recastInterval: 180
   dashInterval: 20
   sound: {fileID: 8300000, guid: ed8082d29fb802e4fbcfeec33f2bc6ab, type: 3}
@@ -25984,7 +25984,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   magazineMax: 6
-  remainingBullets: 0
   MagazineImage: {fileID: 1715573299}
   Magazine:
   - {fileID: 21300000, guid: e2916163b1238bf4fb2f4f4c4972e7df, type: 3}

@@ -23,7 +23,7 @@ public class BayonetMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localRotation = camera.transform.localRotation;
+        this.transform.localRotation = camera.transform.localRotation;
 
     }
     void FixedUpdate()
@@ -31,6 +31,6 @@ public class BayonetMove : MonoBehaviour
     }
     public void SetActivity(bool activity)
     {
-        gameObject.SetActive(activity);
+        this.gameObject.SetActive(activity);
     }
 }

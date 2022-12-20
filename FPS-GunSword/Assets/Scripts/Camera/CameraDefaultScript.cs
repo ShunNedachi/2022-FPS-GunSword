@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CameraDefaultScript : MonoBehaviour
 {
-    public static CameraDefaultScript instance;
-
     [SerializeField]public float sensitivity = 0.1f;
     [SerializeField]public new GameObject camera;
 
@@ -16,24 +14,15 @@ public class CameraDefaultScript : MonoBehaviour
     // �p�x�̐����p
     private float minX = -30.0f, maxX = 15.0f;
     float x,z;
-    public void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-    }
-
-
     // Start is called before the first frame update
-    public void Start()
+    void Start()
     {
         cameraRot = camera.transform.localRotation;
         characterRot = transform.localRotation;
     }
 
     // Update is called once per frame
-    public void Update()
+    void Update()
     {
         if(PlayerDefaultMove.instance.GetIsMove())
         {
