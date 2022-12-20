@@ -69,7 +69,7 @@
     <splitMeshNoShadowCastingFlag>1</splitMeshNoShadowCastingFlag>
     <sameVertexLength>0</sameVertexLength>
     <edgeStretchEnabled>0</edgeStretchEnabled>
-    <sameVertexLengthEdgeStretch>0.0010000000474974513</sameVertexLengthEdgeStretch>
+    <sameVertexLengthEdgeStretch>0.001</sameVertexLengthEdgeStretch>
     <rotationOrderToZXY>1</rotationOrderToZXY>
     <enableFBXTexture>0</enableFBXTexture>
     <exportFBXFormat />
@@ -140,18 +140,22 @@
     <vertexScaleByHeightFlag>false</vertexScaleByHeightFlag>
     <vertexScaleByHeight>158</vertexScaleByHeight>
     <waitProcessExitting>false</waitProcessExitting>
-    <pmxAssetPath>Assets/player/syujinko/syujinko.pmx</pmxAssetPath>
+    <pmxAssetPath>Assets/Player_Model/syujinko/syujinko.pmx</pmxAssetPath>
     <vmdAssetPathList>
-      <string>Assets/sentomotions/taiki.vmd</string>
-      <string>Assets/sentomotions/forwordrun.vmd</string>
-      <string>Assets/sentomotions/backrun.vmd</string>
-      <string>Assets/sentomotions/rightrun.vmd</string>
-      <string>Assets/sentomotions/leftrun.vmd</string>
-      <string>Assets/sentomotions/upslash.vmd</string>
-      <string>Assets/sentomotions/downslash.vmd</string>
+      <string>Assets/Player_Model/sentomotions/taiki.vmd</string>
+      <string>Assets/Player_Model/sentomotions/backrun.vmd</string>
+      <string>Assets/Player_Model/sentomotions/forwordrun.vmd</string>
+      <string>Assets/Player_Model/sentomotions/rightrun.vmd</string>
+      <string>Assets/Player_Model/sentomotions/leftrun.vmd</string>
+      <string>Assets/Player_Model/sentomotions/downslash.vmd</string>
+      <string>Assets/Player_Model/sentomotions/upslash.vmd</string>
+      <string>Assets/Player_Model/sentomotions/Taiki_FPS.vmd</string>
+      <string>Assets/Player_Model/sentomotions/Reroad_FPS.vmd</string>
+      <string>Assets/Player_Model/sentomotions/Trans_FPS.vmd</string>
+      <string>Assets/Player_Model/sentomotions/HorizontalSlash_FPS.vmd</string>
+      <string>Assets/Player_Model/sentomotions/VirticalSlash_FPS.vmd</string>
     </vmdAssetPathList>
-    <fbxOutputPath>Assets/syujinko/syujinko.fbx</fbxOutputPath>
-    <fbxAssetPath>Assets/player/syujinko/syujinko.fbx</fbxAssetPath>
+    <fbxOutputPath>Assets/Player_Model/syujinko/syujinko.fbx</fbxOutputPath>
     <bulletPhysicsVersion>_275</bulletPhysicsVersion>
     <useWineFlag>false</useWineFlag>
     <wine>Manual</wine>
@@ -192,205 +196,5 @@
       <selfShadowEnabled>true</selfShadowEnabled>
       <sphereMapEnabled>true</sphereMapEnabled>
     </materialGlobalProperty>
-    <materialProperyList>
-      <MaterialProperty>
-        <materialName>0.Saphir_darksuits_v2</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Enabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>1.Saphir_darksuits_v2_parts</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Disabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>2.Dress018_shoe</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Enabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>3.underhair (Instance)</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Enabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>4.Hair_R013-HairR (Instance)</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Disabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>5.Hair_F013-HariF (Instance)</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Disabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>6.Face004_EyeL (Instance)</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Enabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>7.Face004_EyeR (Instance)</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Enabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>8.Face004_SkinHi (Instance)</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Enabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>9.Face004_mayu (Instance)</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Enabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>10.Face004_SkinAlpha (Instance)</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Enabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>11.Face004_skin (Instance)</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Enabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>12.Face004_Mouth (Instance)</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Disabled</transparencyCache>
-      </MaterialProperty>
-      <MaterialProperty>
-        <materialName>13.skin (Instance)</materialName>
-        <isVisible>true</isVisible>
-        <isLocked>false</isLocked>
-        <isUIFoldout>false</isUIFoldout>
-        <overrideToonTone>false</overrideToonTone>
-        <overrideShadowLum>false</overrideShadowLum>
-        <overrideTess>false</overrideTess>
-        <tessEnabled>false</tessEnabled>
-        <transparencyCache>Enabled</transparencyCache>
-      </MaterialProperty>
-    </materialProperyList>
-    <materialBlockPropertyList>
-      <MaterialBlockProperty>
-        <materialNames>
-          <string>0.Saphir_darksuits_v2</string>
-          <string>1.Saphir_darksuits_v2_parts</string>
-          <string>2.Dress018_shoe</string>
-          <string>3.underhair (Instance)</string>
-          <string>4.Hair_R013-HairR (Instance)</string>
-          <string>5.Hair_F013-HariF (Instance)</string>
-          <string>6.Face004_EyeL (Instance)</string>
-          <string>7.Face004_EyeR (Instance)</string>
-          <string>8.Face004_SkinHi (Instance)</string>
-          <string>9.Face004_mayu (Instance)</string>
-          <string>10.Face004_SkinAlpha (Instance)</string>
-          <string>11.Face004_skin (Instance)</string>
-          <string>12.Face004_Mouth (Instance)</string>
-          <string>13.skin (Instance)</string>
-        </materialNames>
-        <isUIFoldout>true</isUIFoldout>
-        <baseColor>
-          <r>1</r>
-          <g>1</g>
-          <b>1</b>
-          <a>1</a>
-        </baseColor>
-        <emissionColor>
-          <r>0</r>
-          <g>0</g>
-          <b>0</b>
-          <a>0</a>
-        </emissionColor>
-        <emissionPower>1</emissionPower>
-        <standardBRDF>Specular</standardBRDF>
-        <standardSpecularColor>
-          <r>0</r>
-          <g>0</g>
-          <b>0</b>
-          <a>0</a>
-        </standardSpecularColor>
-        <standardMetallicGlossiness>0</standardMetallicGlossiness>
-        <standardSpecularGlossiness>0</standardSpecularGlossiness>
-        <standardMetallic>0</standardMetallic>
-      </MaterialBlockProperty>
-    </materialBlockPropertyList>
   </mmd4MecanimProperty>
 </PMX2FBXConfig>
