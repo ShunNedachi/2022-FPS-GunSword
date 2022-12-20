@@ -4,35 +4,50 @@ ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: -1780934224045065380
-    second: FPS-GunSword/Assets/sentomotions/taiki_vmd
+      74: 5690563545643825861
+    second: FPS-GunSword/Assets/Player_Model/sentomotions/taiki_vmd
   - first:
-      74: 2722473903943723244
-    second: FPS-GunSword/Assets/sentomotions/forwordrun_vmd
+      74: 5010185653939935932
+    second: FPS-GunSword/Assets/Player_Model/sentomotions/backrun_vmd
   - first:
-      74: -8739730710739063759
-    second: FPS-GunSword/Assets/sentomotions/backrun_vmd
+      74: 7598515054227008032
+    second: FPS-GunSword/Assets/Player_Model/sentomotions/forwordrun_vmd
   - first:
-      74: -1964555538141235702
-    second: FPS-GunSword/Assets/sentomotions/rightrun_vmd
+      74: -2960972218842762021
+    second: FPS-GunSword/Assets/Player_Model/sentomotions/rightrun_vmd
   - first:
-      74: -3492550487037794344
-    second: FPS-GunSword/Assets/sentomotions/leftrun_vmd
+      74: 1990985694389372228
+    second: FPS-GunSword/Assets/Player_Model/sentomotions/leftrun_vmd
   - first:
-      74: -2329556707719340393
-    second: FPS-GunSword/Assets/sentomotions/upslash_vmd
+      74: 2066097166076262485
+    second: FPS-GunSword/Assets/Player_Model/sentomotions/downslash_vmd
   - first:
-      74: 2863140676183922082
-    second: FPS-GunSword/Assets/sentomotions/downslash_vmd
+      74: -6757820734011509800
+    second: FPS-GunSword/Assets/Player_Model/sentomotions/upslash_vmd
+  - first:
+      74: -2192568769523066377
+    second: FPS-GunSword/Assets/Player_Model/sentomotions/Taiki_FPS_vmd
+  - first:
+      74: 7321401398563200054
+    second: FPS-GunSword/Assets/Player_Model/sentomotions/Reroad_FPS_vmd
+  - first:
+      74: 5359413073383305455
+    second: FPS-GunSword/Assets/Player_Model/sentomotions/Trans_FPS_vmd
+  - first:
+      74: -7313717617434262493
+    second: FPS-GunSword/Assets/Player_Model/sentomotions/HorizontalSlash_FPS_vmd
+  - first:
+      74: -7856300783777403046
+    second: FPS-GunSword/Assets/Player_Model/sentomotions/VirticalSlash_FPS_vmd
   - first:
       74: -7352953027311863763
     second: taiki_vmd
   - first:
-      74: -7446668495284146528
-    second: forwordrun_vmd
-  - first:
       74: -4402452621807629434
     second: backrun_vmd
+  - first:
+      74: -7446668495284146528
+    second: forwordrun_vmd
   - first:
       74: -7359756305471609938
     second: rightrun_vmd
@@ -40,11 +55,26 @@ ModelImporter:
       74: 1893775286559695553
     second: leftrun_vmd
   - first:
+      74: -7182973775738569388
+    second: downslash_vmd
+  - first:
       74: 5300134772723856742
     second: upslash_vmd
   - first:
-      74: -7182973775738569388
-    second: downslash_vmd
+      74: 7846432214559675303
+    second: Taiki_FPS_vmd
+  - first:
+      74: -277969680902310100
+    second: Reroad_FPS_vmd
+  - first:
+      74: 8736733480021661117
+    second: Trans_FPS_vmd
+  - first:
+      74: -1658993510841086073
+    second: HorizontalSlash_FPS_vmd
+  - first:
+      74: -7213220177880566844
+    second: VirticalSlash_FPS_vmd
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -134,7 +164,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    importAnimatedCustomProperties: 1
+    importAnimatedCustomProperties: 0
     importConstraints: 0
     animationCompression: 3
     animationRotationError: 0.5
@@ -146,7 +176,7 @@ ModelImporter:
     clipAnimations:
     - serializedVersion: 16
       name: taiki_vmd
-      takeName: FPS-GunSword/Assets/sentomotions/taiki_vmd
+      takeName: FPS-GunSword/Assets/Player_Model/sentomotions/taiki_vmd
       internalID: 0
       firstFrame: 0
       lastFrame: 30
@@ -156,36 +186,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: forwordrun_vmd
-      takeName: FPS-GunSword/Assets/sentomotions/forwordrun_vmd
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 30
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -204,7 +205,7 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: backrun_vmd
-      takeName: FPS-GunSword/Assets/sentomotions/backrun_vmd
+      takeName: FPS-GunSword/Assets/Player_Model/sentomotions/backrun_vmd
       internalID: 0
       firstFrame: 0
       lastFrame: 30
@@ -214,7 +215,36 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: forwordrun_vmd
+      takeName: FPS-GunSword/Assets/Player_Model/sentomotions/forwordrun_vmd
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -233,7 +263,7 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: rightrun_vmd
-      takeName: FPS-GunSword/Assets/sentomotions/rightrun_vmd
+      takeName: FPS-GunSword/Assets/Player_Model/sentomotions/rightrun_vmd
       internalID: 0
       firstFrame: 0
       lastFrame: 30
@@ -243,7 +273,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -262,36 +292,7 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: leftrun_vmd
-      takeName: FPS-GunSword/Assets/sentomotions/leftrun_vmd
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 30
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: upslash_vmd
-      takeName: FPS-GunSword/Assets/sentomotions/upslash_vmd
+      takeName: FPS-GunSword/Assets/Player_Model/sentomotions/leftrun_vmd
       internalID: 0
       firstFrame: 0
       lastFrame: 30
@@ -320,7 +321,181 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: downslash_vmd
-      takeName: FPS-GunSword/Assets/sentomotions/downslash_vmd
+      takeName: FPS-GunSword/Assets/Player_Model/sentomotions/downslash_vmd
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: upslash_vmd
+      takeName: FPS-GunSword/Assets/Player_Model/sentomotions/upslash_vmd
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Taiki_FPS_vmd
+      takeName: FPS-GunSword/Assets/Player_Model/sentomotions/Taiki_FPS_vmd
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Reroad_FPS_vmd
+      takeName: FPS-GunSword/Assets/Player_Model/sentomotions/Reroad_FPS_vmd
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Trans_FPS_vmd
+      takeName: FPS-GunSword/Assets/Player_Model/sentomotions/Trans_FPS_vmd
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: HorizontalSlash_FPS_vmd
+      takeName: FPS-GunSword/Assets/Player_Model/sentomotions/HorizontalSlash_FPS_vmd
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: VirticalSlash_FPS_vmd
+      takeName: FPS-GunSword/Assets/Player_Model/sentomotions/VirticalSlash_FPS_vmd
       internalID: 0
       firstFrame: 0
       lastFrame: 30

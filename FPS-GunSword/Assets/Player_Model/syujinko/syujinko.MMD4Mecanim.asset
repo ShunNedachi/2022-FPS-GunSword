@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 1581226164, guid: 1eb6477d79ea83b4d81fd3ef090262dd, type: 3}
   m_Name: syujinko.MMD4Mecanim
   m_EditorClassIdentifier: 
-  fbxAsset: {fileID: 919132149155446097, guid: eec0aac0146b25e40ac4680ede712d18, type: 3}
-  fbxAssetPath: Assets/syujinko/syujinko.fbx
+  fbxAsset: {fileID: 0}
+  fbxAssetPath: 
   editorViewPage: 0
