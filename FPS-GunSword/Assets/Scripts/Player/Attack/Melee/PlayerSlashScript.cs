@@ -45,7 +45,7 @@ public class PlayerSlashScript : MonoBehaviour
             PlayerShotScript.instance.ModeChange();
             attackTimer = 0;
             // プレイヤーの少し前に生成する
-            Vector3 createPos = transform.position + camera.transform.forward * attackDictance;
+            Vector3 createPos = camera.transform.position + camera.transform.forward * attackDictance;
             Instantiate(AttackRange, createPos, camera.transform.rotation);
 
             audioSource.PlayOneShot(sword);
@@ -80,7 +80,7 @@ public class PlayerSlashScript : MonoBehaviour
     }
     public Vector3 GetAttackPos()
     {
-        Vector3 createPos = transform.position + camera.transform.forward * attackDictance;
+        Vector3 createPos = camera.transform.position + camera.transform.forward * attackDictance;
 
         return createPos;
     }

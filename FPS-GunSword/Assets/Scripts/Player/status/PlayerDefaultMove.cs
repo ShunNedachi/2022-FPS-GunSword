@@ -69,7 +69,8 @@ public class PlayerDefaultMove : MonoBehaviour
             {
                 moveX = Input.GetAxisRaw("Vertical") * dashSpeed;
                 moveZ = Input.GetAxisRaw("Horizontal") * dashSpeed;
-                Vector3 direction = camera.transform.forward * moveX + camera.transform.right * moveZ;                controller.SimpleMove (direction);
+                Vector3 direction = camera.transform.forward * moveX + camera.transform.right * moveZ;                
+                controller.SimpleMove (direction);
                 dashTimer++;
 
                 if(dashTimer>dashInterval)
@@ -82,14 +83,15 @@ public class PlayerDefaultMove : MonoBehaviour
             {
                 moveX = Input.GetAxisRaw("Vertical") * moveSpeed;
                 moveZ = Input.GetAxisRaw("Horizontal") * moveSpeed;
-                Vector3 direction = camera.transform.forward * moveX + camera.transform.right * moveZ;                controller.SimpleMove(direction);
-
+                Vector3 direction = camera.transform.forward * moveX + camera.transform.right * moveZ;                
+                controller.SimpleMove(direction);
                 recastTimer++;
                 if(recastTimer>recastInterval)
                 {
                     PlayerStaminaScript.instance.Recharge();
                 }
             }
+            TPSControl.instance.Move(moveX,moveZ);
         }
     }
     public bool GetDashMode()

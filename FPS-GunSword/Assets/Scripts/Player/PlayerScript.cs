@@ -55,6 +55,7 @@ public class PlayerScript : MonoBehaviour
             audioSource.PlayOneShot(ULTStart);
             BayonetMove.instance.SetActivity(false);
             TPSControl.instance.SetActivity(true);
+            TPSControl.instance.Trans();
 
         }
 
@@ -64,6 +65,7 @@ public class PlayerScript : MonoBehaviour
             deformationTimer++;
             if(deformationTimer>deformationInterval)
             {
+                TPSControl.instance.TPS_Taiki();
                 //ULT中処理
                 ULTController.instance.Update();
             }

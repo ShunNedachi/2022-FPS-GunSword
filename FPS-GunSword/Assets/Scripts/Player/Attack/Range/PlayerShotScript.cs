@@ -17,6 +17,7 @@ public class PlayerShotScript : MonoBehaviour
     private int reloadTimer = 0;
     private bool hitEnemy = false;
     AudioSource audioSource;
+    Animator animator;
 
     public void Awake()
     {
@@ -31,6 +32,7 @@ public class PlayerShotScript : MonoBehaviour
     {
         PlayerMagazineScript.instance.Start();
         audioSource = GetComponent<AudioSource>();
+        animator = GetComponent<Animator>();
 
     }
 
