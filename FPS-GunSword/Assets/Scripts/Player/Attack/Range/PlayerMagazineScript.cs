@@ -14,6 +14,8 @@ public class PlayerMagazineScript : MonoBehaviour
     public Image MagazineImage;
     public Sprite[] Magazine;
     public Text TextFrame;
+
+
     public void Awake()
     {
         if(instance ==null)
@@ -25,6 +27,7 @@ public class PlayerMagazineScript : MonoBehaviour
     public void Start()
     {
         remainingBullets = magazineMax;
+
     }
     //残弾数を取得
     public int GetRemainingBullets()
@@ -44,6 +47,7 @@ public class PlayerMagazineScript : MonoBehaviour
     public void Reload()
     {
         remainingBullets = magazineMax;
+        TPSControl.instance.Reload();
     }
     public void Draw()
     {

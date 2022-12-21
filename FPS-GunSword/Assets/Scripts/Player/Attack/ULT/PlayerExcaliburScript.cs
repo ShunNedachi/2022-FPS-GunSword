@@ -41,7 +41,7 @@ public class PlayerExcaliburScript : MonoBehaviour
                 PlayerEnergyScript.instance.EnemyConsumptionSlash();
                 attackTimer = 0;
                 // プレイヤーの少し前に生成する
-                Vector3 createPos = transform.position + camera.transform.forward * attackDictance;
+                Vector3 createPos = camera.transform.position + camera.transform.forward * attackDictance;
                 Instantiate(Excalibur, createPos, transform.rotation);
                 PlayerDefaultMove.instance.SetMove(false);
                 audioSource.PlayOneShot(sound);
