@@ -35,6 +35,7 @@ public class DefaultEnemyScript : MonoBehaviour
     // for Particle
     [SerializeField] private GameObject damageParticle;
     [SerializeField] private float particleStartDistance;
+    [SerializeField] protected GameObject stunParticle;
 
     [SerializeField] private AudioClip discoverSE;
     protected AudioSource audio;
@@ -170,8 +171,12 @@ public class DefaultEnemyScript : MonoBehaviour
         var tempParticle = Instantiate(damageParticle, fixedPosition, transform.rotation);
         tempParticle.transform.rotation.SetLookRotation(playerV);
 
-        var particleSystem = tempParticle.GetComponentInChildren<ParticleSystem>();
-        particleSystem.Play();
+        var particleSystem = tempParticle.GetComponentsInChildren<ParticleSystem>();
+        for(int i= 0;i<particleSystem.Length;i++)
+        {
+            particleSystem[i].Play();
+        }
+
 
         // dead Flag
         if (hp <= 0) isDead = true;
@@ -203,11 +208,27 @@ public class DefaultEnemyScript : MonoBehaviour
 
     protected void StunCheck()
     {
-        if (IsStun)
+        if (IsStun && state != enemyState.stun)
         {
             // stun前の情報を記録　スタン状態終了時に移行
             beforeStunState = state;
             state = enemyState.stun;
+
+            var fixedPosition =
+                new Vector3(transform.position.x, instanceObjectFixedPosY, transform.position.z);
+
+            var playerV = playerObject.transform.position - transform.position;
+
+
+            // particle Create
+            var tempParticle = Instantiate(stunParticle, fixedPosition, transform.rotation);
+            tempParticle.transform.rotation.SetLookRotation(playerV);
+
+            var particleSystem = tempParticle.GetComponentsInChildren<ParticleSystem>();
+            for (int i = 0; i < particleSystem.Length; i++)
+            {
+                particleSystem[i].Play();
+            }
         }
     }
 }

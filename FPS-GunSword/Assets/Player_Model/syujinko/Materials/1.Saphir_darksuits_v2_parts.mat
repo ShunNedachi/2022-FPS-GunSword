@@ -477,7 +477,8 @@ Material:
     - _ReflectionCubeEnableLighting: 1
     - _ReflectionCubeOverride: 0
     - _ReflectionNormalStrength: 1
-    - _Revision: 2
+    - _RenderQueue: 2003
+    - _Revision: 3
     - _RimApplyTransparency: 1
     - _RimBackfaceMask: 1
     - _RimBlur: 0.65
