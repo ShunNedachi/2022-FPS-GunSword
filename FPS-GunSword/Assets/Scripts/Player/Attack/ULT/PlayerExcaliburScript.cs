@@ -9,9 +9,9 @@ public class PlayerExcaliburScript : MonoBehaviour
     [SerializeField] private float attackDictance = 5.0f;
     [SerializeField] private new GameObject camera;
     [SerializeField] private GameObject Excalibur;
+    [SerializeField] public AudioClip sound;
 
     private float attackTimer = 0;
-    private float objectRange = 0;
     private bool action = false;
 
     AudioSource audioSource;
@@ -41,9 +41,10 @@ public class PlayerExcaliburScript : MonoBehaviour
                 PlayerEnergyScript.instance.EnemyConsumptionSlash();
                 attackTimer = 0;
                 // プレイヤーの少し前に生成する
-                Vector3 createPos = transform.position + camera.transform.forward * attackDictance;
+                Vector3 createPos = camera.transform.position + camera.transform.forward * attackDictance;
                 Instantiate(Excalibur, createPos, transform.rotation);
                 PlayerDefaultMove.instance.SetMove(false);
+                audioSource.PlayOneShot(sound);
             }
     }
     public bool GetAction()
