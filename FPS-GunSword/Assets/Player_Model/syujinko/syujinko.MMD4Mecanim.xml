@@ -154,6 +154,7 @@
       <string>Assets/Player_Model/sentomotions/Trans_FPS.vmd</string>
       <string>Assets/Player_Model/sentomotions/HorizontalSlash_FPS.vmd</string>
       <string>Assets/Player_Model/sentomotions/VirticalSlash_FPS.vmd</string>
+      <string>Assets/Player_Model/sentomotions/Yarareta.vmd</string>
     </vmdAssetPathList>
     <fbxOutputPath>Assets/Player_Model/syujinko/syujinko.fbx</fbxOutputPath>
     <bulletPhysicsVersion>_275</bulletPhysicsVersion>
@@ -196,5 +197,7 @@
       <selfShadowEnabled>true</selfShadowEnabled>
       <sphereMapEnabled>true</sphereMapEnabled>
     </materialGlobalProperty>
+    <materialProperyList />
+    <materialBlockPropertyList />
   </mmd4MecanimProperty>
 </PMX2FBXConfig>
